@@ -1,0 +1,215 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<!-- Estilos Customizados e Proteção Elementor -->
+<style>
+    /* Importação da fonte customizada DiscoDiva */
+    @font-face {
+        font-family: 'DiscoDiva';
+        src: url('https://raw.githubusercontent.com/eriadesign/privateday/main/discodiva-base.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    /* Isolamento de Estilos base para evitar conflitos com o Tema do WP */
+    #auvp-lp-wrapper {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300; 
+        background-color: #FFF7EB;
+        color: #1a1a1a;
+        width: 100%;
+        position: relative;
+    }
+    
+    #auvp-lp-wrapper .vintage-title {
+        font-family: 'DiscoDiva', cursive, serif;
+        letter-spacing: 0.02em;
+    }
+
+    #auvp-lp-wrapper .film-grain {
+        position: absolute; 
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* --- PROTEÇÃO EXTRA PARA ELEMENTOR --- */
+    #auvp-lp-wrapper img {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    #auvp-lp-wrapper a {
+        text-decoration: none !important;
+    }
+
+    /* Trava o fundo Globo */
+    #auvp-lp-wrapper .bg-globo {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        max-width: none !important;
+    }
+
+    /* Trava a imagem da Cassete */
+    #auvp-lp-wrapper .cassete-img {
+        max-width: 280px !important;
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        display: block !important;
+    }
+
+    /* Força o tamanho correto das imagens de logo no Elementor */
+    #auvp-lp-wrapper .logo-header {
+        height: 80px !important;
+        width: auto !important;
+        max-width: 300px !important;
+        object-fit: contain !important;
+    }
+    
+    #auvp-lp-wrapper .logo-footer {
+        height: 64px !important;
+        width: auto !important;
+        max-width: 250px !important;
+        object-fit: contain !important;
+    }
+
+    @media (max-width: 768px) {
+        #auvp-lp-wrapper .logo-header {
+            height: 60px !important;
+        }
+        #auvp-lp-wrapper .logo-footer {
+            height: 48px !important;
+        }
+        #auvp-lp-wrapper .cassete-img {
+            width: 224px !important;
+        }
+    }
+</style>
+
+<!-- WRAPPER PRINCIPAL - Tudo acontece aqui dentro -->
+<div id="auvp-lp-wrapper" class="min-h-screen selection:bg-[#DB7944] selection:text-[#FFF7EB] overflow-x-hidden flex flex-col">
+
+    <div class="film-grain" style="position: fixed;"></div>
+
+    <!-- Navbar Clean -->
+    <nav id="navbar" class="w-full z-50 transition-all duration-300 bg-transparent py-6 md:py-8 absolute top-0">
+        <div class="max-w-7xl mx-auto px-5 md:px-8 flex justify-center items-center">
+            <div class="block shrink-0">
+                <img id="nav-logo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/private%20day%20escuro.png" alt="AUVP Private Day" class="logo-header transition-all duration-300">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção Principal de Obrigado -->
+    <main class="relative flex-grow pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden flex items-center justify-center min-h-screen">
+        
+        <!-- Imagem de fundo globo.png com 10% de opacidade -->
+        <div class="absolute inset-0 z-0 opacity-10 pointer-events-none flex items-center justify-center overflow-hidden">
+            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/globo.png" alt="Fundo Globo" class="bg-globo pointer-events-none">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-5 md:px-8 relative z-10 flex flex-col items-center w-full text-center">
+            
+            <h1 class="vintage-title text-4xl sm:text-5xl md:text-6xl text-[#1a1a1a] leading-tight mb-4 whitespace-nowrap">
+                Seu nome está na lista
+            </h1>
+            
+            <p class="text-base md:text-xl text-[#1a1a1a]/80 mb-12 font-light max-w-2xl leading-relaxed">
+                Se prepare para viver o evento mais aguardado<br/>da comunidade AUVP.
+            </p>
+
+            <!-- Card de Destaque (Formato Ticket em Azul #0B2A47) -->
+            <div class="flex flex-col md:flex-row w-full max-w-4xl mx-auto items-stretch relative drop-shadow-2xl">
+                
+                <!-- Left Side -->
+                <div class="p-8 md:p-12 flex-1 flex flex-col justify-center text-center md:text-left relative bg-[#0B2A47] rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none z-10">
+                    
+                    <h2 class="vintage-title text-3xl md:text-4xl text-[#FFF7EB] mb-4">
+                        2026 ganhou uma nova data especial
+                    </h2>
+                    <p class="text-base md:text-lg text-[#FFF7EB]/80 font-light leading-relaxed max-w-lg mx-auto md:mx-0">
+                        Guarde na agenda, separe o look, ensaie algumas danças de discoteca e segure a ansiedade.
+                    </p>
+
+                    <!-- Serrilhado (Desktop: Direita | Mobile: Baixo) -->
+                    <div class="absolute top-0 right-0 h-full w-[2px] border-r-2 border-dashed border-[#FFF7EB]/30 hidden md:block"></div>
+                    <div class="absolute bottom-0 left-0 w-full h-[2px] border-b-2 border-dashed border-[#FFF7EB]/30 md:hidden"></div>
+
+                    <!-- Recorte do Picote (Desktop: Direita | Mobile: Baixo) -->
+                    <div class="absolute top-1/2 -right-[1px] -translate-y-1/2 w-4 h-8 rounded-l-full bg-[#FFF7EB] hidden md:block z-30"></div>
+                    <div class="absolute -bottom-[1px] left-1/2 -translate-x-1/2 w-8 h-4 rounded-t-full bg-[#FFF7EB] md:hidden z-30"></div>
+                </div>
+
+                <!-- Right Side (The part that detaches) -->
+                <div class="p-8 md:p-12 w-full md:w-2/5 flex flex-col justify-center items-center text-center relative bg-[#0B2A47] rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] cursor-pointer hover:translate-y-4 hover:-rotate-1 md:hover:translate-y-0 md:hover:translate-x-6 md:hover:rotate-3 z-20 origin-top-left md:origin-top-left">
+                    
+                    <!-- Serrilhado (Desktop: Esquerda | Mobile: Topo) -->
+                    <div class="absolute top-0 left-0 h-full w-[2px] border-l-2 border-dashed border-[#FFF7EB]/30 hidden md:block"></div>
+                    <div class="absolute top-0 left-0 w-full h-[2px] border-t-2 border-dashed border-[#FFF7EB]/30 md:hidden"></div>
+
+                    <!-- Recorte do Picote (Desktop: Esquerda | Mobile: Topo) -->
+                    <div class="absolute top-1/2 -left-[1px] -translate-y-1/2 w-4 h-8 rounded-r-full bg-[#FFF7EB] hidden md:block z-30"></div>
+                    <div class="absolute -top-[1px] left-1/2 -translate-x-1/2 w-8 h-4 rounded-b-full bg-[#FFF7EB] md:hidden z-30"></div>
+
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="text-xl md:text-2xl font-medium tracking-wide text-[#FFF7EB]">
+                            6 e 7 de Novembro
+                        </span>
+                        <span class="text-[#DB7944] text-xl font-bold">•</span>
+                        <span class="text-lg md:text-xl font-light text-[#FFF7EB]/80">
+                            Goiânia, GO.
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caixa de Aviso E-mail (Mesma largura do ingresso) -->
+            <div class="mt-12 flex flex-row items-center justify-start gap-5 bg-transparent border border-[#1a1a1a]/20 rounded-2xl p-6 md:p-8 max-w-4xl w-full mx-auto">
+                <i class="ph ph-envelope-simple-open text-5xl text-[#1a1a1a] shrink-0"></i>
+                <div class="text-left">
+                    <p class="text-[#1a1a1a] font-medium text-lg md:text-xl mb-1">Confira sua caixa de entrada</p>
+                    <p class="text-[#1a1a1a]/70 font-light text-sm md:text-base">Você receberá um e-mail com todos os detalhes do seu ingresso.</p>
+                </div>
+            </div>
+
+            <!-- Dobra do Spotify -->
+            <div class="mt-16 flex flex-col md:flex-row w-full max-w-4xl mx-auto items-center justify-between gap-10 md:gap-16 text-left">
+                <!-- Coluna Esquerda: Textos -->
+                <div class="flex-1 text-center md:text-left">
+                    <h3 class="vintage-title text-3xl md:text-4xl text-[#1a1a1a] mb-4">
+                        Já vai entrando no clima!
+                    </h3>
+                    <p class="text-base md:text-lg text-[#1a1a1a]/80 font-light leading-relaxed">
+                        Ensaie as coreografias e prepare a vibe. Acesse nossa playlist oficial exclusiva no Spotify e comece a viver a experiência do Private Day desde agora.
+                    </p>
+                </div>
+                
+                <!-- Coluna Direita: Cassete Clicável -->
+                <div class="w-full md:w-2/5 flex justify-center md:justify-end">
+                    <!-- Substitua o link abaixo pela URL oficial da playlist -->
+                    <a href="https://open.spotify.com/playlist/49bhIvdQhaptTLNEbDsnLv?si=d53ee916a4a645e2&pt=8fd159d3a4607a0b949b49143e20de74" target="_blank" class="block transform hover:scale-105 hover:rotate-3 transition-transform duration-500 drop-shadow-xl outline-none">
+                        <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/cassete.png" alt="Playlist Private Day Cassete" class="cassete-img pointer-events-none">
+                    </a>
+                </div>
+            </div>
+
+            <h2 class="vintage-title text-4xl md:text-5xl text-[#1a1a1a] mt-24 mb-4">
+                Nos vemos no Private Day 2026
+            </h2>
+
+            <div class="mt-16">
+                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/Group%2038.png" alt="AUVP Private Day" class="logo-footer mx-auto opacity-90">
+            </div>
+
+        </div>
+    </main>
+
+</div>
