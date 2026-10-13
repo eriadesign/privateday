@@ -430,9 +430,11 @@
                         <a href="https://privateday.auvpag.com.br/pay/private-day-2026-evento-completo?utm_source=lp&utm_campaign=private-day&utm_medium=lp&utm_term=%7B%7Bdate%7D%7D&utm_content=header" target="_blank" class="block px-5 py-4 transition-colors hover:bg-[#1a1a1a]/5 border-b border-[#1a1a1a]/10">
                             <span class="block font-medium text-[#1a1a1a]">Evento todo</span>
                         </a>
-                        <a href="https://privateday.auvpag.com.br/pay/private-day-2026-festa?utm_source=lp&utm_campaign=private-day&utm_medium=lp&utm_term=%7B%7Bdate%7D%7D&utm_content=header" target="_blank" class="block px-5 py-4 transition-colors hover:bg-[#1a1a1a]/5">
-                            <span class="block font-medium text-[#1a1a1a]">Só festa</span>
-                        </a>
+                        <!-- Só festa esgotado: sem link para o checkout -->
+                        <div class="flex items-center justify-between gap-3 px-5 py-4 cursor-not-allowed" aria-disabled="true">
+                            <span class="block font-medium text-[#1a1a1a]/40">Só festa</span>
+                            <span class="text-[10px] font-semibold tracking-widest uppercase text-[#932621]">Esgotado</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -451,9 +453,11 @@
             <a href="https://privateday.auvpag.com.br/pay/private-day-2026-evento-completo?utm_source=lp&utm_campaign=private-day&utm_medium=lp&utm_term=%7B%7Bdate%7D%7D&utm_content=header" target="_blank" class="block px-5 py-3 hover:bg-[#1a1a1a]/5">
                 <span class="text-[#1a1a1a] font-medium">Evento todo</span>
             </a>
-            <a href="https://privateday.auvpag.com.br/pay/private-day-2026-festa?utm_source=lp&utm_campaign=private-day&utm_medium=lp&utm_term=%7B%7Bdate%7D%7D&utm_content=header" target="_blank" class="block px-5 py-3 hover:bg-[#1a1a1a]/5 pb-4">
-                <span class="text-[#1a1a1a] font-medium">Só festa</span>
-            </a>
+            <!-- Só festa esgotado: sem link para o checkout -->
+            <div class="flex items-center justify-between gap-3 px-5 py-3 pb-4 cursor-not-allowed" aria-disabled="true">
+                <span class="text-[#1a1a1a]/40 font-medium">Só festa</span>
+                <span class="text-[10px] font-semibold tracking-widest uppercase text-[#932621]">Esgotado</span>
+            </div>
         </div>
     </nav>
 
@@ -575,17 +579,17 @@
                     <div class="p-6 md:p-14 w-full md:w-[35%] flex flex-col justify-center items-center text-center relative bg-[#0B2A47]">
                         <h4 class="vintage-title text-4xl md:text-5xl text-[#FFF7EB] mb-2">Só festa</h4>
                         <span class="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-medium tracking-widest uppercase bg-[#FFF7EB]/15 text-[#FFF7EB]/80 px-3 py-1 rounded-full mb-3">
-                            <i class="ph ph-lock-simple text-sm"></i>1º Lote encerrado
+                            <i class="ph ph-prohibit text-sm"></i>Ingressos esgotados
                         </span>
                         <div class="mb-4 md:mb-6">
-                            <p class="text-[10px] md:text-xs font-medium tracking-widest uppercase text-[#FFF7EB] mb-1.5">2º Lote · valor atual</p>
-                            <p class="text-2xl md:text-4xl font-bold text-[#FFF7EB] tracking-tight leading-none">R$ 997,00</p>
-                            <p class="text-[11px] md:text-xs text-[#FFF7EB]/60 leading-snug mt-2">O valor sobe a cada lote. Garanta o seu agora.</p>
+                            <p class="text-2xl md:text-4xl font-bold text-[#FFF7EB]/40 tracking-tight leading-none line-through">R$ 997,00</p>
+                            <p class="text-[11px] md:text-xs text-[#FFF7EB]/60 leading-snug mt-2">Ainda dá para garantir o Evento todo.</p>
                         </div>
 
-                        <a href="https://privateday.auvpag.com.br/pay/private-day-2026-festa?utm_source=lp&utm_campaign=private-day&utm_medium=lp&utm_term=%7B%7Bdate%7D%7D&utm_content=normal" target="_blank" class="elementor-btn-protect inline-flex items-center justify-center px-6 py-3.5 font-medium rounded-none transition-all duration-300 ease-in-out cursor-pointer bg-[#FFF7EB] text-[#0B2A47] border border-[#FFF7EB] hover:bg-transparent hover:text-[#FFF7EB] w-full tracking-wide text-base text-center">
-                            Comprar meu ingresso
-                        </a>
+                        <!-- Só festa esgotado: sem link para o checkout -->
+                        <span aria-disabled="true" class="inline-flex items-center justify-center px-6 py-3.5 font-medium rounded-none cursor-not-allowed bg-transparent text-[#FFF7EB]/50 border border-[#FFF7EB]/30 w-full tracking-wide text-base text-center">
+                            Esgotado
+                        </span>
                     </div>
                 </div>
 
