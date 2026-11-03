@@ -33,9 +33,27 @@ Esse endereço só funciona depois que o arquivo chega à `main`.
 
 O GitHub Pages publica a `main`, e todo o conteúdo é público, inclusive o de 2027 enquanto está em desenvolvimento:
 
-- 2026: <https://eriadesign.github.io/privateday/2026/>
 - 2027: <https://eriadesign.github.io/privateday/2027/>
-- O endereço raiz redireciona para 2026. Quando a página de 2027 estiver pronta, troque o destino no `index.htm` da raiz.
+- 2026: <https://eriadesign.github.io/privateday/2026/>
+- O endereço raiz redireciona para a edição atual, 2027. A cada nova edição, troque o destino no `index.htm` da raiz.
+
+## Rascunho de 2027
+
+A landing de 2027 segue o guia de identidade do evento, dividido em dois momentos:
+
+- **Palestras:** preto e branco, com Anek Latin nos títulos e Roboto no corpo.
+- **Festa:** paleta do tema Brasilidades, com Oferta do Dia nos títulos e Elms Sans no corpo.
+
+Para editar, as cores estão em `tailwind.config` (`mato`, `mar`, `areia`, `canario`, `caju`, `cacau`) e as fontes em `--fonte-*`, no começo de `2027/index.htm`. Os elementos e as fotos do guia estão em `2027/assets/brasilidades/`. Pontos a preencher estão marcados no código com `TROCAR`.
+
+Antes de publicar de verdade:
+
+- [ ] Remover a linha `noindex` do começo do arquivo e o aviso de rascunho.
+- [ ] Preencher datas, local, valores e links de checkout de 2027.
+- [ ] Trocar os palestrantes, que ainda são os de 2026.
+- [ ] Trocar o vídeo, cuja capa ainda mostra "Disco fever", e incluir o link do dress code.
+- [ ] Confirmar a licença da fonte Oferta do Dia e das fotos do guia.
+- [ ] Refazer `2027/obrigado.htm`, que ainda está no visual de 2026.
 
 ## Versão exata de 2026
 
