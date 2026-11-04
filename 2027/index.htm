@@ -80,7 +80,7 @@
     #auvp-lp-wrapper .mundo-festa { font-family: var(--fonte-festa-corpo); color: var(--cacau); }
     #auvp-lp-wrapper .titulo-festa { font-family: var(--fonte-festa); font-weight: normal; text-transform: uppercase; letter-spacing: .02em; line-height: 1; }
 
-    /* Fundo em grade e faixa xadrez */
+    /* Fundo em grade e faixa xadrez: --a é a cor da dobra de cima e --b, a da dobra de baixo */
     #auvp-lp-wrapper .grade { background-image: linear-gradient(rgba(40,26,22,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(40,26,22,.09) 1px, transparent 1px); background-size: 46px 46px; }
     #auvp-lp-wrapper .xadrez { height: 44px; background: conic-gradient(var(--a) 25%, var(--b) 0 50%, var(--a) 0 75%, var(--b) 0) 0 0 / 44px 44px; }
 
@@ -134,9 +134,10 @@
     }
     #auvp-lp-wrapper .hero-info { border-top: 1px solid rgba(255,255,255,.22); }
 
-    /* O segredo: a frase apagada e o sol no rodapé abrem a festa */
-    #auvp-lp-wrapper .segredo-frase { display: inline-block; color: rgba(255,255,255,.3); cursor: pointer; outline: none; transition: color .35s; }
-    #auvp-lp-wrapper .segredo-frase:hover, #auvp-lp-wrapper .segredo-frase:focus-visible { color: var(--canario); }
+    /* O segredo: a frase em destaque e o sol no rodapé abrem a festa */
+    #auvp-lp-wrapper .segredo-frase { color: var(--canario); cursor: pointer; outline: none; text-decoration: underline; text-decoration-color: var(--canario); text-decoration-thickness: 2px; text-underline-offset: .14em; transition: color .25s; }
+    #auvp-lp-wrapper .segredo-frase:hover { color: #fff; }
+    #auvp-lp-wrapper .segredo-frase:focus-visible { outline: 3px solid var(--canario); outline-offset: 6px; border-radius: 4px; }
     #auvp-lp-wrapper .segredo-sol { position: absolute; z-index: 3; right: 130px; bottom: -58px; width: 116px; cursor: pointer; outline: none; transition: bottom .45s var(--curva), transform .45s var(--curva); }
     #auvp-lp-wrapper .segredo-sol img { display: block; width: 100%; height: auto; max-width: none; animation: gira 40s linear infinite; }
     #auvp-lp-wrapper .segredo-sol:hover, #auvp-lp-wrapper .segredo-sol:focus-visible { bottom: -18px; transform: rotate(14deg); }
@@ -144,10 +145,14 @@
     #auvp-lp-wrapper .segredo { --x: 80%; --y: 95%; position: absolute; inset: 0; z-index: 4; background-color: var(--canario); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 96px 22px 40px; clip-path: circle(0 at var(--x) var(--y)); visibility: hidden; transition: clip-path .85s var(--curva), visibility 0s .85s; }
     #auvp-lp-wrapper .segredo.aberto { clip-path: circle(150vmax at var(--x) var(--y)); visibility: visible; transition: clip-path .85s var(--curva), visibility 0s; }
     #auvp-lp-wrapper .segredo-titulo { width: min(92%, 860px); height: auto; max-width: 100%; position: relative; z-index: 2; }
-    #auvp-lp-wrapper .segredo-fechar { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; outline: none; }
+    #auvp-lp-wrapper .segredo-acoes { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 14px; }
+    #auvp-lp-wrapper .segredo-fechar { display: inline-flex; align-items: center; justify-content: center; gap: .55em; min-height: 48px; padding: 0 24px; font-weight: 600; color: var(--cacau); border: 3px solid var(--cacau); border-radius: 999px; white-space: nowrap; cursor: pointer; outline: none; transition: background-color .25s, color .25s; }
+    #auvp-lp-wrapper .segredo-fechar:hover { background-color: var(--cacau); color: var(--areia); }
+    #auvp-lp-wrapper .segredo-fechar:focus-visible { outline: 3px solid var(--cacau); outline-offset: 3px; }
     #auvp-lp-wrapper .segredo-adesivo { position: absolute; }
     @media (max-width: 640px) {
         #auvp-lp-wrapper .segredo-sol { right: 92px; width: 96px; bottom: -48px; }
+        #auvp-lp-wrapper .hero-conteudo { padding-bottom: 64px; }
         #auvp-lp-wrapper .wa-wrapper.show-balloon .wa-balloon { animation: none !important; }
     }
     @media (max-width: 1023px) {
@@ -430,7 +435,7 @@
             <img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="">
         </div>
 
-        <!-- O segredo: abre a partir do sol ou da frase apagada -->
+        <!-- O segredo: abre a partir do sol ou da frase em destaque -->
         <div id="segredo" class="segredo grade mundo-festa" aria-hidden="true">
             <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cadeira-plastico.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="left:6%;top:16%;rotate:-10deg">
             <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/garrafa.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo h-24 md:h-44" style="right:8%;top:14%;rotate:14deg">
@@ -438,8 +443,10 @@
             <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/pandeiro.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="right:7%;bottom:12%;rotate:-14deg">
             <p class="relative z-[2] text-xl md:text-3xl font-semibold mb-4">Festa para celebrar.</p>
             <img class="segredo-titulo mb-7" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/titulo-brasilidades.png" alt="Brasilidades">
-            <a id="segredo-ver" href="#festa" class="btn-festa relative z-[2] px-7 py-3 mb-4" tabindex="-1">Ver a festa <i class="ph-bold ph-arrow-down"></i></a>
-            <span id="segredo-fechar" class="segredo-fechar relative z-[2] text-sm" role="button" tabindex="-1">Voltar ao palco</span>
+            <div class="segredo-acoes">
+                <a id="segredo-ver" href="#festa" class="btn-festa px-7 py-3" tabindex="-1">Ver a festa <i class="ph-bold ph-arrow-down"></i></a>
+                <span id="segredo-fechar" class="segredo-fechar" role="button" tabindex="-1"><i class="ph-bold ph-arrow-left"></i> Voltar ao palco</span>
+            </div>
         </div>
     </section>
 
@@ -449,7 +456,7 @@
             <span class="rotulo text-black/55 block mb-8 surge">No palco</span>
             <h2 class="titulo-palestra text-3xl md:text-5xl lg:text-6xl max-w-5xl mb-14 md:mb-20 surge">Reunimos nomes relevantes para palestras que enriquecem e conexões que continuam depois do evento.</h2>
 
-            <div class="pb-20 md:pb-28">
+            <div>
                 <div class="pilar surge">
                     <span class="pilar-num">01</span>
                     <h3 class="pilar-titulo">Nomes relevantes</h3>
@@ -466,13 +473,11 @@
                     <p class="pilar-texto">Um ambiente pensado para conversar, trocar experiências e conhecer quem pensa como você.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- TROCAR: quando o lineup estiver fechado, os palestrantes entram aqui -->
-        <div id="palestrantes" class="bg-black text-white">
-            <div class="max-w-7xl mx-auto px-5 md:px-8 py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <!-- TROCAR: quando o lineup estiver fechado, os palestrantes entram aqui -->
+            <div id="palestrantes" class="pt-8 md:pt-10 pb-20 md:pb-28 flex flex-col sm:flex-row sm:items-center justify-between gap-4 surge">
                 <p class="titulo-palestra text-2xl md:text-3xl">Quem sobe no palco em 2027?</p>
-                <p class="flex items-center gap-3 font-medium"><span class="ponto-breve" aria-hidden="true"></span> Lineup em breve</p>
+                <p class="self-start sm:self-auto inline-flex items-center gap-3 bg-black text-white font-medium px-5 py-3"><span class="ponto-breve" aria-hidden="true"></span> Lineup em breve</p>
             </div>
         </div>
     </section>
@@ -518,7 +523,7 @@
         </div>
     </section>
 
-    <div class="xadrez" style="--a:var(--cacau);--b:var(--areia)" aria-hidden="true"></div>
+    <div class="xadrez" style="--a:var(--canario);--b:var(--mar)" aria-hidden="true"></div>
 
     <!-- Isopor interativo -->
     <section class="mundo-festa bg-mar grade py-16 md:py-24" data-tema="festa" data-pertence="festa">
@@ -566,7 +571,7 @@
         </div>
     </section>
 
-    <div class="xadrez" style="--a:var(--mato);--b:var(--areia)" aria-hidden="true"></div>
+    <div class="xadrez" style="--a:var(--areia);--b:var(--mato)" aria-hidden="true"></div>
 
     <!-- Depoimentos -->
     <section class="mundo-festa bg-mato py-16 md:py-24" data-tema="festa" data-pertence="edicao-25">
@@ -600,7 +605,7 @@
         </div>
     </section>
 
-    <div class="xadrez" style="--a:var(--cacau);--b:var(--areia)" aria-hidden="true"></div>
+    <div class="xadrez" style="--a:var(--mato);--b:var(--caju)" aria-hidden="true"></div>
 
     <!-- ==================== INGRESSOS: em breve ==================== -->
     <section id="ingressos" class="mundo-festa bg-caju grade py-16 md:py-24" data-tema="festa">
@@ -641,10 +646,10 @@
         </div>
     </section>
 
-    <div class="xadrez" style="--a:#000;--b:var(--areia)" aria-hidden="true"></div>
+    <div class="xadrez" style="--a:var(--caju);--b:#000" aria-hidden="true"></div>
 
     <!-- Patrocínio -->
-    <section class="bg-black border-t border-white/15 py-12 md:py-16" data-tema="sobrio" data-pertence="ingressos">
+    <section class="bg-black py-12 md:py-16" data-tema="sobrio" data-pertence="ingressos">
         <div class="max-w-7xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             <h3 class="titulo-palestra text-2xl md:text-4xl text-white max-w-3xl">Leve sua marca para o maior evento da comunidade AUVP.</h3>
             <a href="https://form.auvp.com.br/to/LxmkLllT?typeform-source=privateday.auvp.com.br" target="_blank" class="btn-sobrio px-8 py-3.5 text-sm shrink-0">Quero patrocinar</a>
@@ -827,7 +832,7 @@
             menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { alterna(false); }); });
         }
 
-        // O segredo do topo: a festa abre a partir do sol ou da frase apagada
+        // O segredo do topo: a festa abre a partir do sol ou da frase em destaque
         var segredo = document.getElementById('segredo');
         var segredoSol = document.getElementById('segredo-sol');
         var segredoFrase = document.getElementById('segredo-frase');
