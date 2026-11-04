@@ -39,12 +39,17 @@ O GitHub Pages publica a `main`, e todo o conteúdo é público, inclusive o de 
 
 ## Rascunho de 2027
 
-A landing de 2027 segue o guia de identidade do evento, dividido em dois momentos:
+A landing de 2027 é dividida em dois mundos, seguindo o guia de identidade:
 
-- **Palestras:** preto e branco, com Anek Latin nos títulos e Roboto no corpo.
-- **Festa:** paleta do tema Brasilidades, com Oferta do Dia nos títulos e Elms Sans no corpo.
+- **Palestras:** sóbrio e corporativo. Preto e branco, Anek Latin nos títulos, Roboto no corpo, linhas finas.
+- **Festa:** paleta do tema Brasilidades, Oferta do Dia nos títulos, Elms Sans no corpo e os elementos do guia em forma de adesivo.
 
-Para editar, as cores estão em `tailwind.config` (`mato`, `mar`, `areia`, `canario`, `caju`, `cacau`) e as fontes em `--fonte-*`, no começo de `2027/index.htm`. Os elementos e as fotos do guia estão em `2027/assets/brasilidades/`. Pontos a preencher estão marcados no código com `TROCAR`.
+Para editar, as cores estão em `tailwind.config` (`mato`, `mar`, `areia`, `canario`, `caju`, `cacau`) e as fontes em `--fonte-*`, no começo de `2027/index.htm`. Pontos a preencher estão marcados no código com `TROCAR`.
+
+- `2027/assets/brasilidades/`: elementos, fotos do guia e `titulo-brasilidades.png`, o título em imagem.
+- `2027/assets/palestrantes/`: fotos dos palestrantes, reduzidas para web. Ainda são as de 2026.
+
+Nos títulos da festa, evite as letras C e Ç: na Oferta do Dia, o C se lê como L.
 
 Antes de publicar de verdade:
 
