@@ -46,7 +46,7 @@ A landing de 2027 é dividida em dois mundos, seguindo o guia de identidade:
 
 Para editar, as cores estão em `tailwind.config` (`mato`, `mar`, `areia`, `canario`, `caju`, `cacau`) e as fontes em `--fonte-*`, no começo de `2027/index.htm`. Pontos a preencher estão marcados no código com `TROCAR`.
 
-Os elementos, as fotos do guia e `titulo-brasilidades.png`, o título em imagem, estão em `2027/assets/brasilidades/`.
+Os elementos, as fotos do guia e `titulo-brasilidades.png`, o título em imagem, estão em `2027/assets/brasilidades/`. Além dos elementos do guia, a pasta tem adesivos regionais criados para a página: `pamonha`, `fitinha-bonfim`, `cordel`, `berimbau`, `sombrinha`, `chapeu-cangaceiro`, `chimarrao`, `caju-fruta`, `sanfona`, `vitoria-regia` e `filtro-barro`.
 
 Nos títulos da festa, evite as letras C e Ç: na Oferta do Dia, o C se lê como L.
 
