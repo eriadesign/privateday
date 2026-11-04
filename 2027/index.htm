@@ -234,18 +234,39 @@
     #auvp-lp-wrapper .card-depo:hover { transform: rotate(0deg) translateY(-6px) !important; }
     #auvp-lp-wrapper .card-depo img { position: absolute; top: -34px; right: 18px; height: 78px; width: auto; }
 
-    /* ========== INGRESSOS: adesivos e pílulas, tudo em breve ========== */
-    #auvp-lp-wrapper .opcao { display: flex; flex-direction: column; align-items: center; gap: 30px; }
-    #auvp-lp-wrapper .opcao-arte { position: relative; width: min(100%, 400px); aspect-ratio: 400/300; transition: transform .4s var(--curva); }
-    #auvp-lp-wrapper .opcao:hover .opcao-arte { transform: rotate(-2deg) scale(1.03); }
-    #auvp-lp-wrapper .opcao-sol { position: absolute; left: -1%; top: 1%; width: 50%; height: auto; max-width: none; }
-    #auvp-lp-wrapper .opcao-arco { position: absolute; right: 1%; top: 2%; width: 40%; height: 74%; background: var(--mar); border: 6px solid var(--areia); border-radius: 999px 999px 16px 16px; box-shadow: 4px 5px 0 rgba(40,26,22,.4); rotate: 6deg; }
-    /* O contorno recortado acompanha os furos do bilhete */
-    #auvp-lp-wrapper .bilhete-recorte { position: absolute; left: 12%; top: 22%; width: 80%; height: 66%; filter: drop-shadow(6px 0 0 var(--areia)) drop-shadow(-6px 0 0 var(--areia)) drop-shadow(0 6px 0 var(--areia)) drop-shadow(0 -6px 0 var(--areia)) drop-shadow(5px 7px 0 rgba(40,26,22,.45)); }
-    #auvp-lp-wrapper .bilhete { width: 100%; height: 100%; border-radius: 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; padding: 0 12% 0 11%; -webkit-mask: radial-gradient(circle 15px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 15px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat; mask: radial-gradient(circle 15px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 15px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat; }
-    #auvp-lp-wrapper .bilhete img { height: 22px; width: auto; max-width: none; }
-    #auvp-lp-wrapper .bilhete-sobrio { background: #000; color: #fff; }
-    #auvp-lp-wrapper .bilhete-festa { background: var(--canario); color: var(--cacau); }
+    /* ========== INGRESSO: único, entre o palco e a festa ========== */
+    #auvp-lp-wrapper .ingresso-palco { position: relative; max-width: 940px; margin: 0 auto; }
+    /* O contorno recortado acompanha os furos da costura */
+    #auvp-lp-wrapper .ingresso-recorte { position: relative; z-index: 2; filter: drop-shadow(5px 0 0 var(--areia)) drop-shadow(-5px 0 0 var(--areia)) drop-shadow(0 5px 0 var(--areia)) drop-shadow(0 -5px 0 var(--areia)) drop-shadow(7px 9px 0 rgba(40,26,22,.55)); transition: transform .4s var(--curva); }
+    #auvp-lp-wrapper .ingresso-palco:hover .ingresso-recorte { transform: rotate(-.7deg) scale(1.01); }
+    #auvp-lp-wrapper .ingresso { display: flex; min-height: 370px; border-radius: 20px; overflow: hidden; }
+    #auvp-lp-wrapper .ingresso-sobrio { flex: 0 0 58%; min-width: 0; background: #000; color: #fff; padding: 32px 38px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; text-align: left; }
+    #auvp-lp-wrapper .ingresso-marca { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    #auvp-lp-wrapper .ingresso-marca span:first-child { display: flex; align-items: center; gap: 10px; font-family: var(--fonte-palestra); font-weight: 500; font-size: 18px; }
+    #auvp-lp-wrapper .ingresso-marca img { height: 22px; width: auto; max-width: none; }
+    #auvp-lp-wrapper .ingresso-nome { font-size: clamp(42px, 6.4vw, 70px); line-height: 1; }
+    #auvp-lp-wrapper .ingresso-nome .titulo-palestra { line-height: 1; letter-spacing: -.02em; }
+    #auvp-lp-wrapper .ingresso-nome .titulo-festa { color: var(--canario); display: block; margin-top: .08em; }
+    #auvp-lp-wrapper .ingresso-dados { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 18px; margin: 0; }
+    #auvp-lp-wrapper .ingresso-dados div { border-top: 1px solid rgba(255,255,255,.28); padding-top: 10px; }
+    #auvp-lp-wrapper .ingresso-dados dt { font-family: var(--fonte-palestra); font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 4px; }
+    #auvp-lp-wrapper .ingresso-dados dd { margin: 0; font-weight: 500; }
+    /* A costura usa o mesmo xadrez das faixas, com as cores dos dois lados do ingresso */
+    #auvp-lp-wrapper .ingresso-costura { flex: 0 0 44px; background: conic-gradient(#000 25%, var(--mato) 0 50%, #000 0 75%, var(--mato) 0) 0 0 / 44px 44px; -webkit-mask: radial-gradient(circle 22px at 50% 0, transparent 98%, #000) top / 100% 51% no-repeat, radial-gradient(circle 22px at 50% 100%, transparent 98%, #000) bottom / 100% 51% no-repeat; mask: radial-gradient(circle 22px at 50% 0, transparent 98%, #000) top / 100% 51% no-repeat, radial-gradient(circle 22px at 50% 100%, transparent 98%, #000) bottom / 100% 51% no-repeat; }
+    #auvp-lp-wrapper .ingresso-festa { flex: 1 1 0; min-width: 0; background-color: var(--mato); color: var(--cacau); font-family: var(--fonte-festa-corpo); padding: 28px 26px 24px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 18px; text-align: center; }
+    #auvp-lp-wrapper .ingresso-sol { width: 92px; height: auto; max-width: none; }
+    #auvp-lp-wrapper .ingresso-titulo { width: 100%; height: auto; max-width: 100%; }
+    #auvp-lp-wrapper .ingresso-barras { width: 100%; height: 36px; background: linear-gradient(90deg, var(--cacau) 0 3%, transparent 0 5%, var(--cacau) 0 6%, transparent 0 9%, var(--cacau) 0 13%, transparent 0 15%, var(--cacau) 0 16%, transparent 0 18%, var(--cacau) 0 19%, transparent 0 23%, var(--cacau) 0 27%, transparent 0 28%, var(--cacau) 0 29%, transparent 0 32%, var(--cacau) 0 35%, transparent 0 37%, var(--cacau) 0 38%, transparent 0 42%, var(--cacau) 0 44%, transparent 0 45%, var(--cacau) 0 49%, transparent 0 51%, var(--cacau) 0 52%, transparent 0 55%, var(--cacau) 0 56%, transparent 0 58%, var(--cacau) 0 62%, transparent 0 63%, var(--cacau) 0 65%, transparent 0 68%, var(--cacau) 0 69%, transparent 0 73%, var(--cacau) 0 76%, transparent 0 78%, var(--cacau) 0 79%, transparent 0 81%, var(--cacau) 0 85%, transparent 0 87%, var(--cacau) 0 88%, transparent 0 91%, var(--cacau) 0 94%, transparent 0 96%, var(--cacau) 0 100%); }
+    #auvp-lp-wrapper .ingresso-adesivo { position: absolute; }
+    @media (max-width: 767px) {
+        #auvp-lp-wrapper .ingresso { flex-direction: column; min-height: 0; }
+        #auvp-lp-wrapper .ingresso-sobrio { flex: none; padding: 26px 22px; }
+        #auvp-lp-wrapper .ingresso-nome { font-size: clamp(42px, 13vw, 58px); }
+        #auvp-lp-wrapper .ingresso-dados { grid-template-columns: 1fr 1fr; }
+        #auvp-lp-wrapper .ingresso-dados div:first-child { grid-column: 1 / -1; }
+        #auvp-lp-wrapper .ingresso-costura { flex: 0 0 44px; -webkit-mask: radial-gradient(circle 22px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 22px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat; mask: radial-gradient(circle 22px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 22px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat; }
+        #auvp-lp-wrapper .ingresso-festa { flex: none; padding: 22px 22px 20px; }
+    }
     #auvp-lp-wrapper .pilula-breve { display: inline-flex; align-items: center; gap: .6em; font-family: var(--fonte-festa-corpo); font-weight: 600; font-size: 18px; background: var(--areia); color: var(--cacau); border: 3px solid var(--cacau); border-radius: 999px; box-shadow: var(--sombra-dura); padding: 13px 30px; white-space: nowrap; }
     #auvp-lp-wrapper .pilula-breve small { font-size: 13px; font-weight: 500; opacity: .7; }
 
@@ -393,17 +414,17 @@
                 <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/olho.png" alt="" aria-hidden="true"><span>Private Day</span>
             </a>
             <div class="hidden lg:flex nav-pilula">
-                <a href="#ingressos" class="nav-link" data-secao="ingressos">Ingressos</a>
+                <a href="#ingressos" class="nav-link" data-secao="ingressos">Ingresso</a>
                 <a href="#palestras" class="nav-link" data-secao="palestras">Palestras</a>
                 <a href="#festa" class="nav-link" data-secao="festa">Festa</a>
                 <a href="#edicao-25" class="nav-link" data-secao="edicao-25">A edição</a>
                 <a href="#faq" class="nav-link" data-secao="faq">FAQ</a>
             </div>
-            <a id="nav-cta" href="#ingressos" class="hidden lg:block">Ingressos em breve</a>
+            <a id="nav-cta" href="#ingressos" class="hidden lg:block">Ingresso em breve</a>
             <div id="mobile-menu-btn" class="lg:hidden" role="button" tabindex="0" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><i class="ph ph-list"></i></div>
         </div>
         <div id="mobile-menu" class="hidden lg:hidden mx-4 mt-2 bg-black border border-white/20 rounded-2xl overflow-hidden flex-col">
-            <a href="#ingressos" class="block px-5 py-4 text-white font-medium border-b border-white/10">Ingressos</a>
+            <a href="#ingressos" class="block px-5 py-4 text-white font-medium border-b border-white/10">Ingresso</a>
             <a href="#palestras" class="block px-5 py-4 text-white font-medium border-b border-white/10">Palestras</a>
             <a href="#festa" class="block px-5 py-4 text-white font-medium border-b border-white/10">Festa</a>
             <a href="#edicao-25" class="block px-5 py-4 text-white font-medium border-b border-white/10">A edição</a>
@@ -450,48 +471,50 @@
         </div>
     </section>
 
-    <div class="xadrez" style="--a:#000;--b:var(--caju)" aria-hidden="true"></div>
+    <div class="xadrez" style="--a:#000;--b:#fff" aria-hidden="true"></div>
 
-    <!-- ==================== INGRESSOS: em breve ==================== -->
-    <section id="ingressos" class="mundo-festa bg-caju grade py-16 md:py-24" data-tema="festa">
+    <!-- ==================== INGRESSO: único, entre o palco e a festa ==================== -->
+    <section id="ingressos" class="bg-white text-black py-20 md:py-28 relative overflow-hidden" data-tema="sobrio">
         <div class="max-w-5xl mx-auto px-5 md:px-8">
-            <div class="text-center mb-12 md:mb-16 surge">
-                <h2 class="titulo-festa text-5xl md:text-7xl mb-5">Ingressos em breve</h2>
-                <p class="max-w-2xl mx-auto text-lg leading-relaxed">As vagas são limitadas por restrição de espaço físico, tanto nas palestras quanto na festa. Em breve, os detalhes.</p>
+            <div class="text-center mb-16 md:mb-20 surge">
+                <span class="rotulo text-black/60 block mb-6">Ingresso único</span>
+                <h2 class="titulo-palestra text-4xl md:text-6xl mb-6">Um ingresso, <span class="plaquinha titulo-festa text-[.92em] -rotate-2 ml-1">dois mundos</span></h2>
+                <p class="max-w-2xl mx-auto text-lg leading-relaxed text-black/75">Palestras e festa em um só ingresso. As vagas são limitadas por restrição de espaço físico. Em breve, os detalhes.</p>
             </div>
 
-            <!-- TROCAR: quando as vendas abrirem, cada pílula vira um link para o checkout de 2027 -->
-            <div class="grid md:grid-cols-2 gap-14 md:gap-8">
-                <div class="opcao surge">
-                    <div class="opcao-arte" aria-hidden="true">
-                        <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true" class="adesivo opcao-sol">
-                        <div class="bilhete-recorte">
-                            <div class="bilhete bilhete-sobrio">
-                                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/olho.png" alt="">
-                                <span class="titulo-palestra text-3xl md:text-4xl">No palco</span>
+            <div class="flex flex-col items-center gap-10 surge">
+                <div class="ingresso-palco w-full">
+                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true" class="adesivo ingresso-adesivo w-24 md:w-40 -left-3 md:-left-16 -top-12 md:-top-20" style="z-index:1">
+                    <div class="ingresso-recorte">
+                        <div class="ingresso">
+                            <div class="ingresso-sobrio">
+                                <p class="ingresso-marca"><span><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/olho.png" alt=""> AUVP Private Day</span><span class="rotulo">2027</span></p>
+                                <p class="ingresso-nome"><span class="titulo-palestra">Palestras</span> <span class="titulo-festa">+ festa</span></p>
+                                <!-- TROCAR: data e local da edição de 2027 -->
+                                <dl class="ingresso-dados">
+                                    <div><dt>Acesso</dt><dd>Ingresso único</dd></div>
+                                    <div><dt>Data</dt><dd>Em breve</dd></div>
+                                    <div><dt>Local</dt><dd>Em breve</dd></div>
+                                </dl>
+                            </div>
+                            <div class="ingresso-costura" aria-hidden="true"></div>
+                            <div class="ingresso-festa grade">
+                                <img class="adesivo ingresso-sol" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true">
+                                <img class="ingresso-titulo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/titulo-brasilidades.png" alt="Brasilidades">
+                                <div class="ingresso-barras" aria-hidden="true"></div>
                             </div>
                         </div>
                     </div>
-                    <span class="pilula-breve">Evento todo <small>em breve</small></span>
+                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/fitinha-bonfim.png" alt="" aria-hidden="true" class="adesivo ingresso-adesivo h-20 md:h-44 -right-1 md:-right-12 -top-16 md:-top-24 rotate-6" style="z-index:3">
+                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sombrinha.png" alt="" aria-hidden="true" class="adesivo ingresso-adesivo hidden xl:block w-28 -left-24 -bottom-14 -rotate-6" style="z-index:3">
                 </div>
-
-                <div class="opcao surge" style="--d:.1s">
-                    <div class="opcao-arte" aria-hidden="true">
-                        <div class="opcao-arco"></div>
-                        <div class="bilhete-recorte">
-                            <div class="bilhete bilhete-festa">
-                                <span class="titulo-festa text-4xl md:text-5xl">Na pista</span>
-                            </div>
-                        </div>
-                        <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cadeira-plastico.png" alt="" aria-hidden="true" class="adesivo absolute w-[26%] right-[2%] bottom-[2%] rotate-6">
-                    </div>
-                    <span class="pilula-breve">Só festa <small>em breve</small></span>
-                </div>
+                <!-- TROCAR: quando as vendas abrirem, a pílula vira um link para o checkout de 2027 -->
+                <span class="pilula-breve">Ingresso único <small>em breve</small></span>
             </div>
         </div>
     </section>
 
-    <div class="xadrez" style="--a:var(--caju);--b:#fff" aria-hidden="true"></div>
+    <div class="xadrez" style="--a:#fff;--b:#000" aria-hidden="true"></div>
 
     <!-- ==================== MUNDO 1: PALESTRAS (sóbrio e corporativo) ==================== -->
     <section id="palestras" class="bg-white text-black pt-20 md:pt-32" data-tema="sobrio">
@@ -1026,9 +1049,7 @@
             /* Cliques nos botões de compra (checkout Guru) */
             document.querySelectorAll('a[href*="auvpag.com.br/pay/"]').forEach(function (link) {
                 link.addEventListener('click', function () {
-                    var ingresso = link.href.indexOf('evento-completo') > -1 ? 'evento_completo' : 'so_festa';
-                    tag('ingresso_escolhido', ingresso);
-                    event('checkout_' + ingresso);
+                    event('checkout_ingresso_unico');
                     /* Prioriza a gravação: sessão com intenção de compra é a mais relevante */
                     upgrade('intencao_de_compra');
                 });

@@ -55,7 +55,7 @@ No topo, a festa abre pelo sol no rodapé ou pela frase em destaque "Festa para 
 Antes de publicar de verdade:
 
 - [ ] Remover a linha `noindex` do começo do arquivo e o aviso de rascunho.
-- [ ] Preencher datas, local e os links de checkout nos ingressos, que estão como "em breve".
+- [ ] Preencher datas, local e o link de checkout do ingresso único, que está como "em breve".
 - [ ] Incluir o lineup quando estiver fechado, no lugar da linha "Lineup em breve".
 - [ ] Trocar o vídeo, cuja capa ainda mostra "Disco fever", e incluir o link do dress code.
 - [ ] Confirmar a licença da fonte Oferta do Dia e das fotos do guia.
