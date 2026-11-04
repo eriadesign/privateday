@@ -422,14 +422,15 @@
                 <!-- CTA do header: abre as duas opções de ingresso e vai direto para o checkout -->
                 <div class="relative">
                     <button id="ticket-menu-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="ticket-menu" class="elementor-btn-protect inline-flex items-center gap-2 px-5 py-2.5 font-medium rounded-none transition-all duration-300 ease-in-out cursor-pointer text-[#FFF7EB] bg-gradient-to-r from-[#0B2A47] to-[#932621] hover:-translate-y-0.5 hover:shadow-lg tracking-wide text-sm whitespace-nowrap">
-                        Garantir meu ingresso
+                        Ingressos esgotados
                         <i class="ph ph-caret-down text-base transition-transform duration-300"></i>
                     </button>
 
                     <div id="ticket-menu" class="hidden absolute right-0 top-full mt-3 w-72 bg-[#FFF7EB] rounded-lg shadow-2xl border border-[#1a1a1a]/10 overflow-hidden">
-                        <a href="https://privateday.auvpag.com.br/pay/private-day-2026-evento-completo?utm_source=lp&utm_campaign=private-day&utm_medium=lp&utm_term=%7B%7Bdate%7D%7D&utm_content=header" target="_blank" class="block px-5 py-4 transition-colors hover:bg-[#1a1a1a]/5 border-b border-[#1a1a1a]/10">
-                            <span class="block font-medium text-[#1a1a1a]">Evento todo</span>
-                        </a>
+                        <div class="flex items-center justify-between gap-3 px-5 py-4 cursor-not-allowed border-b border-[#1a1a1a]/10" aria-disabled="true">
+                            <span class="block font-medium text-[#1a1a1a]/40">Evento todo</span>
+                            <span class="text-[10px] font-semibold tracking-widest uppercase text-[#932621]">Esgotado</span>
+                        </div>
                         <!-- Só festa esgotado: sem link para o checkout -->
                         <div class="flex items-center justify-between gap-3 px-5 py-4 cursor-not-allowed" aria-disabled="true">
                             <span class="block font-medium text-[#1a1a1a]/40">Só festa</span>
@@ -449,10 +450,11 @@
             <a href="#festa" class="px-5 py-4 text-[#1a1a1a] font-medium border-b border-[#1a1a1a]/10 hover:bg-[#1a1a1a]/5 hover:text-[#DB7944] capitalize">Festa</a>
             <a href="#edicao-25" class="px-5 py-4 text-[#1a1a1a] font-medium border-b border-[#1a1a1a]/10 hover:bg-[#1a1a1a]/5 hover:text-[#DB7944] capitalize">Edição 25</a>
             <a href="#faq" class="px-5 py-4 text-[#1a1a1a] font-medium border-b border-[#1a1a1a]/10 hover:bg-[#1a1a1a]/5 hover:text-[#DB7944] capitalize">FAQ</a>
-            <span class="px-5 pt-4 pb-2 text-[10px] font-semibold tracking-[0.2em] uppercase text-[#1a1a1a]/50 border-t border-[#1a1a1a]/10">Garantir meu ingresso</span>
-            <a href="https://privateday.auvpag.com.br/pay/private-day-2026-evento-completo?utm_source=lp&utm_campaign=private-day&utm_medium=lp&utm_term=%7B%7Bdate%7D%7D&utm_content=header" target="_blank" class="block px-5 py-3 hover:bg-[#1a1a1a]/5">
-                <span class="text-[#1a1a1a] font-medium">Evento todo</span>
-            </a>
+            <span class="px-5 pt-4 pb-2 text-[10px] font-semibold tracking-[0.2em] uppercase text-[#1a1a1a]/50 border-t border-[#1a1a1a]/10">Ingressos esgotados</span>
+            <div class="flex items-center justify-between gap-3 px-5 py-3 cursor-not-allowed" aria-disabled="true">
+                <span class="text-[#1a1a1a]/40 font-medium">Evento todo</span>
+                <span class="text-[10px] font-semibold tracking-widest uppercase text-[#932621]">Esgotado</span>
+            </div>
             <!-- Só festa esgotado: sem link para o checkout -->
             <div class="flex items-center justify-between gap-3 px-5 py-3 pb-4 cursor-not-allowed" aria-disabled="true">
                 <span class="text-[#1a1a1a]/40 font-medium">Só festa</span>
@@ -489,11 +491,9 @@
 
                 <div class="flex flex-col sm:flex-row justify-start gap-4 w-full">
                     <a href="#ingressos" class="elementor-btn-protect inline-flex items-center justify-center px-6 md:px-10 py-4 font-medium rounded-none transition-all duration-300 ease-in-out cursor-pointer w-full sm:w-auto tracking-wide text-base md:text-lg shadow-xl text-[#FFF7EB] hover:-translate-y-1 hover:shadow-2xl bg-gradient-to-r from-[#0B2A47] to-[#932621] whitespace-nowrap">
-                        Quero garantir meu ingresso
+                        Ingressos esgotados
                     </a>
                 </div>
-
-                <p class="text-sm md:text-base text-[#FFF7EB]/50 mt-3 font-light">Vagas limitadas*</p>
             </div>
         </div>
     </section>
@@ -508,9 +508,9 @@
                     <span>do começo ao fim.</span>
                 </h2>
                 <p class="max-w-3xl mx-auto text-sm md:text-lg text-[#1a1a1a]/70 font-light leading-relaxed">
-                    As vagas são limitadas por restrição de espaço físico, tanto nas palestras quanto na festa. Isso não é copy de vendas: é o motivo real pelo qual, ano após ano, tem gente que decide tarde demais e simplesmente não consegue mais entrar.
+                    As vagas são limitadas por restrição de espaço físico, tanto nas palestras quanto na festa, e todas já foram preenchidas.
                 </p>
-                <p class="mt-4 text-sm md:text-lg text-[#1a1a1a] font-medium whitespace-nowrap">Não existe segunda chamada.</p>
+                <p class="mt-4 text-sm md:text-lg text-[#1a1a1a] font-medium whitespace-nowrap">Ingressos esgotados.</p>
             </div>
 
             <div class="flex flex-col gap-6 md:gap-12">
@@ -539,18 +539,13 @@
 
                     <div class="p-6 md:p-14 w-full md:w-[35%] flex flex-col justify-center items-center text-center relative bg-[#932621]">
                         <h4 class="vintage-title text-3xl md:text-5xl text-[#FFF7EB] mb-2">Evento todo</h4>
-                        <span class="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-medium tracking-widest uppercase bg-[#FFF7EB]/15 text-[#FFF7EB]/80 px-3 py-1 rounded-full mb-3">
-                            <i class="ph ph-lock-simple text-sm"></i>1º Lote encerrado
+                        <span class="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-medium tracking-widest uppercase bg-[#FFF7EB]/15 text-[#FFF7EB]/80 px-3 py-1 rounded-full mb-4 md:mb-6">
+                            <i class="ph ph-prohibit text-sm"></i>Ingressos esgotados
                         </span>
-                        <div class="mb-4 md:mb-6">
-                            <p class="text-[10px] md:text-xs font-medium tracking-widest uppercase text-[#FFF7EB] mb-1.5">2º Lote · valor atual</p>
-                            <p class="text-2xl md:text-4xl font-bold text-[#FFF7EB] tracking-tight leading-none">R$ 1.897,00</p>
-                            <p class="text-[11px] md:text-xs text-[#FFF7EB]/60 leading-snug mt-2">O valor sobe a cada lote. Garanta o seu agora.</p>
-                        </div>
 
-                        <a href="https://privateday.auvpag.com.br/pay/private-day-2026-evento-completo?utm_source=lp&utm_campaign=private-day&utm_medium=lp&utm_term=%7B%7Bdate%7D%7D&utm_content=normal" target="_blank" class="elementor-btn-protect inline-flex items-center justify-center px-6 py-3.5 font-medium rounded-none transition-all duration-300 ease-in-out cursor-pointer bg-[#FFF7EB] text-[#932621] border border-[#FFF7EB] hover:bg-transparent hover:text-[#FFF7EB] w-full tracking-wide text-base text-center">
-                            Comprar meu ingresso
-                        </a>
+                        <span aria-disabled="true" class="inline-flex items-center justify-center px-6 py-3.5 font-medium rounded-none cursor-not-allowed bg-transparent text-[#FFF7EB]/50 border border-[#FFF7EB]/30 w-full tracking-wide text-base text-center">
+                            Esgotado
+                        </span>
                     </div>
                 </div>
 
@@ -578,15 +573,10 @@
 
                     <div class="p-6 md:p-14 w-full md:w-[35%] flex flex-col justify-center items-center text-center relative bg-[#0B2A47]">
                         <h4 class="vintage-title text-4xl md:text-5xl text-[#FFF7EB] mb-2">Só festa</h4>
-                        <span class="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-medium tracking-widest uppercase bg-[#FFF7EB]/15 text-[#FFF7EB]/80 px-3 py-1 rounded-full mb-3">
+                        <span class="inline-flex items-center gap-1.5 text-[10px] md:text-xs font-medium tracking-widest uppercase bg-[#FFF7EB]/15 text-[#FFF7EB]/80 px-3 py-1 rounded-full mb-4 md:mb-6">
                             <i class="ph ph-prohibit text-sm"></i>Ingressos esgotados
                         </span>
-                        <div class="mb-4 md:mb-6">
-                            <p class="text-2xl md:text-4xl font-bold text-[#FFF7EB]/40 tracking-tight leading-none line-through">R$ 997,00</p>
-                            <p class="text-[11px] md:text-xs text-[#FFF7EB]/60 leading-snug mt-2">Ainda dá para garantir o Evento todo.</p>
-                        </div>
 
-                        <!-- Só festa esgotado: sem link para o checkout -->
                         <span aria-disabled="true" class="inline-flex items-center justify-center px-6 py-3.5 font-medium rounded-none cursor-not-allowed bg-transparent text-[#FFF7EB]/50 border border-[#FFF7EB]/30 w-full tracking-wide text-base text-center">
                             Esgotado
                         </span>
@@ -1016,7 +1006,7 @@
                             </span>
                         </summary>
                         <p class="text-[#1a1a1a]/70 font-light mt-4 leading-relaxed text-sm md:text-base">
-                            AUVP Private Day será em Goiânia. Ao comprar os ingressos você receberá o endereço completo com as informações específicas.
+                            AUVP Private Day será em Goiânia. Quem comprou o ingresso recebe o endereço completo com as informações específicas.
                         </p>
                     </details>
 
@@ -1052,7 +1042,33 @@
                             </span>
                         </summary>
                         <p class="text-[#1a1a1a]/70 font-light mt-4 leading-relaxed text-sm md:text-base">
-                            Sim! Você pode levar quantos acompanhantes quiser. Apenas certifique-se de preencher os <strong class="font-medium text-[#1a1a1a]">dados dos convidados</strong> no momento da compra, pois os ingressos são nominais e individuais.
+                            Só quem já tem ingresso. Os ingressos são <strong class="font-medium text-[#1a1a1a]">nominais e individuais</strong> e estão esgotados, então não é mais possível incluir acompanhantes.
+                        </p>
+                    </details>
+
+                    <details class="group border-b border-[#1a1a1a]/10 pb-4">
+                        <summary class="font-medium text-[#1a1a1a] text-lg md:text-xl cursor-pointer list-none flex justify-between items-center outline-none">
+                            <span>Posso entrar com qualquer item no evento?</span>
+                            <span class="transition-transform duration-300 group-open:rotate-180 text-[#932621]">
+                                <i class="ph ph-caret-down text-2xl"></i>
+                            </span>
+                        </summary>
+                        <p class="text-[#1a1a1a]/70 font-light mt-4 leading-relaxed text-sm md:text-base">
+                            Não. Para garantir a segurança, o conforto dos participantes e o bom andamento do evento, não será permitida a entrada com:
+                        </p>
+                        <ul class="list-disc pl-5 mt-3 space-y-2 text-[#1a1a1a]/70 font-light leading-relaxed text-sm md:text-base">
+                            <li>Armas de fogo, armas brancas ou quaisquer objetos que possam representar risco à integridade física, inclusive por pessoas com porte de arma;</li>
+                            <li>Objetos perfurantes ou cortantes;</li>
+                            <li>Garrafas, copos, latas ou recipientes de vidro;</li>
+                            <li>Alimentos e bebidas;</li>
+                            <li>Materiais inflamáveis, explosivos ou substâncias químicas;</li>
+                            <li>Papel picado, confetes, serpentinas, glitter ou qualquer material que possa sujar ou comprometer a operação do teatro;</li>
+                            <li>Caixas de som, megafones ou equipamentos que possam interferir na realização do evento;</li>
+                            <li>Faixas, banners ou materiais promocionais sem autorização prévia da organização;</li>
+                            <li>Qualquer item que, a critério da organização e da equipe de segurança, possa comprometer a segurança, a experiência dos participantes ou a realização do evento.</li>
+                        </ul>
+                        <p class="text-[#1a1a1a]/70 font-light mt-4 leading-relaxed text-sm md:text-base">
+                            A organização poderá realizar inspeção visual de bolsas e mochilas na entrada e reserva-se o direito de impedir o acesso de pessoas que estejam portando quaisquer dos itens acima.
                         </p>
                     </details>
 
@@ -1398,7 +1414,7 @@
 
             /* Tags de contexto: servem para segmentar gravações, heatmaps e funis */
             tag('pagina', 'private-day-2026');
-            tag('lote_vigente', '2');
+            tag('lote_vigente', 'esgotado');
             tag('dispositivo', window.matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop');
 
             var params = new URLSearchParams(window.location.search);
