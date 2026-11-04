@@ -50,13 +50,13 @@ Os elementos, as fotos do guia e `titulo-brasilidades.png`, o título em imagem,
 
 Nos títulos da festa, evite as letras C e Ç: na Oferta do Dia, o C se lê como L.
 
-No topo, a festa fica escondida: o sol no rodapé e a frase apagada "Festa para celebrar." abrem a versão colorida.
+No topo, a festa abre pelo sol no rodapé ou pela frase em destaque "Festa para celebrar.", que mostram a versão colorida.
 
 Antes de publicar de verdade:
 
 - [ ] Remover a linha `noindex` do começo do arquivo e o aviso de rascunho.
 - [ ] Preencher datas, local e os links de checkout nos ingressos, que estão como "em breve".
-- [ ] Incluir o lineup quando estiver fechado, no lugar da faixa "Lineup em breve".
+- [ ] Incluir o lineup quando estiver fechado, no lugar da linha "Lineup em breve".
 - [ ] Trocar o vídeo, cuja capa ainda mostra "Disco fever", e incluir o link do dress code.
 - [ ] Confirmar a licença da fonte Oferta do Dia e das fotos do guia.
 - [ ] Refazer `2027/obrigado.htm`, que ainda está no visual de 2026.
