@@ -46,16 +46,17 @@ A landing de 2027 é dividida em dois mundos, seguindo o guia de identidade:
 
 Para editar, as cores estão em `tailwind.config` (`mato`, `mar`, `areia`, `canario`, `caju`, `cacau`) e as fontes em `--fonte-*`, no começo de `2027/index.htm`. Pontos a preencher estão marcados no código com `TROCAR`.
 
-- `2027/assets/brasilidades/`: elementos, fotos do guia e `titulo-brasilidades.png`, o título em imagem.
-- `2027/assets/palestrantes/`: fotos dos palestrantes, reduzidas para web. Ainda são as de 2026.
+Os elementos, as fotos do guia e `titulo-brasilidades.png`, o título em imagem, estão em `2027/assets/brasilidades/`.
 
 Nos títulos da festa, evite as letras C e Ç: na Oferta do Dia, o C se lê como L.
+
+No topo, a festa fica escondida: o sol no rodapé e a frase apagada "Festa para celebrar." abrem a versão colorida.
 
 Antes de publicar de verdade:
 
 - [ ] Remover a linha `noindex` do começo do arquivo e o aviso de rascunho.
-- [ ] Preencher datas, local, valores e links de checkout de 2027.
-- [ ] Trocar os palestrantes, que ainda são os de 2026.
+- [ ] Preencher datas, local e os links de checkout nos ingressos, que estão como "em breve".
+- [ ] Incluir o lineup quando estiver fechado, no lugar da faixa "Lineup em breve".
 - [ ] Trocar o vídeo, cuja capa ainda mostra "Disco fever", e incluir o link do dress code.
 - [ ] Confirmar a licença da fonte Oferta do Dia e das fotos do guia.
 - [ ] Refazer `2027/obrigado.htm`, que ainda está no visual de 2026.

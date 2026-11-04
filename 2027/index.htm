@@ -123,66 +123,58 @@
 
     @media (min-width: 1024px) { #auvp-lp-wrapper #mobile-menu-btn { display: none; } }
 
-    /* ========== TOPO: as duas metades ========== */
-    #auvp-lp-wrapper .hero { display: flex; flex-direction: column; min-height: 100svh; background: #000; }
-    #auvp-lp-wrapper .hero-lado { position: relative; flex: 1 1 50%; min-height: 56svh; display: flex; flex-direction: column; justify-content: flex-end; color: inherit; }
-    #auvp-lp-wrapper .hero-palco { background: #000; color: #fff !important; overflow: hidden; }
-    #auvp-lp-wrapper .hero-palco img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 38% 30%; max-width: none; transition: transform 1.2s var(--curva); filter: grayscale(1) contrast(1.05); }
-    #auvp-lp-wrapper .hero-palco::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, #000 8%, rgba(0,0,0,.55) 48%, rgba(0,0,0,.3)); }
-    #auvp-lp-wrapper .hero-festa { background-color: var(--canario); color: var(--cacau) !important; }
-    #auvp-lp-wrapper .hero-corte { position: absolute; left: 0; right: 0; top: -22px; height: 44px; z-index: 5; background: conic-gradient(var(--cacau) 25%, var(--areia) 0 50%, var(--cacau) 0 75%, var(--areia) 0) 0 0 / 44px 44px; }
-    #auvp-lp-wrapper .hero-miolo { position: relative; z-index: 4; padding: 32px 22px 34px; }
-    #auvp-lp-wrapper .hero-adesivos { position: absolute; inset: 0; overflow: hidden; }
-    #auvp-lp-wrapper .hero-adesivos img { position: absolute; will-change: transform; transition: transform .5s var(--curva); }
-    #auvp-lp-wrapper .hero-brasil { width: min(100%, 560px); height: auto; max-width: 100%; display: block; }
-    #auvp-lp-wrapper .selo { position: absolute; z-index: 8; width: 118px; height: 118px; right: 14px; top: 0; transform: translateY(-50%) scale(.82); pointer-events: none; }
-    #auvp-lp-wrapper .selo-texto { position: absolute; inset: 0; animation: gira 22s linear infinite; }
-    #auvp-lp-wrapper .selo-olho { position: absolute; inset: 22px; background: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px rgba(255,255,255,.25); }
-    #auvp-lp-wrapper .selo-olho img { width: 46px; height: auto; max-width: none; }
-    @keyframes gira { to { transform: rotate(360deg); } }
+    /* ========== TOPO: corporativo, com a festa escondida ========== */
+    #auvp-lp-wrapper .hero { position: relative; min-height: 100svh; background: #000; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+    #auvp-lp-wrapper .hero-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; max-width: none; filter: grayscale(1) contrast(1.05); }
+    #auvp-lp-wrapper .hero-veu { position: absolute; inset: 0; background: linear-gradient(to top, #000 6%, rgba(0,0,0,.72) 44%, rgba(0,0,0,.28) 78%, rgba(0,0,0,.55)); }
+    #auvp-lp-wrapper .hero-conteudo { position: relative; z-index: 2; width: 100%; }
     @media (min-width: 1024px) {
-        #auvp-lp-wrapper .hero { flex-direction: row; height: 100svh; min-height: 640px; }
-        #auvp-lp-wrapper .hero-lado { min-height: 0; transition: flex-grow .8s var(--curva); }
-        #auvp-lp-wrapper .hero-miolo { padding: 0 56px 92px; }
-        #auvp-lp-wrapper .hero-corte { left: -22px; right: auto; top: 0; bottom: 0; width: 44px; height: auto; }
-        #auvp-lp-wrapper .selo { left: 0; right: auto; top: 46%; transform: translate(-50%, -50%); }
+        #auvp-lp-wrapper .hero-foto { left: 34%; width: 66%; object-position: 50% 30%; }
+        #auvp-lp-wrapper .hero-veu { background: linear-gradient(to top, #000 4%, transparent 40%), linear-gradient(to right, #000 34%, rgba(0,0,0,.55) 50%, rgba(0,0,0,.05) 74%), linear-gradient(to bottom, rgba(0,0,0,.55), transparent 22%); }
     }
-    @media (hover: hover) and (min-width: 1024px) {
-        #auvp-lp-wrapper .hero:has(.hero-palco:hover) .hero-palco, #auvp-lp-wrapper .hero:has(.hero-festa:hover) .hero-festa { flex-grow: 1.45; }
-        #auvp-lp-wrapper .hero-palco:hover img { transform: scale(1.04); }
-    }
-    #auvp-lp-wrapper .faixa-info { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 26px; background: #000; color: #fff; border-top: 1px solid rgba(255,255,255,.18); border-bottom: 1px solid rgba(255,255,255,.18); padding: 14px 20px; font-size: 14px; }
+    #auvp-lp-wrapper .hero-info { border-top: 1px solid rgba(255,255,255,.22); }
 
-    /* ========== PALESTRANTES: lista editorial ========== */
-    #auvp-lp-wrapper .roster { position: relative; display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 20px 18px; scrollbar-width: none; }
-    #auvp-lp-wrapper .palestrante { flex: 0 0 78%; scroll-snap-align: center; outline: none; }
-    #auvp-lp-wrapper .pal-foto { aspect-ratio: 4/5; overflow: hidden; background: #111; margin-bottom: 14px; }
-    #auvp-lp-wrapper .pal-foto img { width: 100%; height: 100%; object-fit: cover; max-width: none; filter: grayscale(1) contrast(1.05); }
-    #auvp-lp-wrapper .pal-linha { display: flex; align-items: baseline; gap: 14px; }
-    #auvp-lp-wrapper .pal-num { font-size: 12px; color: rgba(255,255,255,.45); font-variant-numeric: tabular-nums; }
-    #auvp-lp-wrapper .pal-nome { font-family: var(--fonte-palestra); font-weight: 500; font-size: 24px; letter-spacing: -.01em; line-height: 1.15; color: #fff; }
-    #auvp-lp-wrapper .pal-mais { display: none; }
-    #auvp-lp-wrapper .pal-cargo { color: rgba(255,255,255,.65); font-size: 14px; margin-top: 8px; }
-    #auvp-lp-wrapper .pal-tema { color: #fff; font-weight: 500; font-size: 15px; margin-top: 10px; line-height: 1.35; }
-    #auvp-lp-wrapper .pal-desc { color: rgba(255,255,255,.6); font-size: 14px; font-weight: 300; line-height: 1.55; margin-top: 8px; }
-    @media (min-width: 1024px) {
-        #auvp-lp-wrapper .roster { display: block; overflow: visible; padding: 0 0 0 52%; min-height: 830px; }
-        #auvp-lp-wrapper .palestrante { border-top: 1px solid rgba(255,255,255,.18); cursor: pointer; }
-        #auvp-lp-wrapper .palestrante:last-of-type { border-bottom: 1px solid rgba(255,255,255,.18); }
-        #auvp-lp-wrapper .pal-foto { position: absolute; left: 0; top: 0; bottom: 0; width: 46%; margin: 0; aspect-ratio: auto; opacity: 0; clip-path: inset(0 0 100% 0); transition: opacity .3s, clip-path .75s var(--curva); pointer-events: none; }
-        #auvp-lp-wrapper .palestrante.ativo .pal-foto { opacity: 1; clip-path: inset(0); z-index: 2; }
-        #auvp-lp-wrapper .pal-linha { padding: 20px 0; transition: padding .35s var(--curva), opacity .25s; opacity: .55; }
-        #auvp-lp-wrapper .palestrante:hover .pal-linha, #auvp-lp-wrapper .palestrante:focus-visible .pal-linha { opacity: 1; padding-left: 10px; }
-        #auvp-lp-wrapper .palestrante.ativo .pal-linha { opacity: 1; padding-left: 0; padding-bottom: 6px; }
-        #auvp-lp-wrapper .pal-nome { font-size: 30px; flex: 1; }
-        #auvp-lp-wrapper .pal-mais { display: block; font-size: 18px; transition: transform .35s var(--curva); color: #fff; }
-        #auvp-lp-wrapper .palestrante.ativo .pal-mais { transform: rotate(45deg); }
-        #auvp-lp-wrapper .pal-det { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--curva); padding-left: 32px; }
-        #auvp-lp-wrapper .palestrante.ativo .pal-det { grid-template-rows: 1fr; }
-        #auvp-lp-wrapper .pal-det-in { overflow: hidden; min-height: 0; }
-        #auvp-lp-wrapper .pal-desc { padding-bottom: 22px; font-size: 15px; }
-        #auvp-lp-wrapper .pal-cargo { margin-top: 0; }
+    /* O segredo: a frase apagada e o sol no rodapé abrem a festa */
+    #auvp-lp-wrapper .segredo-frase { display: inline-block; color: rgba(255,255,255,.3); cursor: pointer; outline: none; transition: color .35s; }
+    #auvp-lp-wrapper .segredo-frase:hover, #auvp-lp-wrapper .segredo-frase:focus-visible { color: var(--canario); }
+    #auvp-lp-wrapper .segredo-sol { position: absolute; z-index: 3; right: 130px; bottom: -58px; width: 116px; cursor: pointer; outline: none; transition: bottom .45s var(--curva), transform .45s var(--curva); }
+    #auvp-lp-wrapper .segredo-sol img { display: block; width: 100%; height: auto; max-width: none; animation: gira 40s linear infinite; }
+    #auvp-lp-wrapper .segredo-sol:hover, #auvp-lp-wrapper .segredo-sol:focus-visible { bottom: -18px; transform: rotate(14deg); }
+    @keyframes gira { to { transform: rotate(360deg); } }
+    #auvp-lp-wrapper .segredo { --x: 80%; --y: 95%; position: absolute; inset: 0; z-index: 4; background-color: var(--canario); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 96px 22px 40px; clip-path: circle(0 at var(--x) var(--y)); visibility: hidden; transition: clip-path .85s var(--curva), visibility 0s .85s; }
+    #auvp-lp-wrapper .segredo.aberto { clip-path: circle(150vmax at var(--x) var(--y)); visibility: visible; transition: clip-path .85s var(--curva), visibility 0s; }
+    #auvp-lp-wrapper .segredo-titulo { width: min(92%, 860px); height: auto; max-width: 100%; position: relative; z-index: 2; }
+    #auvp-lp-wrapper .segredo-fechar { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; outline: none; }
+    #auvp-lp-wrapper .segredo-adesivo { position: absolute; }
+    @media (max-width: 640px) {
+        #auvp-lp-wrapper .segredo-sol { right: 92px; width: 96px; bottom: -48px; }
+        #auvp-lp-wrapper .wa-wrapper.show-balloon .wa-balloon { animation: none !important; }
     }
+    @media (max-width: 1023px) {
+        #auvp-lp-wrapper .hero-foto { height: 52%; object-position: 34% 30%; }
+        #auvp-lp-wrapper .hero-veu { background: linear-gradient(to bottom, rgba(0,0,0,.5), transparent 16%, transparent 26%, #000 52%); }
+    }
+
+    /* ========== PALESTRAS: três pilares e lineup ========== */
+    #auvp-lp-wrapper .pilar { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 6px 14px; padding: 28px 0; border-top: 1px solid rgba(0,0,0,.18); overflow: hidden; isolation: isolate; }
+    #auvp-lp-wrapper .pilar:last-child { border-bottom: 1px solid rgba(0,0,0,.18); }
+    #auvp-lp-wrapper .pilar-num { font-size: 13px; color: rgba(0,0,0,.5); padding-top: 12px; font-variant-numeric: tabular-nums; transition: color .3s, padding .4s var(--curva); }
+    #auvp-lp-wrapper .pilar-titulo { font-family: var(--fonte-palestra); font-weight: 500; font-size: clamp(32px, 5vw, 64px); letter-spacing: -.02em; line-height: 1.05; transition: color .3s, padding .4s var(--curva); }
+    #auvp-lp-wrapper .pilar-texto { grid-column: 2; color: rgba(0,0,0,.65); line-height: 1.6; max-width: 520px; transition: color .3s; }
+    @media (min-width: 1024px) {
+        #auvp-lp-wrapper .pilar { grid-template-columns: 70px 1.25fr 1fr; align-items: center; padding: 34px 0; }
+        #auvp-lp-wrapper .pilar-num { padding-top: 0; }
+        #auvp-lp-wrapper .pilar-texto { grid-column: 3; }
+    }
+    @media (hover: hover) {
+        #auvp-lp-wrapper .pilar::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #000; transform: scaleY(0); transform-origin: bottom; transition: transform .45s var(--curva); }
+        #auvp-lp-wrapper .pilar:hover::before { transform: scaleY(1); }
+        #auvp-lp-wrapper .pilar:hover .pilar-titulo { color: #fff; padding-left: 12px; }
+        #auvp-lp-wrapper .pilar:hover .pilar-num { color: rgba(255,255,255,.6); padding-left: 12px; }
+        #auvp-lp-wrapper .pilar:hover .pilar-texto { color: rgba(255,255,255,.75); }
+    }
+    #auvp-lp-wrapper .ponto-breve { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: pulsa 1.8s ease-in-out infinite; flex: none; }
+    @keyframes pulsa { 50% { opacity: .25; } }
 
     /* ========== A VIRADA: o palco apaga e a cor toma a tela ========== */
     #auvp-lp-wrapper .virada { --p: 1; position: relative; background: var(--canario); }
@@ -206,11 +198,10 @@
     #auvp-lp-wrapper .isopor { position: relative; width: min(100%, 520px); height: 500px; margin: 0 auto; }
     #auvp-lp-wrapper #isopor-botao { position: absolute; left: 50%; bottom: 0; width: 230px; aspect-ratio: 365/431; transform: translateX(-50%); cursor: pointer; background: none; border: 0; padding: 0; outline: none; display: block; z-index: 3; }
     #auvp-lp-wrapper .isopor-parte { position: absolute; inset: 0; width: 100% !important; height: 100% !important; max-width: none; filter: drop-shadow(3px 0 0 var(--areia)) drop-shadow(-3px 0 0 var(--areia)) drop-shadow(0 3px 0 var(--areia)) drop-shadow(0 -3px 0 var(--areia)) drop-shadow(4px 5px 0 rgba(40,26,22,.4)); }
-    #auvp-lp-wrapper .isopor-corpo { clip-path: inset(32% 0 0 0); }
-    #auvp-lp-wrapper .isopor-tampa { clip-path: inset(0 0 68% 0); transform-origin: 8% 32%; transition: transform .7s cubic-bezier(.3, 1.6, .5, 1); z-index: 2; }
-    #auvp-lp-wrapper .isopor.aberto .isopor-tampa { transform: rotate(-42deg) translate(-74px, -18px); }
-    #auvp-lp-wrapper #isopor-botao:hover .isopor-tampa { transform: rotate(-7deg); }
-    #auvp-lp-wrapper .isopor.aberto #isopor-botao:hover .isopor-tampa { transform: rotate(-42deg) translate(-74px, -18px); }
+    #auvp-lp-wrapper .isopor-tampa { transform-origin: 3% 40%; transition: transform .75s cubic-bezier(.3, 1.45, .5, 1); z-index: 1; }
+    #auvp-lp-wrapper #isopor-botao:hover .isopor-tampa { transform: rotate(-9deg); }
+    #auvp-lp-wrapper .isopor.aberto .isopor-tampa, #auvp-lp-wrapper .isopor.aberto #isopor-botao:hover .isopor-tampa { transform: rotate(-102deg); }
+    #auvp-lp-wrapper .isopor-corpo { z-index: 2; }
     #auvp-lp-wrapper .isopor-itens { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; z-index: 4; pointer-events: none; }
     #auvp-lp-wrapper .isopor-item { position: absolute; left: 50%; bottom: 190px; width: 160px; margin-left: -80px; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform .75s cubic-bezier(.3, 1.5, .5, 1), opacity .35s; transform: translate(calc(var(--x) * var(--k, 1)), var(--y)) rotate(var(--g)); }
     #auvp-lp-wrapper .isopor-item img { height: 92px; width: auto; }
@@ -218,7 +209,7 @@
     #auvp-lp-wrapper.tem-js .isopor:not(.aberto) .isopor-item { transform: translate(0, 80px) rotate(0deg) scale(.3); opacity: 0; }
     #auvp-lp-wrapper .isopor-item:nth-child(2) { transition-delay: .07s; }
     #auvp-lp-wrapper .isopor-item:nth-child(3) { transition-delay: .14s; }
-    @media (max-width: 640px) { #auvp-lp-wrapper .isopor { --k: .62; } #auvp-lp-wrapper #isopor-botao { width: 190px; } #auvp-lp-wrapper .isopor.aberto .isopor-tampa, #auvp-lp-wrapper .isopor.aberto #isopor-botao:hover .isopor-tampa { transform: rotate(-30deg) translate(-34px, -10px); } #auvp-lp-wrapper .isopor-item img { height: 76px; } #auvp-lp-wrapper .isopor-item span { font-size: 13px; } }
+    @media (max-width: 640px) { #auvp-lp-wrapper .isopor { --k: .62; } #auvp-lp-wrapper #isopor-botao { width: 180px; } #auvp-lp-wrapper .isopor-item img { height: 76px; } #auvp-lp-wrapper .isopor-item span { font-size: 13px; } }
     #auvp-lp-wrapper .isopor-dica { position: absolute; left: 50%; bottom: 290px; transform: translateX(-50%) rotate(-3deg); z-index: 4; display: none; }
     #auvp-lp-wrapper.tem-js .isopor:not(.aberto) .isopor-dica { display: block; animation: pula 1.3s ease-in-out infinite; }
     @keyframes pula { 50% { margin-bottom: 10px; } }
@@ -238,14 +229,20 @@
     #auvp-lp-wrapper .card-depo:hover { transform: rotate(0deg) translateY(-6px) !important; }
     #auvp-lp-wrapper .card-depo img { position: absolute; top: -34px; right: 18px; height: 78px; width: auto; }
 
-    /* ========== INGRESSOS: o encontro dos dois mundos ========== */
-    #auvp-lp-wrapper .ingresso { display: flex; flex-direction: column; border-radius: 20px; position: relative; transition: transform .4s var(--curva); }
-    #auvp-lp-wrapper .ingresso-picote { position: relative; height: 0; margin: 0 26px; border-top: 2px dashed rgba(40,26,22,.32); }
-    #auvp-lp-wrapper .ingresso-furo { position: absolute; left: -16px; right: -16px; top: var(--furo, 62%); display: flex; justify-content: space-between; transform: translateY(-50%); pointer-events: none; }
-    #auvp-lp-wrapper .ingresso-furo i { width: 32px; height: 32px; border-radius: 50%; background: #000; display: block; }
-    #auvp-lp-wrapper .ingresso-festa { box-shadow: 6px 7px 0 var(--areia); }
-    #auvp-lp-wrapper .ingresso-festa:hover { transform: rotate(-1.2deg) translateY(-5px); }
-    #auvp-lp-wrapper .ingresso-sobrio:hover { transform: translateY(-5px); }
+    /* ========== INGRESSOS: adesivos e pílulas, tudo em breve ========== */
+    #auvp-lp-wrapper .opcao { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+    #auvp-lp-wrapper .opcao-arte { position: relative; width: min(100%, 400px); aspect-ratio: 400/300; transition: transform .4s var(--curva); }
+    #auvp-lp-wrapper .opcao:hover .opcao-arte { transform: rotate(-2deg) scale(1.03); }
+    #auvp-lp-wrapper .opcao-sol { position: absolute; left: -1%; top: 1%; width: 50%; height: auto; max-width: none; }
+    #auvp-lp-wrapper .opcao-arco { position: absolute; right: 1%; top: 2%; width: 40%; height: 74%; background: var(--mar); border: 6px solid var(--areia); border-radius: 999px 999px 16px 16px; box-shadow: 4px 5px 0 rgba(40,26,22,.4); rotate: 6deg; }
+    /* O contorno recortado acompanha os furos do bilhete */
+    #auvp-lp-wrapper .bilhete-recorte { position: absolute; left: 12%; top: 22%; width: 80%; height: 66%; filter: drop-shadow(6px 0 0 var(--areia)) drop-shadow(-6px 0 0 var(--areia)) drop-shadow(0 6px 0 var(--areia)) drop-shadow(0 -6px 0 var(--areia)) drop-shadow(5px 7px 0 rgba(40,26,22,.45)); }
+    #auvp-lp-wrapper .bilhete { width: 100%; height: 100%; border-radius: 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; padding: 0 12% 0 11%; -webkit-mask: radial-gradient(circle 15px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 15px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat; mask: radial-gradient(circle 15px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 15px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat; }
+    #auvp-lp-wrapper .bilhete img { height: 22px; width: auto; max-width: none; }
+    #auvp-lp-wrapper .bilhete-sobrio { background: #000; color: #fff; }
+    #auvp-lp-wrapper .bilhete-festa { background: var(--canario); color: var(--cacau); }
+    #auvp-lp-wrapper .pilula-breve { display: inline-flex; align-items: center; gap: .6em; font-family: var(--fonte-festa-corpo); font-weight: 600; font-size: 18px; background: var(--areia); color: var(--cacau); border: 3px solid var(--cacau); border-radius: 999px; box-shadow: var(--sombra-dura); padding: 13px 30px; white-space: nowrap; }
+    #auvp-lp-wrapper .pilula-breve small { font-size: 13px; font-weight: 500; opacity: .7; }
 
     /* Surgir ao rolar: só com JavaScript, para o conteúdo nunca ficar escondido */
     #auvp-lp-wrapper.tem-js .surge { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--curva), transform .8s var(--curva); transition-delay: var(--d, 0s); }
@@ -397,7 +394,7 @@
                 <a href="#ingressos" class="nav-link" data-secao="ingressos">Ingressos</a>
                 <a href="#faq" class="nav-link" data-secao="faq">FAQ</a>
             </div>
-            <a id="nav-cta" href="#ingressos" class="hidden lg:block">Garantir meu ingresso</a>
+            <a id="nav-cta" href="#ingressos" class="hidden lg:block">Ingressos em breve</a>
             <div id="mobile-menu-btn" class="lg:hidden" role="button" tabindex="0" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><i class="ph ph-list"></i></div>
         </div>
         <div id="mobile-menu" class="hidden lg:hidden mx-4 mt-2 bg-black border border-white/20 rounded-2xl overflow-hidden flex-col">
@@ -409,196 +406,73 @@
         </div>
     </nav>
 
-    <!-- ==================== TOPO: as duas metades do evento ==================== -->
+    <!-- ==================== TOPO: corporativo, com a festa como segredo ==================== -->
     <section id="topo" class="hero" data-tema="sobrio">
-        <h1 class="sr-only">AUVP Private Day 2027. Conteúdo para enriquecer. Festa para celebrar.</h1>
+        <img class="hero-foto" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/palco.webp" alt="Palco do AUVP Private Day">
+        <div class="hero-veu"></div>
 
-        <a href="#palestras" class="hero-lado hero-palco" aria-label="Ver as palestras">
-            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/palco.webp" alt="" aria-hidden="true">
-            <div class="hero-miolo">
-                <span class="rotulo text-white/70 block mb-4">O palco</span>
-                <p class="titulo-palestra text-4xl md:text-5xl xl:text-6xl mb-4">Conteúdo para<br>enriquecer.</p>
-                <p class="text-white/70 max-w-md leading-relaxed mb-6">Dois dias com quem sabe como o jogo funciona.</p>
-                <span class="inline-flex items-center gap-2 border-b border-white pb-1 font-medium">Ver as palestras <i class="ph ph-arrow-down"></i></span>
+        <div class="hero-conteudo max-w-7xl mx-auto px-5 md:px-8 pt-28 pb-8 md:pb-10">
+            <span class="rotulo text-white/70 block mb-5">AUVP Private Day 2027</span>
+            <h1 class="titulo-palestra text-5xl md:text-6xl xl:text-7xl mb-7">
+                Conteúdo para<br>enriquecer.<br>
+                <span id="segredo-frase" class="segredo-frase" role="button" tabindex="0" aria-controls="segredo" aria-expanded="false">Festa para celebrar.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed mb-8">Nomes relevantes do mercado, palestras enriquecedoras e networking com quem sabe como o jogo funciona.</p>
+            <a href="#palestras" class="btn-sobrio px-7 py-3.5 mb-10">Conheça o evento <i class="ph ph-arrow-down"></i></a>
+            <!-- TROCAR: data e local da edição de 2027 -->
+            <div class="hero-info flex flex-wrap gap-x-10 gap-y-1 pt-4 text-sm">
+                <span class="text-white/70">Data e local em breve</span>
+                <span class="text-white/70">Vagas limitadas*</span>
             </div>
-        </a>
+        </div>
 
-        <a href="#festa" class="hero-lado hero-festa grade mundo-festa" aria-label="Ver a festa">
-            <div class="hero-corte" aria-hidden="true"></div>
-            <div class="selo" aria-hidden="true">
-                <svg class="selo-texto" viewBox="0 0 118 118"><defs><path id="selo-circulo" d="M59,59 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs><circle cx="59" cy="59" r="59" fill="#000"/><text fill="#fff" font-size="9.5" letter-spacing="2.2" font-family="Anek Latin, sans-serif"><textPath href="#selo-circulo">AUVP PRIVATE DAY 2027 ✶ AUVP PRIVATE DAY 2027 ✶</textPath></text></svg>
-                <div class="selo-olho"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/olho.png" alt=""></div>
-            </div>
-            <div class="hero-adesivos" aria-hidden="true">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true" class="adesivo w-24 lg:w-36" style="left:8%;top:12%" data-prof="28">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cadeira-plastico.png" alt="" aria-hidden="true" class="adesivo w-20 lg:w-32" style="right:6%;top:16%;rotate:10deg" data-prof="-22">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/garrafa.png" alt="" aria-hidden="true" class="adesivo h-24 lg:h-40" style="left:44%;top:10%;rotate:-14deg" data-prof="16">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chinelo.png" alt="" aria-hidden="true" class="adesivo hidden lg:block w-24" style="right:10%;top:38%;rotate:-16deg" data-prof="34">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/folha.png" alt="" aria-hidden="true" class="adesivo hidden lg:block w-28" style="left:12%;top:44%;rotate:-12deg" data-prof="-30">
-            </div>
-            <div class="hero-miolo mt-auto">
-                <span class="rotulo block mb-4" style="font-family:var(--fonte-festa-corpo)">A festa</span>
-                <img class="hero-brasil mb-4" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/titulo-brasilidades.png" alt="Brasilidades">
-                <p class="text-xl md:text-2xl font-semibold mb-6">Festa para celebrar.</p>
-                <span class="btn-festa px-6 py-3">Ver a festa <i class="ph-bold ph-arrow-down"></i></span>
-            </div>
-        </a>
-    </section>
+        <div id="segredo-sol" class="segredo-sol" role="button" tabindex="0" aria-label="Abrir um segredo" aria-controls="segredo" aria-expanded="false">
+            <img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="">
+        </div>
 
-    <!-- TROCAR: data e local da edição de 2027 -->
-    <div class="faixa-info">
-        <span class="font-medium">AUVP Private Day 2027</span>
-        <span class="text-white/70">Data e local em breve</span>
-        <span class="text-white/70">Vagas limitadas*</span>
-    </div>
-
-    <!-- ==================== MUNDO 1: PALESTRAS (sóbrio e corporativo) ==================== -->
-    <section id="palestras" class="bg-white text-black py-20 md:py-32" data-tema="sobrio">
-        <div class="max-w-7xl mx-auto px-5 md:px-8">
-            <span class="rotulo text-black/55 block mb-8 surge">No palco</span>
-            <h2 class="titulo-palestra text-3xl md:text-5xl lg:text-6xl max-w-5xl surge">Um ambiente de aprendizado e conversa com grandes nomes do mercado que mudam a forma como você pensa.</h2>
-
-            <div class="grid md:grid-cols-3 mt-16 md:mt-24 border-t border-black">
-                <div class="py-7 md:pr-10 border-b md:border-b-0 border-black/15 surge">
-                    <p class="titulo-palestra text-2xl mb-3">Dois dias de conteúdo</p>
-                    <p class="text-black/65 leading-relaxed">Que você não encontra em outro lugar.</p>
-                </div>
-                <div class="py-7 md:px-10 border-b md:border-b-0 md:border-l border-black/15 surge" style="--d:.1s">
-                    <p class="titulo-palestra text-2xl mb-3">Grandes nomes do mercado</p>
-                    <p class="text-black/65 leading-relaxed">Com Raul Sena no palco, para conhecer e discutir com quem sabe como o jogo funciona.</p>
-                </div>
-                <div class="py-7 md:pl-10 md:border-l border-black/15 surge" style="--d:.2s">
-                    <p class="titulo-palestra text-2xl mb-3">O cenário e o mundo</p>
-                    <p class="text-black/65 leading-relaxed">O cenário macroeconômico e tudo o que está acontecendo de mais relevante no mundo.</p>
-                </div>
-            </div>
+        <!-- O segredo: abre a partir do sol ou da frase apagada -->
+        <div id="segredo" class="segredo grade mundo-festa" aria-hidden="true">
+            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cadeira-plastico.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="left:6%;top:16%;rotate:-10deg">
+            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/garrafa.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo h-24 md:h-44" style="right:8%;top:14%;rotate:14deg">
+            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chinelo.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-32" style="left:9%;bottom:10%;rotate:12deg">
+            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/pandeiro.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="right:7%;bottom:12%;rotate:-14deg">
+            <p class="relative z-[2] text-xl md:text-3xl font-semibold mb-4">Festa para celebrar.</p>
+            <img class="segredo-titulo mb-7" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/titulo-brasilidades.png" alt="Brasilidades">
+            <a id="segredo-ver" href="#festa" class="btn-festa relative z-[2] px-7 py-3 mb-4" tabindex="-1">Ver a festa <i class="ph-bold ph-arrow-down"></i></a>
+            <span id="segredo-fechar" class="segredo-fechar relative z-[2] text-sm" role="button" tabindex="-1">Voltar ao palco</span>
         </div>
     </section>
 
-    <!-- TROCAR: os nomes abaixo são da edição de 2026, só para ocupar o layout -->
-    <section id="palestrantes" class="bg-black py-20 md:py-32" data-tema="sobrio" data-pertence="palestras">
-        <div class="max-w-7xl mx-auto md:px-8">
-            <div class="px-5 md:px-0 flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-14 surge">
-                <h2 class="titulo-palestra text-3xl md:text-5xl lg:text-6xl text-white">Quem sobe no palco<br>em 2027?</h2>
-                <p class="text-white/55 text-sm lg:hidden">Deslize para ver todos</p>
-                <p class="text-white/55 text-sm hidden lg:block">Selecione um nome para conhecer</p>
+    <!-- ==================== MUNDO 1: PALESTRAS (sóbrio e corporativo) ==================== -->
+    <section id="palestras" class="bg-white text-black pt-20 md:pt-32" data-tema="sobrio">
+        <div class="max-w-7xl mx-auto px-5 md:px-8">
+            <span class="rotulo text-black/55 block mb-8 surge">No palco</span>
+            <h2 class="titulo-palestra text-3xl md:text-5xl lg:text-6xl max-w-5xl mb-14 md:mb-20 surge">Reunimos nomes relevantes para palestras que enriquecem e conexões que continuam depois do evento.</h2>
+
+            <div class="pb-20 md:pb-28">
+                <div class="pilar surge">
+                    <span class="pilar-num">01</span>
+                    <h3 class="pilar-titulo">Nomes relevantes</h3>
+                    <p class="pilar-texto">Quem sobe ao nosso palco é referência no que faz e sabe como o jogo funciona.</p>
+                </div>
+                <div class="pilar surge">
+                    <span class="pilar-num">02</span>
+                    <h3 class="pilar-titulo">Palestras enriquecedoras</h3>
+                    <p class="pilar-texto">Dois dias de conteúdo que você não encontra em outro lugar, sobre o cenário macroeconômico e o que há de mais relevante no mundo.</p>
+                </div>
+                <div class="pilar surge">
+                    <span class="pilar-num">03</span>
+                    <h3 class="pilar-titulo">Networking</h3>
+                    <p class="pilar-texto">Um ambiente pensado para conversar, trocar experiências e conhecer quem pensa como você.</p>
+                </div>
             </div>
-            <div class="roster" id="roster">
-                <article class="palestrante ativo" data-speaker="raul" role="button" tabindex="0" aria-expanded="true">
-                    <div class="pal-foto"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/palestrantes/raul.webp" alt="Raul Sena" loading="lazy" decoding="async" style="object-position:center 20%"></div>
-                    <div class="pal-linha">
-                        <span class="pal-num">01</span>
-                        <h3 class="pal-nome">Raul Sena</h3>
-                        <i class="ph ph-plus pal-mais"></i>
-                    </div>
-                    <div class="pal-det"><div class="pal-det-in">
-                        <p class="pal-cargo">CEO da AUVP Capital</p>
-                        <p class="pal-desc">Criador do canal Investidor Sardinha, fundador e CEO da AUVP Capital, a consultoria top 1 do ranking do BTG Pactual.</p>
-                    </div></div>
-                </article>
-                <article class="palestrante" data-speaker="marcelo" role="button" tabindex="0" aria-expanded="false">
-                    <div class="pal-foto"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/palestrantes/marcelo.webp" alt="Marcelo Flora" loading="lazy" decoding="async" style="object-position:center 38%;transform:scale(1.5);transform-origin:50% 62%"></div>
-                    <div class="pal-linha">
-                        <span class="pal-num">02</span>
-                        <h3 class="pal-nome">Marcelo Flora</h3>
-                        <i class="ph ph-plus pal-mais"></i>
-                    </div>
-                    <div class="pal-det"><div class="pal-det-in">
-                        <p class="pal-cargo">Sócio e Diretor do BTG Pactual</p>
-                        <p class="pal-tema">“Carreira &amp; Cultura”</p>
-                        <p class="pal-desc">Responsável pelas plataformas digitais do BTG Pactual, Flora iniciou sua carreira no antigo Pactual em 2000 e também atua como CEO da BTG Pactual Vida e Previdência desde 2015.</p>
-                    </div></div>
-                </article>
-                <article class="palestrante" data-speaker="arthur" role="button" tabindex="0" aria-expanded="false">
-                    <div class="pal-foto"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/palestrantes/arthur.webp" alt="Arthur Bender" loading="lazy" decoding="async" style="object-position:center 8%"></div>
-                    <div class="pal-linha">
-                        <span class="pal-num">03</span>
-                        <h3 class="pal-nome">Arthur Bender</h3>
-                        <i class="ph ph-plus pal-mais"></i>
-                    </div>
-                    <div class="pal-det"><div class="pal-det-in">
-                        <p class="pal-cargo">Criador do conceito de Personal Branding</p>
-                        <p class="pal-tema">“Personal Branding e Carreira: construindo sua marca pessoal”</p>
-                        <p class="pal-desc">Consultor de posicionamento de marcas e empresas, autor de 3 best-sellers.</p>
-                    </div></div>
-                </article>
-                <article class="palestrante" data-speaker="carlos" role="button" tabindex="0" aria-expanded="false">
-                    <div class="pal-foto"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/palestrantes/carlos.webp" alt="Carlos Busch" loading="lazy" decoding="async" style="object-position:center 15%"></div>
-                    <div class="pal-linha">
-                        <span class="pal-num">04</span>
-                        <h3 class="pal-nome">Carlos Busch</h3>
-                        <i class="ph ph-plus pal-mais"></i>
-                    </div>
-                    <div class="pal-det"><div class="pal-det-in">
-                        <p class="pal-cargo">Fundador da BCORP</p>
-                        <p class="pal-tema">“Diferenciação e coerência em um mercado que nunca para”</p>
-                        <p class="pal-desc">Referência em vendas e diferenciação na América Latina, com mais de 10 especializações em universidades de ponta ao redor do mundo.</p>
-                    </div></div>
-                </article>
-                <article class="palestrante" data-speaker="edson" role="button" tabindex="0" aria-expanded="false">
-                    <div class="pal-foto"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/palestrantes/edson.webp" alt="Edson Castro" loading="lazy" decoding="async" style="object-position:center 8%"></div>
-                    <div class="pal-linha">
-                        <span class="pal-num">05</span>
-                        <h3 class="pal-nome">Edson Castro</h3>
-                        <i class="ph ph-plus pal-mais"></i>
-                    </div>
-                    <div class="pal-det"><div class="pal-det-in">
-                        <p class="pal-cargo">Jornalista e TEDx Speaker</p>
-                        <p class="pal-tema">“Gerações: as regras do jogo estão mudando?”</p>
-                        <p class="pal-desc">Criador do Manual do Homem Moderno e host do podcast Edson Castro Show, onde discute carreira, dinheiro, psicologia e relacionamentos.</p>
-                    </div></div>
-                </article>
-                <article class="palestrante" data-speaker="lara" role="button" tabindex="0" aria-expanded="false">
-                    <div class="pal-foto"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/palestrantes/lara.webp" alt="Lara Brenner" loading="lazy" decoding="async" style="object-position:center 15%"></div>
-                    <div class="pal-linha">
-                        <span class="pal-num">06</span>
-                        <h3 class="pal-nome">Lara Brenner</h3>
-                        <i class="ph ph-plus pal-mais"></i>
-                    </div>
-                    <div class="pal-det"><div class="pal-det-in">
-                        <p class="pal-cargo">Mentora em Comunicação</p>
-                        <p class="pal-tema">“Autoeducação em tempos de distração”</p>
-                        <p class="pal-desc">Advogada, fundadora do Expressando Direito e do Texto Irresistível, além da mentoria Comunicação Irresistível.</p>
-                    </div></div>
-                </article>
-                <article class="palestrante" data-speaker="anderson" role="button" tabindex="0" aria-expanded="false">
-                    <div class="pal-foto"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/palestrantes/anderson.webp" alt="Anderson Soares" loading="lazy" decoding="async" style="object-position:center 20%"></div>
-                    <div class="pal-linha">
-                        <span class="pal-num">07</span>
-                        <h3 class="pal-nome">Anderson Soares</h3>
-                        <i class="ph ph-plus pal-mais"></i>
-                    </div>
-                    <div class="pal-det"><div class="pal-det-in">
-                        <p class="pal-cargo">Representante brasileiro no GPAI</p>
-                        <p class="pal-tema">“Painel: Inteligência Artificial e a nova realidade”</p>
-                        <p class="pal-desc">Coordenador científico do Centro de Excelência em Inteligência Artificial (CEIA) e do Bacharelado em IA da UFG.</p>
-                    </div></div>
-                </article>
-                <article class="palestrante" data-speaker="alexandre" role="button" tabindex="0" aria-expanded="false">
-                    <div class="pal-foto"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/palestrantes/alexandre.webp" alt="Alexandre Assis" loading="lazy" decoding="async" style="object-position:center 8%"></div>
-                    <div class="pal-linha">
-                        <span class="pal-num">08</span>
-                        <h3 class="pal-nome">Alexandre Assis</h3>
-                        <i class="ph ph-plus pal-mais"></i>
-                    </div>
-                    <div class="pal-det"><div class="pal-det-in">
-                        <p class="pal-cargo">CEO da Assis Gestão</p>
-                        <p class="pal-desc">Mentor e consultor de compliance, governança e gestão, além de sócio fundador do Fundo de Investimento Ouro 103 (FIDC).</p>
-                    </div></div>
-                </article>
-                <article class="palestrante" data-speaker="arlindo" role="button" tabindex="0" aria-expanded="false">
-                    <div class="pal-foto"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/palestrantes/arlindo.webp" alt="Arlindo Galvão" loading="lazy" decoding="async" style="object-position:center 30%"></div>
-                    <div class="pal-linha">
-                        <span class="pal-num">09</span>
-                        <h3 class="pal-nome">Arlindo Galvão</h3>
-                        <i class="ph ph-plus pal-mais"></i>
-                    </div>
-                    <div class="pal-det"><div class="pal-det-in">
-                        <p class="pal-cargo">Head de Internacionalização do CEIA</p>
-                        <p class="pal-tema">“Painel: Inteligência Artificial e a nova realidade”</p>
-                        <p class="pal-desc">Doutor em Ciências da Computação pela UFG, professor e CEO do AKCIT.</p>
-                    </div></div>
-                </article>
+        </div>
+
+        <!-- TROCAR: quando o lineup estiver fechado, os palestrantes entram aqui -->
+        <div id="palestrantes" class="bg-black text-white">
+            <div class="max-w-7xl mx-auto px-5 md:px-8 py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <p class="titulo-palestra text-2xl md:text-3xl">Quem sobe no palco em 2027?</p>
+                <p class="flex items-center gap-3 font-medium"><span class="ponto-breve" aria-hidden="true"></span> Lineup em breve</p>
             </div>
         </div>
     </section>
@@ -658,13 +532,13 @@
             <div class="isopor" id="isopor">
                 <span class="plaquinha isopor-dica font-semibold text-sm">Clique para abrir</span>
                 <ul class="isopor-itens">
-                    <li class="isopor-item" style="--x:-105px;--y:-125px;--g:-8deg"><img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/garrafa.png" alt="" aria-hidden="true"><span>Open bar</span></li>
-                    <li class="isopor-item" style="--x:62px;--y:-170px;--g:3deg"><img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/mesa-plastico.png" alt="" aria-hidden="true"><span>Open food</span></li>
-                    <li class="isopor-item" style="--x:178px;--y:-40px;--g:9deg"><img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chinelo.png" alt="" aria-hidden="true"><span>Dress code temático</span></li>
+                    <li class="isopor-item" style="--x:-48px;--y:-92px;--g:-7deg"><img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/garrafa.png" alt="" aria-hidden="true"><span>Open bar</span></li>
+                    <li class="isopor-item" style="--x:82px;--y:-150px;--g:3deg"><img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/mesa-plastico.png" alt="" aria-hidden="true"><span>Open food</span></li>
+                    <li class="isopor-item" style="--x:178px;--y:-22px;--g:8deg"><img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chinelo.png" alt="" aria-hidden="true"><span>Dress code temático</span></li>
                 </ul>
                 <div id="isopor-botao" role="button" tabindex="0" aria-expanded="false" aria-controls="isopor" aria-label="Abrir o isopor">
-                    <img class="isopor-parte isopor-corpo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cooler.png" alt="">
-                    <img class="isopor-parte isopor-tampa" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cooler.png" alt="">
+                    <img class="isopor-parte isopor-corpo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/isopor-corpo.png" alt="">
+                    <img class="isopor-parte isopor-tampa" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/isopor-tampa.png" alt="">
                 </div>
             </div>
         </div>
@@ -692,10 +566,10 @@
         </div>
     </section>
 
-    <div class="xadrez" style="--a:var(--caju);--b:var(--areia)" aria-hidden="true"></div>
+    <div class="xadrez" style="--a:var(--mato);--b:var(--areia)" aria-hidden="true"></div>
 
     <!-- Depoimentos -->
-    <section class="mundo-festa bg-caju py-16 md:py-24" data-tema="festa" data-pertence="edicao-25">
+    <section class="mundo-festa bg-mato py-16 md:py-24" data-tema="festa" data-pertence="edicao-25">
         <div class="max-w-7xl mx-auto px-5 md:px-8">
             <h2 class="titulo-festa text-4xl md:text-6xl max-w-4xl mb-16 surge">Quem foi, não guardou segredo</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-14">
@@ -726,49 +600,48 @@
         </div>
     </section>
 
-    <div class="xadrez" style="--a:#000;--b:var(--caju)" aria-hidden="true"></div>
+    <div class="xadrez" style="--a:var(--cacau);--b:var(--areia)" aria-hidden="true"></div>
 
-    <!-- ==================== INGRESSOS: o encontro dos dois mundos ==================== -->
-    <section id="ingressos" class="bg-black py-20 md:py-28" data-tema="sobrio">
-        <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <!-- ==================== INGRESSOS: em breve ==================== -->
+    <section id="ingressos" class="mundo-festa bg-caju grade py-16 md:py-24" data-tema="festa">
+        <div class="max-w-5xl mx-auto px-5 md:px-8">
             <div class="text-center mb-12 md:mb-16 surge">
-                <h2 class="titulo-palestra text-3xl md:text-5xl lg:text-6xl text-white mb-5">Uma experiência completa,<br>do começo ao fim.</h2>
-                <p class="max-w-3xl mx-auto text-white/65 leading-relaxed">As vagas são limitadas por restrição de espaço físico, tanto nas palestras quanto na festa. Isso não é copy de vendas: é o motivo real pelo qual, ano após ano, tem gente que decide tarde demais e simplesmente não consegue mais entrar.</p>
-                <p class="mt-4 font-medium text-white">Não existe segunda chamada.</p>
+                <h2 class="titulo-festa text-5xl md:text-7xl mb-5">Ingressos em breve</h2>
+                <p class="max-w-2xl mx-auto text-lg leading-relaxed">As vagas são limitadas por restrição de espaço físico, tanto nas palestras quanto na festa. Em breve, os detalhes.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 md:gap-10">
-                <!-- Ingresso do palco: sóbrio. TROCAR: valor e link de checkout de 2027 -->
-                <div class="ingresso ingresso-sobrio bg-white text-black surge">
-                    <div class="p-7 md:p-10 flex-1">
-                        <span class="rotulo text-black/55 block mb-5">No palco</span>
-                        <h3 class="titulo-palestra text-4xl md:text-5xl mb-4">Evento todo</h3>
-                        <p class="text-black/65 leading-relaxed">Os dois dias de palestras e a festa.</p>
+            <!-- TROCAR: quando as vendas abrirem, cada pílula vira um link para o checkout de 2027 -->
+            <div class="grid md:grid-cols-2 gap-14 md:gap-8">
+                <div class="opcao surge">
+                    <div class="opcao-arte" aria-hidden="true">
+                        <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true" class="adesivo opcao-sol">
+                        <div class="bilhete-recorte">
+                            <div class="bilhete bilhete-sobrio">
+                                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/olho.png" alt="">
+                                <span class="titulo-palestra text-3xl md:text-4xl">No palco</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ingresso-picote"><div class="ingresso-furo" style="--furo:0"><i></i><i></i></div></div>
-                    <div class="p-7 md:p-10">
-                        <p class="titulo-palestra text-2xl md:text-3xl mb-5">Valor em breve</p>
-                        <span aria-disabled="true" class="inline-flex items-center justify-center w-full px-6 py-3.5 font-medium border border-black/30 text-black/50 cursor-not-allowed">Em breve</span>
-                    </div>
+                    <span class="pilula-breve">Evento todo <small>em breve</small></span>
                 </div>
 
-                <!-- Ingresso da pista: festa. TROCAR: valor e link de checkout de 2027 -->
-                <div class="ingresso ingresso-festa bg-caju mundo-festa surge" style="--d:.1s">
-                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cadeira-bistro.png" alt="" aria-hidden="true" class="adesivo absolute -top-8 right-6 h-24 rotate-6">
-                    <div class="p-7 md:p-10 flex-1">
-                        <span class="rotulo block mb-5" style="font-family:var(--fonte-festa-corpo)">Na pista</span>
-                        <h3 class="titulo-festa text-5xl md:text-6xl mb-4">Só festa</h3>
-                        <p class="leading-relaxed">Open bar, gastronomia de alto padrão, música boa e o ambiente certo para curtir a noite com toda a comunidade da AUVP.</p>
+                <div class="opcao surge" style="--d:.1s">
+                    <div class="opcao-arte" aria-hidden="true">
+                        <div class="opcao-arco"></div>
+                        <div class="bilhete-recorte">
+                            <div class="bilhete bilhete-festa">
+                                <span class="titulo-festa text-4xl md:text-5xl">Na pista</span>
+                            </div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cadeira-plastico.png" alt="" aria-hidden="true" class="adesivo absolute w-[26%] right-[2%] bottom-[2%] rotate-6">
                     </div>
-                    <div class="ingresso-picote"><div class="ingresso-furo" style="--furo:0"><i></i><i></i></div></div>
-                    <div class="p-7 md:p-10">
-                        <p class="text-2xl md:text-3xl font-bold mb-5">Valor em breve</p>
-                        <span aria-disabled="true" class="inline-flex items-center justify-center w-full px-6 py-3.5 font-semibold border-[3px] border-cacau/40 rounded-full text-cacau/70 cursor-not-allowed">Em breve</span>
-                    </div>
+                    <span class="pilula-breve">Só festa <small>em breve</small></span>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="xadrez" style="--a:#000;--b:var(--areia)" aria-hidden="true"></div>
 
     <!-- Patrocínio -->
     <section class="bg-black border-t border-white/15 py-12 md:py-16" data-tema="sobrio" data-pertence="ingressos">
@@ -954,16 +827,31 @@
             menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { alterna(false); }); });
         }
 
-        // Lista de palestrantes
-        var pessoas = Array.prototype.slice.call(document.querySelectorAll('.palestrante'));
-        pessoas.forEach(function (p) {
-            acionavel(p, function () {
-                pessoas.forEach(function (o) {
-                    o.classList.toggle('ativo', o === p);
-                    o.setAttribute('aria-expanded', o === p ? 'true' : 'false');
-                });
-            });
-        });
+        // O segredo do topo: a festa abre a partir do sol ou da frase apagada
+        var segredo = document.getElementById('segredo');
+        var segredoSol = document.getElementById('segredo-sol');
+        var segredoFrase = document.getElementById('segredo-frase');
+        var segredoVer = document.getElementById('segredo-ver');
+        var segredoFechar = document.getElementById('segredo-fechar');
+        if (segredo && segredoSol && segredoFrase) {
+            var alternaSegredo = function (abrir, origem) {
+                if (abrir && origem) {
+                    var h = segredo.getBoundingClientRect(), o = origem.getBoundingClientRect();
+                    segredo.style.setProperty('--x', (o.left + o.width / 2 - h.left) + 'px');
+                    segredo.style.setProperty('--y', (o.top + o.height / 2 - h.top) + 'px');
+                }
+                segredo.classList.toggle('aberto', abrir);
+                segredo.setAttribute('aria-hidden', abrir ? 'false' : 'true');
+                [segredoSol, segredoFrase].forEach(function (el) { el.setAttribute('aria-expanded', abrir ? 'true' : 'false'); });
+                [segredoVer, segredoFechar].forEach(function (el) { el.setAttribute('tabindex', abrir ? '0' : '-1'); });
+                if (abrir && segredoFechar) segredoFechar.focus({ preventScroll: true });
+            };
+            acionavel(segredoSol, function () { alternaSegredo(true, segredoSol); });
+            acionavel(segredoFrase, function () { alternaSegredo(true, segredoFrase); });
+            if (segredoFechar) acionavel(segredoFechar, function () { alternaSegredo(false); segredoSol.focus({ preventScroll: true }); });
+            if (segredoVer) segredoVer.addEventListener('click', function () { setTimeout(function () { alternaSegredo(false); }, 900); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && segredo.classList.contains('aberto')) { alternaSegredo(false); segredoSol.focus({ preventScroll: true }); } });
+        }
 
         // Isopor
         var isopor = document.getElementById('isopor');
@@ -1039,22 +927,6 @@
         window.addEventListener('resize', agenda);
         atualiza();
 
-        // Adesivos do topo seguem o mouse
-        var heroFesta = document.querySelector('.hero-festa');
-        if (heroFesta && !semMovimento && window.matchMedia('(hover: hover)').matches) {
-            var adesivos = Array.prototype.slice.call(heroFesta.querySelectorAll('[data-prof]'));
-            heroFesta.addEventListener('pointermove', function (e) {
-                var b = heroFesta.getBoundingClientRect();
-                var x = (e.clientX - b.left) / b.width - 0.5, y = (e.clientY - b.top) / b.height - 0.5;
-                adesivos.forEach(function (a) {
-                    var f = parseFloat(a.getAttribute('data-prof'));
-                    a.style.transform = 'translate(' + (x * f).toFixed(1) + 'px,' + (y * f).toFixed(1) + 'px)';
-                });
-            });
-            heroFesta.addEventListener('pointerleave', function () {
-                adesivos.forEach(function (a) { a.style.transform = ''; });
-            });
-        }
     }
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initAUVP);
@@ -1170,11 +1042,10 @@
             });
 
             /* Escolha de um palestrante nos slides */
-            document.querySelectorAll('.palestrante[data-speaker]').forEach(function (item) {
-                item.addEventListener('click', function () {
-                    tag('palestrante_visto', item.getAttribute('data-speaker'));
-                    event('palestrante_aberto');
-                });
+            /* Segredo do topo */
+            ['segredo-sol', 'segredo-frase'].forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el) el.addEventListener('click', function () { event('segredo_aberto'); });
             });
 
             /* Interação do isopor */
