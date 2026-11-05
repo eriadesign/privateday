@@ -1,1133 +1,486 @@
-<!-- RASCUNHO: remova esta linha quando a página for publicada de verdade -->
-<meta name="robots" content="noindex">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Microsoft Clarity (mapas de calor, gravações de sessão e eventos) -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "y5xo0z0rc3");
-</script>
-
-<!-- Dependências do Projeto -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-    /* PALETA DA FESTA (guia de identidade): mudou aqui, muda em bg-caju, text-cacau etc. */
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    mato: '#758c39',
-                    mar: '#88bddd',
-                    areia: '#fee7d8',
-                    canario: '#ffa737',
-                    caju: '#fc5447',
-                    cacau: '#281a16'
-                }
-            }
-        }
-    };
-</script>
-<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@400;500;600;700&family=Elms+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Bangers&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-<style>
-    /* Evita a página piscar quebrada no carregamento */
-    #auvp-lp-wrapper {
-        opacity: 0;
-        animation: auvp-fade-in 0.5s ease-out 0.2s forwards;
-    }
-    @keyframes auvp-fade-in { to { opacity: 1; } }
-
-    /* Fonte da festa: Oferta do Dia, de Eduardo Luiz Ramalho Sobreira (IFPE, 2014).
-       LICENÇA A CONFIRMAR: por isso o arquivo não está no repositório, que é público.
-       Só aparece em quem tem a fonte instalada; os demais visitantes veem a Bangers.
-       Com a licença confirmada, envie o arquivo para 2027/assets/ e tire este bloco do comentário.
-       Evite C e Ç nos títulos com essa fonte: o C dela se lê como L.
-    @font-face {
-        font-family: 'Oferta do Dia';
-        src: url('https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/Oferta-do-Dia.ttf') format('truetype');
-        font-display: swap;
-    }
-    */
-
-    /* ========== OS DOIS MUNDOS ==========
-       Palestras: sóbrio e corporativo. Festa: identidade Brasilidades. */
-    #auvp-lp-wrapper {
-        --fonte-palestra: 'Anek Latin', sans-serif;
-        --fonte-palestra-corpo: 'Roboto', sans-serif;
-        --fonte-festa: 'Oferta do Dia', 'Bangers', cursive;
-        --fonte-festa-corpo: 'Elms Sans', sans-serif;
-        --mato: #758c39; --mar: #88bddd; --areia: #fee7d8; --canario: #ffa737; --caju: #fc5447; --cacau: #281a16;
-        --sombra-dura: 5px 6px 0 var(--cacau);
-        --curva: cubic-bezier(.2, .8, .2, 1);
-
-        font-family: var(--fonte-palestra-corpo);
-        background: #000;
-        color: #fff;
-        width: 100%;
-        position: relative;
-        overflow-x: clip;
-    }
-    #auvp-lp-wrapper a { text-decoration: none; }
-    #auvp-lp-wrapper .film-grain { position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: .03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-
-    #auvp-lp-wrapper .titulo-palestra { font-family: var(--fonte-palestra); font-weight: 500; letter-spacing: -.015em; line-height: 1.08; }
-    #auvp-lp-wrapper .rotulo { font-family: var(--fonte-palestra); font-size: 12px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; }
-    #auvp-lp-wrapper .mundo-festa { font-family: var(--fonte-festa-corpo); color: var(--cacau); }
-    #auvp-lp-wrapper .titulo-festa { font-family: var(--fonte-festa); font-weight: normal; text-transform: uppercase; letter-spacing: .02em; line-height: 1; }
-
-    /* Fundo em grade e faixa xadrez: --a é a cor da dobra de cima e --b, a da dobra de baixo */
-    #auvp-lp-wrapper .grade { background-image: linear-gradient(rgba(40,26,22,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(40,26,22,.09) 1px, transparent 1px); background-size: 46px 46px; }
-    #auvp-lp-wrapper .xadrez { height: 44px; background: conic-gradient(var(--a) 25%, var(--b) 0 50%, var(--a) 0 75%, var(--b) 0) 0 0 / 44px 44px; }
-
-    /* Adesivo: ícone do guia com contorno recortado */
-    #auvp-lp-wrapper img.adesivo { filter: drop-shadow(3px 0 0 var(--areia)) drop-shadow(-3px 0 0 var(--areia)) drop-shadow(0 3px 0 var(--areia)) drop-shadow(0 -3px 0 var(--areia)) drop-shadow(4px 5px 0 rgba(40,26,22,.4)); max-width: none; }
-
-    /* Plaquinha de título, pendurada por dois fios */
-    #auvp-lp-wrapper .plaquinha { position: relative; display: inline-block; background: var(--areia); border: 3px solid var(--cacau); border-radius: 14px; box-shadow: var(--sombra-dura); padding: .45em .8em .4em; }
-    #auvp-lp-wrapper .plaquinha.fios::before, #auvp-lp-wrapper .plaquinha.fios::after { content: ''; position: absolute; bottom: 100%; width: 3px; height: 90px; background: var(--cacau); }
-    #auvp-lp-wrapper .plaquinha.fios::before { left: 18%; }
-    #auvp-lp-wrapper .plaquinha.fios::after { right: 18%; }
-
-    /* Botões: cor fixa também no hover, que o tema do Elementor costuma sobrescrever */
-    #auvp-lp-wrapper .btn-sobrio, #auvp-lp-wrapper .btn-sobrio-escuro, #auvp-lp-wrapper .btn-festa { display: inline-flex; align-items: center; justify-content: center; gap: .55em; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all .25s var(--curva); }
-    #auvp-lp-wrapper .btn-sobrio { background: #fff; color: #000 !important; border: 1px solid #fff; }
-    #auvp-lp-wrapper .btn-sobrio:hover { background: transparent; color: #fff !important; }
-    #auvp-lp-wrapper .btn-sobrio-escuro { background: #000; color: #fff !important; border: 1px solid #000; }
-    #auvp-lp-wrapper .btn-sobrio-escuro:hover { background: transparent; color: #000 !important; }
-    #auvp-lp-wrapper .btn-festa { font-family: var(--fonte-festa-corpo); font-weight: 600; background: var(--areia); color: var(--cacau) !important; border: 3px solid var(--cacau); border-radius: 999px; box-shadow: var(--sombra-dura); }
-    #auvp-lp-wrapper .btn-festa:hover { transform: translate(2px, 3px); box-shadow: 2px 2px 0 var(--cacau); }
-
-    /* ========== NAVEGAÇÃO: troca de roupa conforme o mundo ========== */
-    #auvp-lp-wrapper #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 14px 0; pointer-events: none; }
-    #auvp-lp-wrapper #navbar > div, #auvp-lp-wrapper #mobile-menu { pointer-events: auto; }
-    #auvp-lp-wrapper .nav-logo { display: flex; align-items: center; gap: 10px; background: #000; border: 1px solid rgba(255,255,255,.25); color: #fff !important; padding: 7px 16px 7px 12px; border-radius: 999px; font-family: var(--fonte-palestra); font-weight: 500; font-size: 17px; transition: all .35s; }
-    #auvp-lp-wrapper .nav-logo img { height: 18px; width: auto; max-width: none; }
-    #auvp-lp-wrapper .nav-pilula { gap: 2px; padding: 4px; border-radius: 999px; background: rgba(0,0,0,.72); border: 1px solid rgba(255,255,255,.25); backdrop-filter: blur(10px); transition: all .35s; }
-    #auvp-lp-wrapper .nav-link { color: #fff !important; font-size: 14px; font-weight: 500; padding: 7px 14px; border-radius: 999px; white-space: nowrap; transition: all .25s; }
-    #auvp-lp-wrapper .nav-link:hover { background: rgba(255,255,255,.14); }
-    #auvp-lp-wrapper .nav-link.atual { background: #fff; color: #000 !important; }
-    #auvp-lp-wrapper #nav-cta { transition: all .35s; font-size: 14px; padding: 9px 18px; background: #fff; color: #000 !important; border: 1px solid #fff; border-radius: 999px; font-weight: 500; white-space: nowrap; box-shadow: 0 0 0 1px rgba(0,0,0,.28); }
-    #auvp-lp-wrapper #mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #000; color: #fff; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; font-size: 22px; cursor: pointer; transition: all .35s; }
-    /* Na festa */
-    #auvp-lp-wrapper #navbar[data-tema="festa"] .nav-pilula { background: var(--areia); border: 2px solid var(--cacau); box-shadow: 3px 4px 0 var(--cacau); backdrop-filter: none; }
-    #auvp-lp-wrapper #navbar[data-tema="festa"] .nav-link { color: var(--cacau) !important; font-family: var(--fonte-festa-corpo); font-weight: 600; }
-    #auvp-lp-wrapper #navbar[data-tema="festa"] .nav-link:hover { background: rgba(40,26,22,.1); }
-    #auvp-lp-wrapper #navbar[data-tema="festa"] .nav-link.atual { background: var(--cacau); color: var(--areia) !important; }
-    #auvp-lp-wrapper #navbar[data-tema="festa"] .nav-logo, #auvp-lp-wrapper #navbar[data-tema="festa"] #mobile-menu-btn { background: var(--cacau); border-color: var(--cacau); box-shadow: 3px 4px 0 rgba(40,26,22,.35); }
-    #auvp-lp-wrapper #navbar[data-tema="festa"] #nav-cta { background: var(--caju); color: var(--cacau) !important; border: 2px solid var(--cacau); box-shadow: 3px 4px 0 var(--cacau); font-family: var(--fonte-festa-corpo); font-weight: 600; }
-
-    @media (min-width: 1024px) { #auvp-lp-wrapper #mobile-menu-btn { display: none; } }
-
-    /* ========== TOPO: corporativo, com a festa escondida ========== */
-    #auvp-lp-wrapper .hero { position: relative; min-height: 100svh; background: #000; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
-    #auvp-lp-wrapper .hero-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; max-width: none; filter: grayscale(1) contrast(1.05); }
-    #auvp-lp-wrapper .hero-veu { position: absolute; inset: 0; background: linear-gradient(to top, #000 6%, rgba(0,0,0,.72) 44%, rgba(0,0,0,.28) 78%, rgba(0,0,0,.55)); }
-    #auvp-lp-wrapper .hero-conteudo { position: relative; z-index: 2; width: 100%; }
-    @media (min-width: 1024px) {
-        #auvp-lp-wrapper .hero-foto { left: 34%; width: 66%; object-position: 50% 30%; }
-        #auvp-lp-wrapper .hero-veu { background: linear-gradient(to top, #000 4%, transparent 40%), linear-gradient(to right, #000 34%, rgba(0,0,0,.55) 50%, rgba(0,0,0,.05) 74%), linear-gradient(to bottom, rgba(0,0,0,.55), transparent 22%); }
-    }
-    #auvp-lp-wrapper .hero-info { border-top: 1px solid rgba(255,255,255,.22); }
-
-    /* O segredo: a frase em destaque e o sol no rodapé abrem a festa */
-    #auvp-lp-wrapper .segredo-frase { color: var(--canario); cursor: pointer; outline: none; text-decoration: underline; text-decoration-color: var(--canario); text-decoration-thickness: 2px; text-underline-offset: .14em; transition: color .25s; }
-    #auvp-lp-wrapper .segredo-frase:hover { color: #fff; }
-    #auvp-lp-wrapper .segredo-frase:focus-visible { outline: 3px solid var(--canario); outline-offset: 6px; border-radius: 4px; }
-    #auvp-lp-wrapper .segredo-sol { position: absolute; z-index: 3; right: 130px; bottom: -58px; width: 116px; cursor: pointer; outline: none; transition: bottom .45s var(--curva), transform .45s var(--curva); }
-    #auvp-lp-wrapper .segredo-sol img { display: block; width: 100%; height: auto; max-width: none; animation: gira 40s linear infinite; }
-    #auvp-lp-wrapper .segredo-sol:hover, #auvp-lp-wrapper .segredo-sol:focus-visible { bottom: -18px; transform: rotate(14deg); }
-    @keyframes gira { to { transform: rotate(360deg); } }
-    #auvp-lp-wrapper .segredo { --x: 80%; --y: 95%; position: absolute; inset: 0; z-index: 4; background-color: var(--canario); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 96px 22px 40px; clip-path: circle(0 at var(--x) var(--y)); visibility: hidden; transition: clip-path .85s var(--curva), visibility 0s .85s; }
-    #auvp-lp-wrapper .segredo.aberto { clip-path: circle(150vmax at var(--x) var(--y)); visibility: visible; transition: clip-path .85s var(--curva), visibility 0s; }
-    #auvp-lp-wrapper .segredo-titulo { width: min(92%, 860px); height: auto; max-width: 100%; position: relative; z-index: 2; }
-    #auvp-lp-wrapper .segredo-acoes { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 14px; }
-    #auvp-lp-wrapper .segredo-fechar { display: inline-flex; align-items: center; justify-content: center; gap: .55em; min-height: 48px; padding: 0 24px; font-weight: 600; color: var(--cacau); border: 3px solid var(--cacau); border-radius: 999px; white-space: nowrap; cursor: pointer; outline: none; transition: background-color .25s, color .25s; }
-    #auvp-lp-wrapper .segredo-fechar:hover { background-color: var(--cacau); color: var(--areia); }
-    #auvp-lp-wrapper .segredo-fechar:focus-visible { outline: 3px solid var(--cacau); outline-offset: 3px; }
-    #auvp-lp-wrapper .segredo-adesivo { position: absolute; }
-    @media (max-width: 640px) {
-        #auvp-lp-wrapper .segredo-sol { right: 92px; width: 96px; bottom: -48px; }
-        #auvp-lp-wrapper .hero-conteudo { padding-bottom: 64px; }
-        #auvp-lp-wrapper .wa-wrapper.show-balloon .wa-balloon { animation: none !important; }
-    }
-    @media (max-width: 1023px) {
-        #auvp-lp-wrapper .hero-foto { height: 52%; object-position: 34% 30%; }
-        #auvp-lp-wrapper .hero-veu { background: linear-gradient(to bottom, rgba(0,0,0,.5), transparent 16%, transparent 26%, #000 52%); }
-    }
-
-    /* ========== PALESTRAS: três pilares e lineup ========== */
-    #auvp-lp-wrapper .pilar { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 6px 14px; padding: 28px 0; border-top: 1px solid rgba(0,0,0,.18); overflow: hidden; isolation: isolate; }
-    #auvp-lp-wrapper .pilar:last-child { border-bottom: 1px solid rgba(0,0,0,.18); }
-    #auvp-lp-wrapper .pilar-num { font-size: 13px; color: rgba(0,0,0,.5); padding-top: 12px; font-variant-numeric: tabular-nums; transition: color .3s, padding .4s var(--curva); }
-    #auvp-lp-wrapper .pilar-titulo { font-family: var(--fonte-palestra); font-weight: 500; font-size: clamp(32px, 5vw, 64px); letter-spacing: -.02em; line-height: 1.05; transition: color .3s, padding .4s var(--curva); }
-    #auvp-lp-wrapper .pilar-texto { grid-column: 2; color: rgba(0,0,0,.65); line-height: 1.6; max-width: 520px; transition: color .3s; }
-    @media (min-width: 1024px) {
-        #auvp-lp-wrapper .pilar { grid-template-columns: 70px 1.25fr 1fr; align-items: center; padding: 34px 0; }
-        #auvp-lp-wrapper .pilar-num { padding-top: 0; }
-        #auvp-lp-wrapper .pilar-texto { grid-column: 3; }
-    }
-    @media (hover: hover) {
-        #auvp-lp-wrapper .pilar::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #000; transform: scaleY(0); transform-origin: bottom; transition: transform .45s var(--curva); }
-        #auvp-lp-wrapper .pilar:hover::before { transform: scaleY(1); }
-        #auvp-lp-wrapper .pilar:hover .pilar-titulo { color: #fff; padding-left: 12px; }
-        #auvp-lp-wrapper .pilar:hover .pilar-num { color: rgba(255,255,255,.6); padding-left: 12px; }
-        #auvp-lp-wrapper .pilar:hover .pilar-texto { color: rgba(255,255,255,.75); }
-    }
-    #auvp-lp-wrapper .ponto-breve { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: pulsa 1.8s ease-in-out infinite; flex: none; }
-    @keyframes pulsa { 50% { opacity: .25; } }
-
-    /* ========== A VIRADA: o palco apaga e a cor toma a tela ========== */
-    #auvp-lp-wrapper .virada { --p: 1; position: relative; background: var(--canario); }
-    #auvp-lp-wrapper .virada-cola { position: relative; height: 100svh; min-height: 560px; overflow: hidden; }
-    #auvp-lp-wrapper .virada-palco { position: absolute; inset: 0; background: #000; display: none; align-items: flex-start; justify-content: center; padding: 22svh 24px 24px; text-align: center; }
-    #auvp-lp-wrapper .virada-cor { position: absolute; inset: 0; background-color: var(--canario); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
-    #auvp-lp-wrapper .virada-sol { display: none; position: absolute; left: 50%; top: 50%; width: 180px; height: auto; max-width: none; z-index: 3; pointer-events: none; }
-    #auvp-lp-wrapper .virada-adesivo { position: absolute; transition: none; }
-    #auvp-lp-wrapper .virada-titulo { width: min(92%, 980px); height: auto; max-width: 100%; position: relative; z-index: 2; }
-    /* Só com JavaScript e sem bloqueio do tema: sem isso, a seção aparece parada e completa */
-    #auvp-lp-wrapper.com-cola .virada { height: 240vh; background: #000; }
-    #auvp-lp-wrapper.com-cola .virada-cola { position: sticky; top: 0; }
-    #auvp-lp-wrapper.com-cola .virada-palco { display: flex; }
-    #auvp-lp-wrapper.com-cola .virada-palco p { opacity: calc(1 - var(--p) * 2.4); transform: translateY(calc(var(--p) * -30px)); }
-    #auvp-lp-wrapper.com-cola .virada-cor { clip-path: circle(calc(max(0, var(--p) - .14) * 150vmax) at 50% 50%); }
-    #auvp-lp-wrapper.com-cola .virada-cor > p, #auvp-lp-wrapper.com-cola .virada-titulo { opacity: calc((var(--p) - .34) * 5); }
-    #auvp-lp-wrapper.com-cola .virada-sol { display: block; transform: translate(-50%, -50%) scale(calc(.5 + var(--p) * 3)) rotate(calc(var(--p) * 200deg)); opacity: calc(1.5 - var(--p) * 4); }
-    #auvp-lp-wrapper.com-cola .virada-adesivo { transform: translateY(calc((1 - var(--p)) * 140px)) rotate(calc((1 - var(--p)) * var(--r, 20deg))) scale(calc(.5 + var(--p) * .5)); }
-
-    /* ========== ISOPOR: abra para ver o que está incluso ========== */
-    #auvp-lp-wrapper .isopor { position: relative; width: min(100%, 520px); height: 500px; margin: 0 auto; }
-    #auvp-lp-wrapper #isopor-botao { position: absolute; left: 50%; bottom: 0; width: 230px; aspect-ratio: 365/431; transform: translateX(-50%); cursor: pointer; background: none; border: 0; padding: 0; outline: none; display: block; z-index: 3; }
-    #auvp-lp-wrapper .isopor-parte { position: absolute; inset: 0; width: 100% !important; height: 100% !important; max-width: none; filter: drop-shadow(3px 0 0 var(--areia)) drop-shadow(-3px 0 0 var(--areia)) drop-shadow(0 3px 0 var(--areia)) drop-shadow(0 -3px 0 var(--areia)) drop-shadow(4px 5px 0 rgba(40,26,22,.4)); }
-    #auvp-lp-wrapper .isopor-tampa { transform-origin: 3% 40%; transition: transform .75s cubic-bezier(.3, 1.45, .5, 1); z-index: 1; }
-    #auvp-lp-wrapper #isopor-botao:hover .isopor-tampa { transform: rotate(-9deg); }
-    #auvp-lp-wrapper .isopor.aberto .isopor-tampa, #auvp-lp-wrapper .isopor.aberto #isopor-botao:hover .isopor-tampa { transform: rotate(-102deg); }
-    #auvp-lp-wrapper .isopor-corpo { z-index: 2; }
-    #auvp-lp-wrapper .isopor-itens { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; z-index: 4; pointer-events: none; }
-    #auvp-lp-wrapper .isopor-item { position: absolute; left: 50%; bottom: 190px; width: 160px; margin-left: -80px; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: transform .75s cubic-bezier(.3, 1.5, .5, 1), opacity .35s; transform: translate(calc(var(--x) * var(--k, 1)), var(--y)) rotate(var(--g)); }
-    #auvp-lp-wrapper .isopor-item img { height: 92px; width: auto; }
-    #auvp-lp-wrapper .isopor-item span { font-weight: 600; font-size: 14px; background: var(--areia); border: 2px solid var(--cacau); border-radius: 10px; padding: 4px 10px; box-shadow: 3px 3px 0 var(--cacau); text-align: center; }
-    #auvp-lp-wrapper.tem-js .isopor:not(.aberto) .isopor-item { transform: translate(0, 80px) rotate(0deg) scale(.3); opacity: 0; }
-    #auvp-lp-wrapper .isopor-item:nth-child(2) { transition-delay: .07s; }
-    #auvp-lp-wrapper .isopor-item:nth-child(3) { transition-delay: .14s; }
-    @media (max-width: 640px) { #auvp-lp-wrapper .isopor { --k: .62; } #auvp-lp-wrapper #isopor-botao { width: 180px; } #auvp-lp-wrapper .isopor-item img { height: 76px; } #auvp-lp-wrapper .isopor-item span { font-size: 13px; } }
-    #auvp-lp-wrapper .isopor-dica { position: absolute; left: 50%; bottom: 290px; transform: translateX(-50%) rotate(-3deg); z-index: 4; display: none; }
-    #auvp-lp-wrapper.tem-js .isopor:not(.aberto) .isopor-dica { display: block; animation: pula 1.3s ease-in-out infinite; }
-    @keyframes pula { 50% { margin-bottom: 10px; } }
-
-    /* ========== ÁLBUM, FAIXA E DEPOIMENTOS ========== */
-    #auvp-lp-wrapper .album { position: relative; height: 480px; }
-    #auvp-lp-wrapper .polaroid { position: absolute; background: var(--areia); border: 3px solid var(--cacau); box-shadow: var(--sombra-dura); padding: 10px 10px 38px; transition: rotate .35s var(--curva), scale .35s var(--curva); }
-    #auvp-lp-wrapper .polaroid img { display: block; width: 100%; height: 100%; object-fit: cover; max-width: none; }
-    #auvp-lp-wrapper .polaroid:hover { rotate: 0deg !important; scale: 1.04; z-index: 5; }
-    #auvp-lp-wrapper .faixa-rola { overflow: hidden; background: var(--cacau); padding: 20px 0; }
-    #auvp-lp-wrapper .faixa-trilho { display: flex; width: max-content; align-items: center; gap: 44px; animation: desliza 34s linear infinite; }
-    #auvp-lp-wrapper .faixa-rola:hover .faixa-trilho { animation-play-state: paused; }
-    #auvp-lp-wrapper .faixa-trilho img { height: 54px; width: auto; max-width: none; }
-    #auvp-lp-wrapper .faixa-trilho img.frase { height: 36px; }
-    @keyframes desliza { to { transform: translateX(-50%); } }
-    #auvp-lp-wrapper .card-depo { position: relative; background: var(--areia); border: 3px solid var(--cacau); border-radius: 22px; box-shadow: var(--sombra-dura); padding: 56px 22px 22px; display: flex; flex-direction: column; transition: transform .35s var(--curva); }
-    #auvp-lp-wrapper .card-depo:hover { transform: rotate(0deg) translateY(-6px) !important; }
-    #auvp-lp-wrapper .card-depo img { position: absolute; top: -34px; right: 18px; height: 78px; width: auto; }
-
-    /* ========== INGRESSO: único, entre o palco e a festa ========== */
-    #auvp-lp-wrapper .ingresso-palco { position: relative; max-width: 940px; margin: 0 auto; }
-    /* O contorno recortado acompanha os furos da costura */
-    #auvp-lp-wrapper .ingresso-recorte { position: relative; z-index: 2; filter: drop-shadow(5px 0 0 var(--areia)) drop-shadow(-5px 0 0 var(--areia)) drop-shadow(0 5px 0 var(--areia)) drop-shadow(0 -5px 0 var(--areia)) drop-shadow(7px 9px 0 rgba(40,26,22,.55)); transition: transform .4s var(--curva); }
-    #auvp-lp-wrapper .ingresso-palco:hover .ingresso-recorte { transform: rotate(-.7deg) scale(1.01); }
-    #auvp-lp-wrapper .ingresso { display: flex; min-height: 370px; border-radius: 20px; overflow: hidden; }
-    #auvp-lp-wrapper .ingresso-sobrio { flex: 0 0 58%; min-width: 0; background: #000; color: #fff; padding: 32px 38px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; text-align: left; }
-    #auvp-lp-wrapper .ingresso-marca { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    #auvp-lp-wrapper .ingresso-marca span:first-child { display: flex; align-items: center; gap: 10px; font-family: var(--fonte-palestra); font-weight: 500; font-size: 18px; }
-    #auvp-lp-wrapper .ingresso-marca img { height: 22px; width: auto; max-width: none; }
-    #auvp-lp-wrapper .ingresso-nome { font-size: clamp(42px, 6.4vw, 70px); line-height: 1; }
-    #auvp-lp-wrapper .ingresso-nome .titulo-palestra { line-height: 1; letter-spacing: -.02em; }
-    #auvp-lp-wrapper .ingresso-nome .titulo-festa { color: var(--canario); display: block; margin-top: .08em; }
-    #auvp-lp-wrapper .ingresso-dados { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 18px; margin: 0; }
-    #auvp-lp-wrapper .ingresso-dados div { border-top: 1px solid rgba(255,255,255,.28); padding-top: 10px; }
-    #auvp-lp-wrapper .ingresso-dados dt { font-family: var(--fonte-palestra); font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 4px; }
-    #auvp-lp-wrapper .ingresso-dados dd { margin: 0; font-weight: 500; }
-    /* A costura usa o mesmo xadrez das faixas, com as cores dos dois lados do ingresso */
-    #auvp-lp-wrapper .ingresso-costura { flex: 0 0 44px; background: conic-gradient(#000 25%, var(--mato) 0 50%, #000 0 75%, var(--mato) 0) 0 0 / 44px 44px; -webkit-mask: radial-gradient(circle 22px at 50% 0, transparent 98%, #000) top / 100% 51% no-repeat, radial-gradient(circle 22px at 50% 100%, transparent 98%, #000) bottom / 100% 51% no-repeat; mask: radial-gradient(circle 22px at 50% 0, transparent 98%, #000) top / 100% 51% no-repeat, radial-gradient(circle 22px at 50% 100%, transparent 98%, #000) bottom / 100% 51% no-repeat; }
-    #auvp-lp-wrapper .ingresso-festa { flex: 1 1 0; min-width: 0; background-color: var(--mato); color: var(--cacau); font-family: var(--fonte-festa-corpo); padding: 28px 26px 24px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 18px; text-align: center; }
-    #auvp-lp-wrapper .ingresso-sol { width: 92px; height: auto; max-width: none; }
-    #auvp-lp-wrapper .ingresso-titulo { width: 100%; height: auto; max-width: 100%; }
-    #auvp-lp-wrapper .ingresso-barras { width: 100%; height: 36px; background: linear-gradient(90deg, var(--cacau) 0 3%, transparent 0 5%, var(--cacau) 0 6%, transparent 0 9%, var(--cacau) 0 13%, transparent 0 15%, var(--cacau) 0 16%, transparent 0 18%, var(--cacau) 0 19%, transparent 0 23%, var(--cacau) 0 27%, transparent 0 28%, var(--cacau) 0 29%, transparent 0 32%, var(--cacau) 0 35%, transparent 0 37%, var(--cacau) 0 38%, transparent 0 42%, var(--cacau) 0 44%, transparent 0 45%, var(--cacau) 0 49%, transparent 0 51%, var(--cacau) 0 52%, transparent 0 55%, var(--cacau) 0 56%, transparent 0 58%, var(--cacau) 0 62%, transparent 0 63%, var(--cacau) 0 65%, transparent 0 68%, var(--cacau) 0 69%, transparent 0 73%, var(--cacau) 0 76%, transparent 0 78%, var(--cacau) 0 79%, transparent 0 81%, var(--cacau) 0 85%, transparent 0 87%, var(--cacau) 0 88%, transparent 0 91%, var(--cacau) 0 94%, transparent 0 96%, var(--cacau) 0 100%); }
-    #auvp-lp-wrapper .ingresso-adesivo { position: absolute; }
-    @media (max-width: 767px) {
-        #auvp-lp-wrapper .ingresso { flex-direction: column; min-height: 0; }
-        #auvp-lp-wrapper .ingresso-sobrio { flex: none; padding: 26px 22px; }
-        #auvp-lp-wrapper .ingresso-nome { font-size: clamp(42px, 13vw, 58px); }
-        #auvp-lp-wrapper .ingresso-dados { grid-template-columns: 1fr 1fr; }
-        #auvp-lp-wrapper .ingresso-dados div:first-child { grid-column: 1 / -1; }
-        #auvp-lp-wrapper .ingresso-costura { flex: 0 0 44px; -webkit-mask: radial-gradient(circle 22px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 22px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat; mask: radial-gradient(circle 22px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 22px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat; }
-        #auvp-lp-wrapper .ingresso-festa { flex: none; padding: 22px 22px 20px; }
-    }
-    #auvp-lp-wrapper .pilula-breve { display: inline-flex; align-items: center; gap: .6em; font-family: var(--fonte-festa-corpo); font-weight: 600; font-size: 18px; background: var(--areia); color: var(--cacau); border: 3px solid var(--cacau); border-radius: 999px; box-shadow: var(--sombra-dura); padding: 13px 30px; white-space: nowrap; }
-    #auvp-lp-wrapper .pilula-breve small { font-size: 13px; font-weight: 500; opacity: .7; }
-
-    /* Surgir ao rolar: só com JavaScript, para o conteúdo nunca ficar escondido */
-    #auvp-lp-wrapper.tem-js .surge { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--curva), transform .8s var(--curva); transition-delay: var(--d, 0s); }
-    #auvp-lp-wrapper.tem-js .surge.visivel { opacity: 1; transform: none; }
-
-    /* -------------------------------------------------------------------------- */
-    /* WIDGET WHATSAPP CUSTOMIZADO                                                */
-    /* -------------------------------------------------------------------------- */
-    @keyframes waPulseRing {
-        0% { transform: scale(0.98); opacity: 0.32; }
-        100% { transform: scale(1.9); opacity: 0; }
-    }
-    @keyframes waSoftPulse {
-        0%, 100% { transform: scale(1); }
-        50%      { transform: scale(1.012); }
-    }
-
-    #auvp-lp-wrapper .wa-wrapper {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        z-index: 99999;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    /* Balão (Tooltip) */
-    #auvp-lp-wrapper .wa-balloon {
-        position: absolute;
-        bottom: 74px; /* Altura do ícone (64) + espaçamento (10) */
-        right: 0;
-        background: #ffffff;
-        color: #1a1a1a;
-        font-family: 'Anek Latin', sans-serif;
-        font-size: 15px;
-        max-width: 220px;
-        width: max-content;
-        padding: 12px 16px;
-        border-radius: 12px;
-        border-bottom-right-radius: 0; /* Canto inferior direito reto */
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        opacity: 0;
-        transform: translateY(10px) scale(0.9);
-        transform-origin: bottom right;
-        transition: opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        pointer-events: none;
-        line-height: 1.4;
-    }
-
-    /* Seta (Tail) do Balão */
-    #auvp-lp-wrapper .wa-balloon::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        right: 0;
-        width: 0;
-        height: 0;
-        border-left: 12px solid transparent;
-        border-top: 10px solid #ffffff;
-        border-right: 0px solid transparent;
-    }
-
-    @keyframes showWaBalloon {
-        0% { opacity: 0; transform: translateY(10px) scale(0.9); }
-        100% { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto;}
-    }
-
-    /* Modo Sempre Visível com Delay de 1.5s */
-    #auvp-lp-wrapper .wa-wrapper.show-balloon .wa-balloon {
-        animation: showWaBalloon 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s forwards;
-    }
-
-    /* Hover no modo geral override */
-    #auvp-lp-wrapper .wa-wrapper:hover .wa-balloon {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        pointer-events: auto;
-        animation: none;
-    }
-
-    /* Ícone Principal */
-    #auvp-lp-wrapper .wa-float {
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-        box-shadow: 0 4px 15px rgba(0,0,0, 0.2);
-        cursor: pointer;
-        transition: transform .2s ease;
-        animation: waSoftPulse 12s ease-in-out infinite;
-        position: relative;
-        text-decoration: none;
-    }
-
-    #auvp-lp-wrapper .wa-float::before {
-        content: "";
-        position: absolute;
-        inset: 4px;
-        border-radius: 50%;
-        background: #25D366;
-        z-index: 0;
-        animation: waPulseRing 10.5s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-    }
-
-    #auvp-lp-wrapper .wa-float svg {
-        position: relative;
-        z-index: 1;
-        width: 42px; /* ~65% do diâmetro */
-        height: 42px;
-        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
-    }
-
-    #auvp-lp-wrapper .wa-float:hover  { transform: scale(1.10); }
-    #auvp-lp-wrapper .wa-float:active { transform: scale(0.95); }
-
-    @media (prefers-reduced-motion: reduce) {
-        #auvp-lp-wrapper *, #auvp-lp-wrapper *::before, #auvp-lp-wrapper *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-        #auvp-lp-wrapper.tem-js .surge { opacity: 1; transform: none; }
-    }
-    html { scroll-behavior: smooth; }
-    #auvp-lp-wrapper section[id] { scroll-margin-top: 70px; }
-</style>
-
-<!-- WRAPPER PRINCIPAL PARA O ELEMENTOR -->
-<div id="auvp-lp-wrapper" class="selection:bg-canario selection:text-cacau">
-
-    <div class="film-grain"></div>
-
-    <!-- RASCUNHO: remova este aviso quando a página for publicada de verdade -->
-    <div class="fixed bottom-4 left-4 z-[99998] bg-caju text-cacau font-medium text-xs px-3 py-2 max-w-[60vw]" role="note">
-        Rascunho: conteúdo e valores provisórios
-    </div>
-
-    <!-- Navegação: acompanha a rolagem e muda de estilo entre os dois mundos -->
-    <nav id="navbar" data-tema="sobrio">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center gap-3">
-            <a href="#topo" class="nav-logo" aria-label="AUVP Private Day, voltar ao topo">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/olho.png" alt="" aria-hidden="true"><span>Private Day</span>
-            </a>
-            <div class="hidden lg:flex nav-pilula">
-                <a href="#ingressos" class="nav-link" data-secao="ingressos">Ingresso</a>
-                <a href="#palestras" class="nav-link" data-secao="palestras">Palestras</a>
-                <a href="#festa" class="nav-link" data-secao="festa">Festa</a>
-                <a href="#edicao-25" class="nav-link" data-secao="edicao-25">A edição</a>
-                <a href="#faq" class="nav-link" data-secao="faq">FAQ</a>
-            </div>
-            <a id="nav-cta" href="#ingressos" class="hidden lg:block">Ingresso em breve</a>
-            <div id="mobile-menu-btn" class="lg:hidden" role="button" tabindex="0" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><i class="ph ph-list"></i></div>
-        </div>
-        <div id="mobile-menu" class="hidden lg:hidden mx-4 mt-2 bg-black border border-white/20 rounded-2xl overflow-hidden flex-col">
-            <a href="#ingressos" class="block px-5 py-4 text-white font-medium border-b border-white/10">Ingresso</a>
-            <a href="#palestras" class="block px-5 py-4 text-white font-medium border-b border-white/10">Palestras</a>
-            <a href="#festa" class="block px-5 py-4 text-white font-medium border-b border-white/10">Festa</a>
-            <a href="#edicao-25" class="block px-5 py-4 text-white font-medium border-b border-white/10">A edição</a>
-            <a href="#faq" class="block px-5 py-4 text-white font-medium">FAQ</a>
-        </div>
-    </nav>
-
-    <!-- ==================== TOPO: corporativo, com a festa como segredo ==================== -->
-    <section id="topo" class="hero" data-tema="sobrio">
-        <img class="hero-foto" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/palco.webp" alt="Palco do AUVP Private Day">
-        <div class="hero-veu"></div>
-
-        <div class="hero-conteudo max-w-7xl mx-auto px-5 md:px-8 pt-28 pb-8 md:pb-10">
-            <span class="rotulo text-white/70 block mb-5">AUVP Private Day 2027</span>
-            <h1 class="titulo-palestra text-5xl md:text-6xl xl:text-7xl mb-7">
-                Conteúdo para<br>enriquecer.<br>
-                <span id="segredo-frase" class="segredo-frase" role="button" tabindex="0" aria-controls="segredo" aria-expanded="false">Festa para celebrar.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed mb-8">Nomes relevantes do mercado, palestras enriquecedoras e networking com quem sabe como o jogo funciona.</p>
-            <a href="#palestras" class="btn-sobrio px-7 py-3.5 mb-10">Conheça o evento <i class="ph ph-arrow-down"></i></a>
-            <!-- TROCAR: data e local da edição de 2027 -->
-            <div class="hero-info flex flex-wrap gap-x-10 gap-y-1 pt-4 text-sm">
-                <span class="text-white/70">Data e local em breve</span>
-                <span class="text-white/70">Vagas limitadas*</span>
-            </div>
-        </div>
-
-        <div id="segredo-sol" class="segredo-sol" role="button" tabindex="0" aria-label="Abrir um segredo" aria-controls="segredo" aria-expanded="false">
-            <img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="">
-        </div>
-
-        <!-- O segredo: abre a partir do sol ou da frase em destaque -->
-        <div id="segredo" class="segredo grade mundo-festa" aria-hidden="true">
-            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sombrinha.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="left:6%;top:16%;rotate:-10deg">
-            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/fitinha-bonfim.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo h-24 md:h-44" style="right:8%;top:14%;rotate:14deg">
-            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cordel.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="left:9%;bottom:10%;rotate:-6deg">
-            <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/pandeiro.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="right:7%;bottom:12%;rotate:-14deg">
-            <p class="relative z-[2] text-xl md:text-3xl font-semibold mb-4">Festa para celebrar.</p>
-            <img class="segredo-titulo mb-7" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/titulo-brasilidades.png" alt="Brasilidades">
-            <div class="segredo-acoes">
-                <a id="segredo-ver" href="#festa" class="btn-festa px-7 py-3" tabindex="-1">Ver a festa <i class="ph-bold ph-arrow-down"></i></a>
-                <span id="segredo-fechar" class="segredo-fechar" role="button" tabindex="-1"><i class="ph-bold ph-arrow-left"></i> Voltar ao palco</span>
-            </div>
-        </div>
-    </section>
-
-    <div class="xadrez" style="--a:#000;--b:#fff" aria-hidden="true"></div>
-
-    <!-- ==================== INGRESSO: único, entre o palco e a festa ==================== -->
-    <section id="ingressos" class="bg-white text-black py-20 md:py-28 relative overflow-hidden" data-tema="sobrio">
-        <div class="max-w-5xl mx-auto px-5 md:px-8">
-            <div class="text-center mb-16 md:mb-20 surge">
-                <span class="rotulo text-black/60 block mb-6">Ingresso único</span>
-                <h2 class="titulo-palestra text-4xl md:text-6xl mb-6">Um ingresso, <span class="plaquinha titulo-festa text-[.92em] -rotate-2 ml-1">dois mundos</span></h2>
-                <p class="max-w-2xl mx-auto text-lg leading-relaxed text-black/75">Palestras e festa em um só ingresso. As vagas são limitadas por restrição de espaço físico. Em breve, os detalhes.</p>
-            </div>
-
-            <div class="flex flex-col items-center gap-10 surge">
-                <div class="ingresso-palco w-full">
-                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true" class="adesivo ingresso-adesivo w-24 md:w-40 -left-3 md:-left-16 -top-12 md:-top-20" style="z-index:1">
-                    <div class="ingresso-recorte">
-                        <div class="ingresso">
-                            <div class="ingresso-sobrio">
-                                <p class="ingresso-marca"><span><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/olho.png" alt=""> AUVP Private Day</span><span class="rotulo">2027</span></p>
-                                <p class="ingresso-nome"><span class="titulo-palestra">Palestras</span> <span class="titulo-festa">+ festa</span></p>
-                                <!-- TROCAR: data e local da edição de 2027 -->
-                                <dl class="ingresso-dados">
-                                    <div><dt>Acesso</dt><dd>Ingresso único</dd></div>
-                                    <div><dt>Data</dt><dd>Em breve</dd></div>
-                                    <div><dt>Local</dt><dd>Em breve</dd></div>
-                                </dl>
-                            </div>
-                            <div class="ingresso-costura" aria-hidden="true"></div>
-                            <div class="ingresso-festa grade">
-                                <img class="adesivo ingresso-sol" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true">
-                                <img class="ingresso-titulo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/titulo-brasilidades.png" alt="Brasilidades">
-                                <div class="ingresso-barras" aria-hidden="true"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/fitinha-bonfim.png" alt="" aria-hidden="true" class="adesivo ingresso-adesivo h-20 md:h-44 -right-1 md:-right-12 -top-16 md:-top-24 rotate-6" style="z-index:3">
-                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sombrinha.png" alt="" aria-hidden="true" class="adesivo ingresso-adesivo hidden xl:block w-28 -left-24 -bottom-14 -rotate-6" style="z-index:3">
-                </div>
-                <!-- TROCAR: quando as vendas abrirem, a pílula vira um link para o checkout de 2027 -->
-                <span class="pilula-breve">Ingresso único <small>em breve</small></span>
-            </div>
-        </div>
-    </section>
-
-    <div class="xadrez" style="--a:#fff;--b:#000" aria-hidden="true"></div>
-
-    <!-- ==================== MUNDO 1: PALESTRAS (sóbrio e corporativo) ==================== -->
-    <section id="palestras" class="bg-white text-black pt-20 md:pt-32" data-tema="sobrio">
-        <div class="max-w-7xl mx-auto px-5 md:px-8">
-            <span class="rotulo text-black/55 block mb-8 surge">No palco</span>
-            <h2 class="titulo-palestra text-3xl md:text-5xl lg:text-6xl max-w-5xl mb-14 md:mb-20 surge">Reunimos nomes relevantes para palestras que enriquecem e conexões que continuam depois do evento.</h2>
-
-            <div>
-                <div class="pilar surge">
-                    <span class="pilar-num">01</span>
-                    <h3 class="pilar-titulo">Nomes relevantes</h3>
-                    <p class="pilar-texto">Quem sobe ao nosso palco é referência no que faz e sabe como o jogo funciona.</p>
-                </div>
-                <div class="pilar surge">
-                    <span class="pilar-num">02</span>
-                    <h3 class="pilar-titulo">Palestras enriquecedoras</h3>
-                    <p class="pilar-texto">Dois dias de conteúdo que você não encontra em outro lugar, sobre o cenário macroeconômico e o que há de mais relevante no mundo.</p>
-                </div>
-                <div class="pilar surge">
-                    <span class="pilar-num">03</span>
-                    <h3 class="pilar-titulo">Networking</h3>
-                    <p class="pilar-texto">Um ambiente pensado para conversar, trocar experiências e conhecer quem pensa como você.</p>
-                </div>
-            </div>
-
-            <!-- TROCAR: quando o lineup estiver fechado, os palestrantes entram aqui -->
-            <div id="palestrantes" class="pt-8 md:pt-10 pb-20 md:pb-28 flex flex-col sm:flex-row sm:items-center justify-between gap-4 surge">
-                <p class="titulo-palestra text-2xl md:text-3xl">Quem sobe no palco em 2027?</p>
-                <p class="self-start sm:self-auto inline-flex items-center gap-3 bg-black text-white font-medium px-5 py-3"><span class="ponto-breve" aria-hidden="true"></span> Lineup em breve</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== A VIRADA: de um mundo para o outro ==================== -->
-    <section id="virada" class="virada" aria-label="Das palestras para a festa" data-tema="festa" data-pertence="festa">
-        <div class="virada-cola">
-            <div class="virada-palco">
-                <p class="titulo-palestra text-3xl md:text-5xl text-white max-w-3xl">Quando as luzes do palco se apagam,</p>
-            </div>
-            <div class="virada-cor grade mundo-festa">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true" class="adesivo virada-adesivo w-28 md:w-44" style="left:7%;top:13%;--r:-40deg">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cadeira-plastico.png" alt="" aria-hidden="true" class="adesivo virada-adesivo w-24 md:w-40" style="right:7%;top:15%;--r:30deg">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/berimbau.png" alt="" aria-hidden="true" class="adesivo virada-adesivo h-28 md:h-48" style="left:14%;bottom:12%;--r:-26deg">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chimarrao.png" alt="" aria-hidden="true" class="adesivo virada-adesivo w-24 md:w-36" style="right:12%;bottom:13%;--r:34deg">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/caju-fruta.png" alt="" aria-hidden="true" class="adesivo virada-adesivo hidden md:block w-28" style="left:42%;bottom:5%;--r:-18deg">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/vitoria-regia.png" alt="" aria-hidden="true" class="adesivo virada-adesivo hidden md:block w-36" style="left:40%;top:12%;--r:22deg">
-                <p class="relative z-[2] text-xl md:text-3xl font-semibold mb-5">a festa começa.</p>
-                <img class="virada-titulo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/titulo-brasilidades.png" alt="Brasilidades">
-            </div>
-            <img class="virada-sol" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true">
-        </div>
-    </section>
-
-    <!-- ==================== MUNDO 2: FESTA (fontes, cores e elementos do guia) ==================== -->
-    <section id="festa" class="mundo-festa bg-canario grade py-16 md:py-24 relative overflow-hidden" data-tema="festa">
-        <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-14 lg:gap-10 items-center">
-            <div>
-                <span class="plaquinha titulo-festa text-2xl mb-7 -rotate-2 surge">A noite</span>
-                <h2 class="titulo-festa text-5xl md:text-7xl mb-6 surge">A noite termina em festa</h2>
-                <p class="text-lg md:text-xl leading-relaxed max-w-xl surge">
-                    As cores, os ritmos e os sabores do Brasil em um clima de noite que só acontece uma vez na vida. <strong class="font-semibold">A festa do Private Day é o encerramento do evento com a nossa tradicional “baguncinha”.</strong>
-                </p>
-            </div>
-            <!-- TROCAR: fotos do guia, ainda sem licença confirmada -->
-            <div class="album" aria-hidden="true">
-                <div class="polaroid" style="width:50%;height:66%;left:0;top:6%;rotate:-6deg" data-par="-.05"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/copacabana.webp" alt="" loading="lazy"></div>
-                <div class="polaroid" style="width:44%;height:70%;right:0;top:0;rotate:5deg" data-par=".07"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cocos.webp" alt="" loading="lazy"></div>
-                <div class="polaroid" style="width:40%;height:52%;left:28%;bottom:0;rotate:-2deg;z-index:2" data-par="-.02"><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/caju.webp" alt="" loading="lazy"></div>
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chapeu-cangaceiro.png" alt="" aria-hidden="true" class="adesivo absolute h-28 md:h-36" style="left:-2%;bottom:0;rotate:-8deg;z-index:3" data-par=".1">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt="" aria-hidden="true" class="adesivo absolute w-20 md:w-28" style="right:6%;bottom:2%;z-index:3" data-par="-.08">
-            </div>
-        </div>
-    </section>
-
-    <div class="xadrez" style="--a:var(--canario);--b:var(--mar)" aria-hidden="true"></div>
-
-    <!-- Isopor interativo -->
-    <section class="mundo-festa bg-mar grade py-16 md:py-24" data-tema="festa" data-pertence="festa">
-        <div class="max-w-6xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-10 items-center">
-            <div class="surge">
-                <h2 class="titulo-festa text-5xl md:text-7xl mb-5">Abra o isopor</h2>
-                <p class="text-lg md:text-xl leading-relaxed max-w-md mb-4">Veja o que já está garantido para a sua noite.</p>
-                <!-- TROCAR: o link das referências do dress code de 2027 entra aqui -->
-                <p class="leading-relaxed max-w-md">Open bar, open food e um dress code para entrar no clima.</p>
-            </div>
-            <div class="isopor" id="isopor">
-                <span class="plaquinha isopor-dica font-semibold text-sm">Clique para abrir</span>
-                <ul class="isopor-itens">
-                    <li class="isopor-item" style="--x:-48px;--y:-92px;--g:-7deg"><img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/garrafa.png" alt="" aria-hidden="true"><span>Open bar</span></li>
-                    <li class="isopor-item" style="--x:82px;--y:-150px;--g:3deg"><img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/caju-fruta.png" alt="" aria-hidden="true"><span>Open food</span></li>
-                    <li class="isopor-item" style="--x:178px;--y:-22px;--g:8deg"><img class="adesivo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chinelo.png" alt="" aria-hidden="true"><span>Dress code temático</span></li>
-                </ul>
-                <div id="isopor-botao" role="button" tabindex="0" aria-expanded="false" aria-controls="isopor" aria-label="Abrir o isopor">
-                    <img class="isopor-parte isopor-corpo" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/isopor-corpo.png" alt="">
-                    <img class="isopor-parte isopor-tampa" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/isopor-tampa.png" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Faixa com os elementos -->
-    <div class="faixa-rola" aria-hidden="true">
-        <div class="faixa-trilho">
-            <img class="frase" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/meu-sangue-latino.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chinelo.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sombrinha.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/pamonha.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt=""><img class="frase" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/meu-sangue-latino.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/pandeiro.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cordel.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/brasil.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/vitoria-regia.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/garrafa.png" alt=""><img class="frase" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/meu-sangue-latino.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/fitinha-bonfim.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sanfona.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/caju-fruta.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/folha.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/filtro-barro.png" alt=""><img class="frase" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/meu-sangue-latino.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chinelo.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sombrinha.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/pamonha.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sol.png" alt=""><img class="frase" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/meu-sangue-latino.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/pandeiro.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/cordel.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/brasil.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/vitoria-regia.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/garrafa.png" alt=""><img class="frase" src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/meu-sangue-latino.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/fitinha-bonfim.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sanfona.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/caju-fruta.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/folha.png" alt=""><img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/filtro-barro.png" alt="">
-        </div>
-    </div>
-
-    <!-- Vídeo. TROCAR: a capa ainda mostra "Disco fever" -->
-    <section id="edicao-25" class="mundo-festa bg-areia grade pt-24 pb-16 md:pb-24 relative overflow-hidden" data-tema="festa">
-        <div class="max-w-5xl mx-auto px-5 md:px-8 text-center">
-            <h2 class="plaquinha fios titulo-festa text-3xl md:text-5xl -rotate-1 mb-6">Um gostinho do que vem aí</h2>
-            <p class="text-lg leading-relaxed mb-10 surge">Antes de decidir, vale ver com os próprios olhos como foi uma das nossas edições.</p>
-            <div class="relative surge">
-                <div class="aspect-video w-full rounded-3xl overflow-hidden relative bg-black border-[3px] border-cacau" style="box-shadow:8px 9px 0 var(--cacau)">
-                    <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/vkjfSa8HwGg" title="AUVP Private Day" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sanfona.png" alt="" aria-hidden="true" class="adesivo hidden md:block absolute -left-16 -bottom-10 h-36 -rotate-6">
-                <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/carranca.png" alt="" aria-hidden="true" class="adesivo hidden md:block absolute -right-12 -top-14 h-44 rotate-6">
-            </div>
-        </div>
-    </section>
-
-    <div class="xadrez" style="--a:var(--areia);--b:var(--mato)" aria-hidden="true"></div>
-
-    <!-- Depoimentos -->
-    <section class="mundo-festa bg-mato py-16 md:py-24" data-tema="festa" data-pertence="edicao-25">
-        <div class="max-w-7xl mx-auto px-5 md:px-8">
-            <h2 class="titulo-festa text-4xl md:text-6xl max-w-4xl mb-16 surge">Quem foi, não guardou segredo</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-14">
-                <figure class="card-depo surge" style="rotate:-1.5deg">
-                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/fitinha-bonfim.png" alt="" aria-hidden="true" class="adesivo " style="height:100px;top:-52px">
-                    <blockquote class="leading-relaxed flex-grow">“De repente, passou a valer tudo, tanto que já comprei na mesma semana o ingresso do ano seguinte, na confiança.”</blockquote>
-                    <figcaption class="titulo-festa text-2xl mt-5">Pietro</figcaption>
-                </figure>
-                <figure class="card-depo surge lg:mt-8" style="rotate:1.5deg;--d:.08s">
-                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/chimarrao.png" alt="" aria-hidden="true" class="adesivo ">
-                    <blockquote class="leading-relaxed flex-grow">“Na primeira vez, estava apreensivo também, mas o pessoal é todo muito receptivo. No segundo ano, já era sucesso demais.”</blockquote>
-                    <figcaption class="titulo-festa text-2xl mt-5">Henrique</figcaption>
-                </figure>
-                <figure class="card-depo surge" style="rotate:-1deg;--d:.16s">
-                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/pamonha.png" alt="" aria-hidden="true" class="adesivo ">
-                    <blockquote class="leading-relaxed flex-grow">“Quem ainda está na dúvida: só vai. É memória, amizade e história pra vida.”</blockquote>
-                    <figcaption class="titulo-festa text-2xl mt-5">Thiago</figcaption>
-                </figure>
-                <figure class="card-depo surge lg:mt-8" style="rotate:2deg;--d:.24s">
-                    <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/brasilidades/sombrinha.png" alt="" aria-hidden="true" class="adesivo ">
-                    <div class="flex-grow">
-                        <blockquote class="leading-relaxed">“O que acontece em Vegas, fica em Vegas.”</blockquote>
-                        <p class="text-sm opacity-70 italic mt-2">Sobre a festa, ela não quis contar mais.</p>
-                    </div>
-                    <figcaption class="titulo-festa text-2xl mt-5">Vanessa</figcaption>
-                </figure>
-            </div>
-        </div>
-    </section>
-
-    <div class="xadrez" style="--a:var(--mato);--b:#000" aria-hidden="true"></div>
-
-    <!-- Patrocínio -->
-    <section class="bg-black py-12 md:py-16" data-tema="sobrio" data-pertence="faq">
-        <div class="max-w-7xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-            <h3 class="titulo-palestra text-2xl md:text-4xl text-white max-w-3xl">Leve sua marca para o maior evento da comunidade AUVP.</h3>
-            <a href="https://form.auvp.com.br/to/LxmkLllT?typeform-source=privateday.auvp.com.br" target="_blank" class="btn-sobrio px-8 py-3.5 text-sm shrink-0">Quero patrocinar</a>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="bg-black text-white pb-20 md:pb-28" data-tema="sobrio">
-        <div class="max-w-7xl mx-auto px-5 md:px-8">
-            <div class="border-t border-white/20 pt-10 md:pt-14 grid lg:grid-cols-3 gap-8 lg:gap-12">
-            <h2 class="titulo-palestra text-3xl md:text-5xl text-white">Dúvidas frequentes</h2>
-            <div class="space-y-6 lg:col-span-2">
-                <details class="group border-b border-white/20 pb-4" open>
-                        <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center outline-none">
-                            <span>O que é o AUVP Private Day?</span>
-                            <span class="transition-transform duration-300 group-open:rotate-180 text-white">
-                                <i class="ph ph-caret-down text-2xl"></i>
-                            </span>
-                        </summary>
-                        <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
-                            Para quem não faz a menor ideia do que seja, todos os anos reunimos os membros da AUVP para tomar drinks, dar risadas e viver a experiência da comunidade presencialmente. Este ano, serão dois dias de palestras com grandes nomes do mercado financeiro. E, um dia com nossa tradicional festa.
-                        </p>
-                    </details>
-
-                    <details class="group border-b border-white/20 pb-4">
-                        <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center outline-none">
-                            <span>Quando e que horas será o evento?</span>
-                            <span class="transition-transform duration-300 group-open:rotate-180 text-white">
-                                <i class="ph ph-caret-down text-2xl"></i>
-                            </span>
-                        </summary>
-                        <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
-                            As datas e os horários da edição de 2027 serão divulgados em breve.
-                        </p>
-                    </details>
-
-                    <details class="group border-b border-white/20 pb-4">
-                        <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center outline-none">
-                            <span>Qual o local do evento?</span>
-                            <span class="transition-transform duration-300 group-open:rotate-180 text-white">
-                                <i class="ph ph-caret-down text-2xl"></i>
-                            </span>
-                        </summary>
-                        <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
-                            O local da edição de 2027 será divulgado em breve. Ao comprar os ingressos você receberá o endereço completo com as informações específicas.
-                        </p>
-                    </details>
-
-                    <details class="group border-b border-white/20 pb-4">
-                        <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center outline-none">
-                            <span>Que roupa devo usar?</span>
-                            <span class="transition-transform duration-300 group-open:rotate-180 text-white">
-                                <i class="ph ph-caret-down text-2xl"></i>
-                            </span>
-                        </summary>
-                        <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
-                            Assim como nos anos anteriores, teremos um dress code. Este ano, para a festa, o tema oficial é Brasilidades, enviaremos documentos com inspirações e referências para que todos consigam se adaptar de acordo com sua realidade.
-                        </p>
-                    </details>
-
-                    <details class="group border-b border-white/20 pb-4">
-                        <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center outline-none">
-                            <span>O evento será open bar?</span>
-                            <span class="transition-transform duration-300 group-open:rotate-180 text-white">
-                                <i class="ph ph-caret-down text-2xl"></i>
-                            </span>
-                        </summary>
-                        <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
-                            Durante os dois dias de palestras será servido coffee break para os participantes. Já a festa do Private Day contará com open bar e open food, proporcionando uma experiência completa para todos.
-                        </p>
-                    </details>
-
-                    <details class="group border-b border-white/20 pb-4">
-                        <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center outline-none">
-                            <span>Posso levar acompanhantes?</span>
-                            <span class="transition-transform duration-300 group-open:rotate-180 text-white">
-                                <i class="ph ph-caret-down text-2xl"></i>
-                            </span>
-                        </summary>
-                        <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
-                            Sim! Você pode levar quantos acompanhantes quiser. Apenas certifique-se de preencher os <strong class="font-medium text-white">dados dos convidados</strong> no momento da compra, pois os ingressos são nominais e individuais.
-                        </p>
-                    </details>
-            </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black pt-16 pb-8 md:pt-20 md:pb-10 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-5 md:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12">
-
-                <div class="col-span-1 lg:col-span-2">
-                    <div class="mb-4">
-                        <img src="https://raw.githubusercontent.com/eriadesign/privateday/main/2027/assets/auvp%20capital%20claro.webp" alt="AUVP Private Day" class="logo-footer">
-                    </div>
-                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                        Orgulhosamente feito sob o sol escaldante de Goiás &nbsp; ☀️
-                    </p>
-                    <p class="text-xs md:text-sm text-gray-400 leading-relaxed">
-                        AUVP CONSULTORIA FINANCEIRA DE INVESTIMENTOS LTDA<br/>
-                        CNPJ: 49.479.036/0001-99
-                    </p>
-                </div>
-
-                <div class="col-span-1">
-                    <h4 class="text-white font-bold mb-6 text-base tracking-wide">Nossos Canais</h4>
-                    <ul class="space-y-4 text-sm text-gray-400">
-                        <li><a href="https://comunidade.auvp.com.br/?_gl=1*pp6jpg*_ga*OTE2NDIwNzgwLjE3NTY4MjE5Mzg.*_ga_082XC6060T*czE3Nzg3MDAyMTUkbzUzJGcwJHQxNzc4NzAwMjE4JGo1NyRsMCRoMA..*_fplc*cDJVVWdPJTJCaGFXT3pxV1FxJTJCa1hMNDlNdllYNFAxOHgxa2dLMk5jbSUyRk1SaEZQdEwlMkIlMkZMaiUyQnB0cDJ1dmtyRXBjZWtLc3kwa3dJOGM4ZkklMkJGazQySDFGSGQ5QUhaZkltbFZTVzFkWXolMkJjWW9oc3F5OG9Dc3VjJTJCMGY4cVNZZ2Z3JTNEJTNE" target="_blank" class="inline-block py-1.5 hover:text-white transition-colors">Comunidade</a></li>
-                        <li><a href="https://www.youtube.com/@investidorsardinha" target="_blank" class="inline-block py-1.5 hover:text-white transition-colors">YouTube</a></li>
-                        <li><a href="https://www.instagram.com/oraulsena/?hl=pt" target="_blank" class="inline-block py-1.5 hover:text-white transition-colors">Instagram</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-span-1">
-                    <h4 class="text-white font-bold mb-6 text-base tracking-wide">Outros Produtos</h4>
-                    <div class="flex gap-[44px] text-sm text-gray-400">
-                        <!-- Coluna Esquerda -->
-                        <ul class="space-y-4">
-                            <li><a href="https://auvpcapital.com.br/" target="_blank" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP Capital</a></li>
-                            <li><a href="https://www.auvp.com.br/" target="_blank" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP Escola</a></li>
-                            <li><a href="https://analitica.auvp.com.br/" target="_blank" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP Analítica</a></li>
-                        </ul>
-                        <!-- Coluna Direita -->
-                        <ul class="space-y-4">
-                            <li><a href="http://auvpcapital.com.br/wealth" target="_blank" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP Wealth</a></li>
-                            <li><a href="http://auvpnews.com.br/" target="_blank" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP News</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="pt-8 border-t border-gray-800 flex justify-center items-center">
-                <div class="text-xs md:text-sm text-gray-500 text-center">
-                    © 2026 Todos os direitos reservados.
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- WIDGET WHATSAPP -->
-    <div class="wa-wrapper show-balloon">
-        <div id="wa-tooltip" class="wa-balloon" role="tooltip">
-            <strong>Fale conosco</strong> pelo WhatsApp e tire suas dúvidas
-        </div>
-        <a class="wa-float" href="https://api.whatsapp.com/send/?phone=%2B55556234139882&text=Ol%C3%A1%21+Vim+atrav%C3%A9s+do+site+do+Private+Day+e+tenho+interesse+em+receber+mais+informa%C3%A7%C3%B5es+sobre+o+evento.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp" aria-describedby="wa-tooltip">
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path fill="#ffffff" d="M16.003 5.333c-5.89 0-10.667 4.777-10.667 10.667 0 1.88.493 3.715 1.427 5.333L5.333 26.667l5.493-1.413a10.62 10.62 0 0 0 5.177 1.32h.004c5.89 0 10.667-4.777 10.667-10.667S21.893 5.333 16.003 5.333zm0 19.467h-.004a8.79 8.79 0 0 1-4.48-1.227l-.32-.187-3.253.84.867-3.173-.213-.333a8.8 8.8 0 0 1-1.347-4.72c0-4.867 3.96-8.827 8.827-8.827 2.36 0 4.573.92 6.24 2.587a8.78 8.78 0 0 1 2.587 6.24c0 4.867-3.96 8.8-8.904 8.8zm4.843-6.587c-.267-.133-1.573-.773-1.813-.867-.24-.093-.413-.133-.587.133-.173.267-.667.867-.813 1.04-.147.173-.293.187-.56.067-.267-.133-1.12-.413-2.133-1.32-.787-.707-1.32-1.573-1.467-1.84-.147-.267-.013-.413.117-.547.12-.12.267-.307.4-.467.133-.16.173-.267.267-.44.093-.187.04-.347-.027-.48-.067-.133-.587-1.413-.8-1.933-.213-.507-.427-.44-.587-.453-.147-.013-.32-.013-.493-.013-.173 0-.453.067-.693.32-.24.267-.907.893-.907 2.173 0 1.28.933 2.52 1.067 2.693.133.173 1.84 2.813 4.467 3.947.627.267 1.107.427 1.493.547.627.2 1.2.173 1.653.107.507-.08 1.573-.64 1.787-1.267.213-.627.213-1.16.147-1.267-.067-.107-.24-.173-.507-.307z"/>
-            </svg>
-        </a>
-    </div>
-
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- RASCUNHO: remova esta linha quando a página for publicada de verdade -->
+    <meta name="robots" content="noindex">
+    <title>AUVP Private Day 2027</title>
+    <meta name="description" content="Nomes relevantes do mercado, palestras enriquecedoras e networking com quem sabe como o jogo funciona. E uma festa para celebrar.">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="AUVP Private Day 2027">
+    <meta property="og:description" content="Nomes relevantes do mercado, palestras enriquecedoras e networking com quem sabe como o jogo funciona. E uma festa para celebrar.">
+    <meta property="og:url" content="https://eriadesign.github.io/privateday/2027/">
+    <meta property="og:image" content="https://eriadesign.github.io/privateday/2027/assets/brasilidades/palco.webp">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@400;500;600;700&family=Elms+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&family=Bangers&display=swap">
+    <link rel="preload" as="image" href="assets/brasilidades/palco.webp" fetchpriority="high">
+    <!-- tailwind.css é gerado: veja o comando no README. Edite só estilos.css. -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Antes de pintar a tela, para os elementos animados já nascerem no estado inicial -->
+    <script>document.documentElement.classList.add('tem-js');</script>
+
+    <!-- Microsoft Clarity (mapas de calor, gravações de sessão e eventos) -->
+    <script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "y5xo0z0rc3");
+    </script>
+    <script src="js/main.js" defer></script>
+</head>
+<body class="selection:bg-canario selection:text-cacau">
+
+<!-- Ícones (Phosphor) -->
+<svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+    <symbol id="i-lista" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></symbol>
+    <symbol id="i-fechar" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+    <symbol id="i-seta-baixo" viewBox="0 0 256 256"><path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
+    <symbol id="i-seta-faq" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
+    <symbol id="i-seta-baixo-forte" viewBox="0 0 256 256"><path d="M208.49,152.49l-72,72a12,12,0,0,1-17,0l-72-72a12,12,0,0,1,17-17L116,187V40a12,12,0,0,1,24,0V187l51.51-51.52a12,12,0,0,1,17,17Z"/></symbol>
+    <symbol id="i-seta-esquerda" viewBox="0 0 256 256"><path d="M228,128a12,12,0,0,1-12,12H69l51.52,51.51a12,12,0,0,1-17,17l-72-72a12,12,0,0,1,0-17l72-72a12,12,0,0,1,17,17L69,116H216A12,12,0,0,1,228,128Z"/></symbol>
+</svg>
+
+<div class="film-grain"></div>
+
+<!-- RASCUNHO: remova este aviso quando a página for publicada de verdade -->
+<div class="fixed bottom-4 left-4 z-[99998] bg-caju text-cacau font-medium text-xs px-3 py-2 max-w-[60vw]" role="note">
+    Rascunho: conteúdo e valores provisórios
 </div>
 
-<!-- Scripts -->
-<script>
-    function initAUVP() {
-        var w = document.getElementById('auvp-lp-wrapper');
-        if (!w) return;
-        var semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        w.classList.add('tem-js');
+<!-- Navegação: encolhe ao descer, abre ao subir e marca a dobra atual -->
+<header id="navbar" data-tom="escuro">
+    <nav class="nav-barra" aria-label="Principal">
+        <a href="#topo" class="nav-logo" aria-label="AUVP Private Day, voltar ao topo"><span class="nav-olho" aria-hidden="true"></span><span>Private Day</span></a>
+        <div class="hidden lg:flex nav-links">
+            <span class="nav-marca" aria-hidden="true"></span>
+            <a href="#ingressos" class="nav-link" data-secao="ingressos">Ingresso</a>
+            <a href="#palestras" class="nav-link" data-secao="palestras">Palestras</a>
+            <a href="#festa" class="nav-link" data-secao="festa">Festa</a>
+            <a href="#edicao-25" class="nav-link" data-secao="edicao-25">A edição</a>
+            <a href="#faq" class="nav-link" data-secao="faq">FAQ</a>
+        </div>
+        <a id="nav-cta" href="#ingressos" class="hidden lg:block">Ingresso em breve</a>
+        <button id="mobile-menu-btn" type="button" class="lg:hidden" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><svg class="icone" aria-hidden="true"><use href="#i-lista"/></svg></button>
+    </nav>
+    <div id="mobile-menu" class="hidden lg:hidden">
+        <a href="#ingressos">Ingresso</a>
+        <a href="#palestras">Palestras</a>
+        <a href="#festa">Festa</a>
+        <a href="#edicao-25">A edição</a>
+        <a href="#faq">FAQ</a>
+    </div>
+</header>
 
-        var acionavel = function (el, acao) {
-            el.addEventListener('click', acao);
-            el.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); acao(); }
-            });
-        };
+<main>
+<!-- ==================== TOPO: corporativo, com a festa como segredo ==================== -->
+<section id="topo" class="hero" data-tom="escuro">
+    <img class="hero-foto" src="assets/brasilidades/palco.webp" alt="Palco do AUVP Private Day" width="1617" height="1012" fetchpriority="high">
+    <div class="hero-veu"></div>
 
-        // Menu do celular
-        var botaoMenu = document.getElementById('mobile-menu-btn');
-        var menu = document.getElementById('mobile-menu');
-        if (botaoMenu && menu) {
-            var alterna = function (abrir) {
-                menu.classList.toggle('hidden', !abrir);
-                botaoMenu.setAttribute('aria-expanded', abrir ? 'true' : 'false');
-                botaoMenu.querySelector('i').className = abrir ? 'ph ph-x' : 'ph ph-list';
-            };
-            acionavel(botaoMenu, function () { alterna(menu.classList.contains('hidden')); });
-            menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { alterna(false); }); });
-        }
+    <div class="hero-conteudo max-w-7xl mx-auto px-5 md:px-8 pt-24 pb-6 md:pb-7">
+        <span class="rotulo text-white/70 block mb-4">AUVP Private Day 2027</span>
+        <h1 class="titulo-palestra hero-titulo mb-5">
+            Conteúdo para<br>enriquecer.<br>
+            <button id="segredo-frase" type="button" class="segredo-frase" aria-controls="segredo" aria-expanded="false">Festa para celebrar.</button>
+        </h1>
+        <p class="text-lg md:text-xl text-white/80 max-w-xl leading-relaxed mb-6">Nomes relevantes do mercado, palestras enriquecedoras e networking com quem sabe como o jogo funciona.</p>
+        <a href="#palestras" class="btn-sobrio px-7 py-3.5 mb-7">Conheça o evento <svg class="icone" aria-hidden="true"><use href="#i-seta-baixo"/></svg></a>
+        <!-- TROCAR: data e local da edição de 2027 -->
+        <div class="hero-info flex flex-wrap gap-x-10 gap-y-1 pt-4 text-sm">
+            <span class="text-white/70">Data e local em breve</span>
+            <span class="text-white/70">Vagas limitadas*</span>
+        </div>
+    </div>
 
-        // O segredo do topo: a festa abre a partir do sol ou da frase em destaque
-        var segredo = document.getElementById('segredo');
-        var segredoSol = document.getElementById('segredo-sol');
-        var segredoFrase = document.getElementById('segredo-frase');
-        var segredoVer = document.getElementById('segredo-ver');
-        var segredoFechar = document.getElementById('segredo-fechar');
-        if (segredo && segredoSol && segredoFrase) {
-            var alternaSegredo = function (abrir, origem) {
-                if (abrir && origem) {
-                    var h = segredo.getBoundingClientRect(), o = origem.getBoundingClientRect();
-                    segredo.style.setProperty('--x', (o.left + o.width / 2 - h.left) + 'px');
-                    segredo.style.setProperty('--y', (o.top + o.height / 2 - h.top) + 'px');
-                }
-                segredo.classList.toggle('aberto', abrir);
-                segredo.setAttribute('aria-hidden', abrir ? 'false' : 'true');
-                [segredoSol, segredoFrase].forEach(function (el) { el.setAttribute('aria-expanded', abrir ? 'true' : 'false'); });
-                [segredoVer, segredoFechar].forEach(function (el) { el.setAttribute('tabindex', abrir ? '0' : '-1'); });
-                if (abrir && segredoFechar) segredoFechar.focus({ preventScroll: true });
-            };
-            acionavel(segredoSol, function () { alternaSegredo(true, segredoSol); });
-            acionavel(segredoFrase, function () { alternaSegredo(true, segredoFrase); });
-            if (segredoFechar) acionavel(segredoFechar, function () { alternaSegredo(false); segredoSol.focus({ preventScroll: true }); });
-            if (segredoVer) segredoVer.addEventListener('click', function () { setTimeout(function () { alternaSegredo(false); }, 900); });
-            document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && segredo.classList.contains('aberto')) { alternaSegredo(false); segredoSol.focus({ preventScroll: true }); } });
-        }
+    <button id="segredo-sol" type="button" class="segredo-sol" aria-label="Abrir um segredo" aria-controls="segredo" aria-expanded="false">
+        <img class="adesivo" src="assets/brasilidades/sol.png" alt="" width="435" height="428" decoding="async">
+    </button>
 
-        // Isopor
-        var isopor = document.getElementById('isopor');
-        var botaoIsopor = document.getElementById('isopor-botao');
-        if (isopor && botaoIsopor) {
-            var abreIsopor = function (abrir) {
-                isopor.classList.toggle('aberto', abrir);
-                botaoIsopor.setAttribute('aria-expanded', abrir ? 'true' : 'false');
-                botaoIsopor.setAttribute('aria-label', abrir ? 'Fechar o isopor' : 'Abrir o isopor');
-            };
-            if (semMovimento) abreIsopor(true);
-            acionavel(botaoIsopor, function () { abreIsopor(!isopor.classList.contains('aberto')); });
-        }
+    <!-- O segredo: abre a partir do sol ou da frase em destaque -->
+    <div id="segredo" class="segredo grade mundo-festa" aria-hidden="true">
+        <img src="assets/brasilidades/sombrinha.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="left:6%;top:16%;rotate:-10deg" width="397" height="464" decoding="async">
+        <img src="assets/brasilidades/fitinha-bonfim.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo h-24 md:h-44" style="right:8%;top:14%;rotate:14deg" width="306" height="483" decoding="async">
+        <img src="assets/brasilidades/cordel.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="left:9%;bottom:10%;rotate:-6deg" width="485" height="458" decoding="async">
+        <img src="assets/brasilidades/pandeiro.png" alt="" aria-hidden="true" class="adesivo segredo-adesivo w-20 md:w-36" style="right:7%;bottom:12%;rotate:-14deg" width="353" height="355" decoding="async">
+        <p class="relative z-[2] text-xl md:text-3xl font-semibold mb-4">Festa para celebrar.</p>
+        <img class="segredo-titulo mb-7" src="assets/brasilidades/titulo-brasilidades.png" alt="Brasilidades" width="1599" height="216" decoding="async">
+        <div class="segredo-acoes">
+            <a id="segredo-ver" href="#festa" class="btn-festa px-7 py-3" tabindex="-1">Ver a festa <svg class="icone" aria-hidden="true"><use href="#i-seta-baixo-forte"/></svg></a>
+            <button id="segredo-fechar" type="button" class="segredo-fechar" tabindex="-1"><svg class="icone" aria-hidden="true"><use href="#i-seta-esquerda"/></svg> Voltar ao palco</button>
+        </div>
+    </div>
+</section>
 
-        // Surgir ao rolar
-        var surgem = document.querySelectorAll('.surge');
-        if ('IntersectionObserver' in window) {
-            var obs = new IntersectionObserver(function (itens) {
-                itens.forEach(function (i) { if (i.isIntersecting) { i.target.classList.add('visivel'); obs.unobserve(i.target); } });
-            }, { threshold: 0.12 });
-            surgem.forEach(function (el) { obs.observe(el); });
-        } else {
-            surgem.forEach(function (el) { el.classList.add('visivel'); });
-        }
+<div class="xadrez" style="--a:#000;--b:#fff" aria-hidden="true"></div>
 
-        // A virada só usa a tela presa se nenhum elemento do tema atrapalhar: senão, fica parada e completa
-        var virada = document.getElementById('virada');
-        var colaPossivel = !semMovimento && !!virada;
-        for (var pai = virada && virada.parentElement; pai && colaPossivel; pai = pai.parentElement) {
-            var o = getComputedStyle(pai);
-            if (pai !== w && /(hidden|auto|scroll)/.test(o.overflowY + o.overflowX)) colaPossivel = false;
-        }
-        if (colaPossivel) w.classList.add('com-cola');
+<!-- ==================== INGRESSO: único, entre o palco e a festa ==================== -->
+<section id="ingressos" class="bg-white text-black py-20 md:py-28 relative overflow-hidden" data-tom="claro">
+    <div class="max-w-5xl mx-auto px-5 md:px-8">
+        <div class="text-center mb-16 md:mb-20 surge">
+            <span class="rotulo text-black/60 block mb-6">Ingresso único</span>
+            <h2 class="titulo-palestra text-4xl md:text-6xl mb-6">Um ingresso, <span class="plaquinha titulo-festa text-[.92em] -rotate-2 ml-1">dois mundos</span></h2>
+            <p class="max-w-2xl mx-auto text-lg leading-relaxed text-black/75">Palestras e festa em um só ingresso. As vagas são limitadas por restrição de espaço físico. Em breve, os detalhes.</p>
+        </div>
 
-        // Rolagem: virada, parallax, tema da navegação e item atual do menu
-        var nav = document.getElementById('navbar');
-        var secoes = Array.prototype.slice.call(document.querySelectorAll('#auvp-lp-wrapper [data-tema]')).filter(function (s) { return s !== nav; });
-        var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
-        var parallax = semMovimento ? [] : Array.prototype.slice.call(document.querySelectorAll('[data-par]'));
-        var pendente = false;
-        var atualiza = function () {
-            pendente = false;
-            var alturaTela = window.innerHeight;
+        <div class="flex flex-col items-center gap-10 surge">
+            <div class="ingresso-palco w-full">
+                <img src="assets/brasilidades/sol.png" alt="" aria-hidden="true" class="adesivo ingresso-adesivo w-24 md:w-40 -left-3 md:-left-16 -top-12 md:-top-20" style="z-index:1" width="435" height="428" loading="lazy" decoding="async">
+                <div class="ingresso-recorte">
+                    <div class="ingresso">
+                        <div class="ingresso-sobrio">
+                            <p class="ingresso-marca"><span><img src="assets/brasilidades/olho.png" alt="" width="525" height="320" loading="lazy" decoding="async"> AUVP Private Day</span><span class="rotulo">2027</span></p>
+                            <p class="ingresso-nome"><span class="titulo-palestra">Palestras</span> <span class="titulo-festa">+ festa</span></p>
+                            <!-- TROCAR: data e local da edição de 2027 -->
+                            <dl class="ingresso-dados">
+                                <div><dt>Acesso</dt><dd>Ingresso único</dd></div>
+                                <div><dt>Data</dt><dd>Em breve</dd></div>
+                                <div><dt>Local</dt><dd>Em breve</dd></div>
+                            </dl>
+                        </div>
+                        <div class="ingresso-costura" aria-hidden="true"></div>
+                        <div class="ingresso-festa grade">
+                            <img class="adesivo ingresso-sol" src="assets/brasilidades/sol.png" alt="" aria-hidden="true" width="435" height="428" loading="lazy" decoding="async">
+                            <div class="ingresso-titulo" role="img" aria-label="Brasilidades"></div>
+                            <div class="ingresso-barras" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                </div>
+                <img src="assets/brasilidades/fitinha-bonfim.png" alt="" aria-hidden="true" class="adesivo ingresso-adesivo h-20 md:h-44 -right-1 md:-right-12 -top-16 md:-top-24 rotate-6" style="z-index:3" width="306" height="483" loading="lazy" decoding="async">
+                <img src="assets/brasilidades/sombrinha.png" alt="" aria-hidden="true" class="adesivo ingresso-adesivo hidden xl:block w-28 -left-24 -bottom-14 -rotate-6" style="z-index:3" width="397" height="464" loading="lazy" decoding="async">
+            </div>
+            <!-- TROCAR: quando as vendas abrirem, a pílula vira um link para o checkout de 2027 -->
+            <span class="pilula-breve">Ingresso único <small>em breve</small></span>
+        </div>
+    </div>
+</section>
 
-            if (colaPossivel) {
-                var r = virada.getBoundingClientRect();
-                var p = Math.min(1, Math.max(0, -r.top / (r.height - alturaTela)));
-                virada.style.setProperty('--p', p.toFixed(3));
-            }
+<div class="xadrez" style="--a:#fff;--b:#000" aria-hidden="true"></div>
 
-            parallax.forEach(function (el) {
-                var c = el.parentElement.getBoundingClientRect();
-                if (c.bottom < -200 || c.top > alturaTela + 200) return;
-                var d = (c.top + c.height / 2 - alturaTela / 2) * parseFloat(el.getAttribute('data-par'));
-                el.style.transform = 'translateY(' + d.toFixed(1) + 'px)';
-            });
+<!-- ==================== MUNDO 1: PALESTRAS (sóbrio e corporativo) ==================== -->
+<section id="palestras" class="bg-white text-black pt-20 md:pt-32" data-tom="claro">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <span class="rotulo text-black/55 block mb-8 surge">No palco</span>
+        <h2 class="titulo-palestra text-3xl md:text-5xl lg:text-6xl max-w-5xl mb-14 md:mb-20 surge">Reunimos nomes relevantes para palestras que enriquecem e conexões que continuam depois do evento.</h2>
 
-            var linha = 70, ativa = null;
-            secoes.forEach(function (s) {
-                var b = s.getBoundingClientRect();
-                if (b.top <= linha && b.bottom > linha) ativa = s;
-            });
-            if (ativa) {
-                var tema = ativa.getAttribute('data-tema');
-                var id = ativa.getAttribute('data-pertence') || ativa.id;
-                if (ativa === virada && colaPossivel && parseFloat(virada.style.getPropertyValue('--p')) < 0.5) { tema = 'sobrio'; id = 'palestras'; }
-                nav.setAttribute('data-tema', tema);
-                links.forEach(function (l) { l.classList.toggle('atual', l.getAttribute('data-secao') === id); });
-            }
-        };
-        var agenda = function () { if (!pendente) { pendente = true; requestAnimationFrame(atualiza); } };
-        window.addEventListener('scroll', agenda, { passive: true });
-        window.addEventListener('resize', agenda);
-        atualiza();
+        <div>
+            <div class="pilar surge">
+                <span class="pilar-num">01</span>
+                <h3 class="pilar-titulo">Nomes relevantes</h3>
+                <p class="pilar-texto">Quem sobe ao nosso palco é referência no que faz e sabe como o jogo funciona.</p>
+            </div>
+            <div class="pilar surge">
+                <span class="pilar-num">02</span>
+                <h3 class="pilar-titulo">Palestras enriquecedoras</h3>
+                <p class="pilar-texto">Dois dias de conteúdo que você não encontra em outro lugar, sobre o cenário macroeconômico e o que há de mais relevante no mundo.</p>
+            </div>
+            <div class="pilar surge">
+                <span class="pilar-num">03</span>
+                <h3 class="pilar-titulo">Networking</h3>
+                <p class="pilar-texto">Um ambiente pensado para conversar, trocar experiências e conhecer quem pensa como você.</p>
+            </div>
+        </div>
 
-    }
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAUVP);
-    } else {
-        initAUVP();
-    }
+        <!-- TROCAR: quando o lineup estiver fechado, os palestrantes entram aqui -->
+        <div id="palestrantes" class="pt-8 md:pt-10 pb-20 md:pb-28 flex flex-col sm:flex-row sm:items-center justify-between gap-4 surge">
+            <p class="titulo-palestra text-2xl md:text-3xl">Quem sobe no palco em 2027?</p>
+            <p class="self-start sm:self-auto inline-flex items-center gap-3 bg-black text-white font-medium px-5 py-3"><span class="ponto-breve" aria-hidden="true"></span> Lineup em breve</p>
+        </div>
+    </div>
+</section>
 
-    // Repasse dinâmico de parâmetros UTM para os links de pagamento (Guru)
-    function applyUtmToPaymentLinks() {
-        const paymentLinks = document.querySelectorAll('a[href*="auvpag.com.br/pay/"]');
-        if (!paymentLinks.length) return;
+<!-- ==================== A VIRADA: de um mundo para o outro ==================== -->
+<section id="virada" class="virada" aria-label="Das palestras para a festa" data-tom="claro" data-pertence="festa">
+    <div class="virada-cola">
+        <div class="virada-palco">
+            <p class="titulo-palestra text-3xl md:text-5xl text-white max-w-3xl">Quando as luzes do palco se apagam,</p>
+        </div>
+        <div class="virada-cor grade mundo-festa">
+            <img src="assets/brasilidades/copo-cerveja.png" alt="" aria-hidden="true" class="adesivo virada-adesivo w-24 md:w-40" style="left:7%;top:13%;--r:-40deg" width="397" height="470" loading="lazy" decoding="async">
+            <img src="assets/brasilidades/cadeira-plastico.png" alt="" aria-hidden="true" class="adesivo virada-adesivo w-24 md:w-40" style="right:7%;top:15%;--r:30deg" width="337" height="418" loading="lazy" decoding="async">
+            <img src="assets/brasilidades/berimbau.png" alt="" aria-hidden="true" class="adesivo virada-adesivo h-28 md:h-48" style="left:14%;bottom:12%;--r:-26deg" width="345" height="490" loading="lazy" decoding="async">
+            <img src="assets/brasilidades/chimarrao.png" alt="" aria-hidden="true" class="adesivo virada-adesivo w-24 md:w-36" style="right:12%;bottom:13%;--r:34deg" width="326" height="475" loading="lazy" decoding="async">
+            <img src="assets/brasilidades/caju-fruta.png" alt="" aria-hidden="true" class="adesivo virada-adesivo hidden md:block w-28" style="left:42%;bottom:5%;--r:-18deg" width="330" height="440" loading="lazy" decoding="async">
+            <img src="assets/brasilidades/vitoria-regia.png" alt="" aria-hidden="true" class="adesivo virada-adesivo hidden md:block w-36" style="left:40%;top:12%;--r:22deg" width="481" height="347" loading="lazy" decoding="async">
+            <p class="relative z-[2] text-xl md:text-3xl font-semibold mb-5">a festa começa.</p>
+            <img class="virada-titulo" src="assets/brasilidades/titulo-brasilidades.png" alt="Brasilidades" width="1599" height="216" loading="lazy" decoding="async">
+        </div>
+        <img class="virada-sol" src="assets/brasilidades/sol.png" alt="" aria-hidden="true" width="435" height="428" loading="lazy" decoding="async">
+    </div>
+</section>
 
-        const incomingParams = new URLSearchParams(window.location.search);
-        const incomingUtm = new URLSearchParams();
-        incomingParams.forEach((value, key) => {
-            if (/^utm_/i.test(key)) incomingUtm.append(key, value);
-        });
-        const hasIncomingUtm = [...incomingUtm.keys()].length > 0;
+<!-- ==================== MUNDO 2: FESTA (fontes, cores e elementos do guia) ==================== -->
+<section id="festa" class="mundo-festa bg-canario grade py-16 md:py-24 relative overflow-hidden" data-tom="claro">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-14 lg:gap-10 items-center">
+        <div>
+            <span class="plaquinha titulo-festa text-2xl mb-7 -rotate-2 surge">A noite</span>
+            <h2 class="titulo-festa text-5xl md:text-7xl mb-6 surge">A noite termina em festa</h2>
+            <p class="text-lg md:text-xl leading-relaxed max-w-xl surge">
+                As cores, os ritmos e os sabores do Brasil em um clima de noite que só acontece uma vez na vida. <strong class="font-semibold">A festa do Private Day é o encerramento do evento com a nossa tradicional “baguncinha”.</strong>
+            </p>
+        </div>
+        <!-- TROCAR: fotos do guia, ainda sem licença confirmada -->
+        <div class="album" aria-hidden="true">
+            <div class="polaroid" style="width:50%;height:66%;left:0;top:6%;rotate:-6deg" data-par="-.05"><img src="assets/brasilidades/copacabana.webp" alt="" width="877" height="505" loading="lazy" decoding="async"></div>
+            <div class="polaroid" style="width:44%;height:70%;right:0;top:0;rotate:5deg" data-par=".07"><img src="assets/brasilidades/cocos.webp" alt="" width="491" height="736" loading="lazy" decoding="async"></div>
+            <div class="polaroid" style="width:40%;height:52%;left:28%;bottom:0;rotate:-2deg;z-index:2" data-par="-.02"><img src="assets/brasilidades/caju.webp" alt="" width="349" height="464" loading="lazy" decoding="async"></div>
+            <img src="assets/brasilidades/chapeu-cangaceiro.png" alt="" aria-hidden="true" class="adesivo absolute h-28 md:h-36" style="left:-2%;bottom:0;rotate:-8deg;z-index:3" data-par=".1" width="429" height="449" loading="lazy" decoding="async">
+            <img src="assets/brasilidades/sol.png" alt="" aria-hidden="true" class="adesivo absolute w-20 md:w-28" style="right:6%;bottom:2%;z-index:3" data-par="-.08" width="435" height="428" loading="lazy" decoding="async">
+        </div>
+    </div>
+</section>
 
-        paymentLinks.forEach(link => {
-            const url = new URL(link.getAttribute('href'), window.location.href);
-            const defaultParams = new URLSearchParams(url.search);
+<div class="xadrez" style="--a:var(--canario);--b:var(--mar)" aria-hidden="true"></div>
 
-            // Mantém eventuais parâmetros não-UTM já existentes no link
-            const finalParams = new URLSearchParams();
-            defaultParams.forEach((value, key) => {
-                if (!/^utm_/i.test(key)) finalParams.set(key, value);
-            });
+<!-- Isopor interativo -->
+<section class="mundo-festa bg-mar grade py-16 md:py-24" data-tom="claro" data-pertence="festa">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-10 items-center">
+        <div class="surge">
+            <h2 class="titulo-festa text-5xl md:text-7xl mb-5">Abra o isopor</h2>
+            <p class="text-lg md:text-xl leading-relaxed max-w-md mb-4">Veja o que já está garantido para a sua noite.</p>
+            <!-- TROCAR: o link das referências do dress code de 2027 entra aqui -->
+            <p class="leading-relaxed max-w-md">Open bar, open food e um dress code para entrar no clima.</p>
+        </div>
+        <div class="isopor" id="isopor">
+            <span class="plaquinha isopor-dica font-semibold text-sm">Clique para abrir</span>
+            <ul class="isopor-itens">
+                <li class="isopor-item" style="--x:-48px;--y:-92px;--g:-7deg"><img class="adesivo" src="assets/brasilidades/garrafa.png" alt="" aria-hidden="true" width="149" height="577" loading="lazy" decoding="async"><span>Open bar</span></li>
+                <li class="isopor-item" style="--x:82px;--y:-150px;--g:3deg"><img class="adesivo" src="assets/brasilidades/peixe-tucunare.png" alt="" aria-hidden="true" width="475" height="278" loading="lazy" decoding="async"><span>Open food</span></li>
+                <li class="isopor-item" style="--x:178px;--y:-22px;--g:8deg"><img class="adesivo" src="assets/brasilidades/chinelo.png" alt="" aria-hidden="true" width="395" height="477" loading="lazy" decoding="async"><span>Dress code temático</span></li>
+            </ul>
+            <button id="isopor-botao" type="button" aria-expanded="false" aria-controls="isopor" aria-label="Abrir o isopor">
+                <img class="isopor-parte isopor-corpo" src="assets/brasilidades/isopor-corpo.png" alt="" width="365" height="431" loading="lazy" decoding="async">
+                <img class="isopor-parte isopor-tampa" src="assets/brasilidades/isopor-tampa.png" alt="" width="365" height="431" loading="lazy" decoding="async">
+            </button>
+        </div>
+    </div>
+</section>
 
-            const utmParams = hasIncomingUtm ? incomingUtm : defaultParams;
-            utmParams.forEach((value, key) => {
-                if (/^utm_/i.test(key)) finalParams.set(key, value);
-            });
+<!-- Faixa com os elementos -->
+<div class="faixa-rola" aria-hidden="true">
+    <div class="faixa-trilho">
+        <img class="frase" src="assets/brasilidades/meu-sangue-latino.png" alt="" width="2464" height="221" decoding="async"><img src="assets/brasilidades/chinelo.png" alt="" width="395" height="477" decoding="async"><img src="assets/brasilidades/sombrinha.png" alt="" width="397" height="464" decoding="async"><img src="assets/brasilidades/pamonha.png" alt="" width="475" height="380" decoding="async"><img src="assets/brasilidades/sol.png" alt="" width="435" height="428" decoding="async"><img class="frase" src="assets/brasilidades/meu-sangue-latino.png" alt="" width="2464" height="221" decoding="async"><img src="assets/brasilidades/pandeiro.png" alt="" width="353" height="355" decoding="async"><img src="assets/brasilidades/cordel.png" alt="" width="485" height="458" decoding="async"><img src="assets/brasilidades/brasil.png" alt="" width="382" height="382" decoding="async"><img src="assets/brasilidades/vitoria-regia.png" alt="" width="481" height="347" decoding="async"><img src="assets/brasilidades/garrafa.png" alt="" width="149" height="577" decoding="async"><img class="frase" src="assets/brasilidades/meu-sangue-latino.png" alt="" width="2464" height="221" decoding="async"><img src="assets/brasilidades/fitinha-bonfim.png" alt="" width="306" height="483" decoding="async"><img src="assets/brasilidades/sanfona.png" alt="" width="443" height="378" decoding="async"><img src="assets/brasilidades/caju-fruta.png" alt="" width="330" height="440" decoding="async"><img src="assets/brasilidades/folha.png" alt="" width="333" height="388" decoding="async"><img src="assets/brasilidades/filtro-barro.png" alt="" width="379" height="479" decoding="async"><img class="frase" src="assets/brasilidades/meu-sangue-latino.png" alt="" width="2464" height="221" decoding="async"><img src="assets/brasilidades/chinelo.png" alt="" width="395" height="477" decoding="async"><img src="assets/brasilidades/sombrinha.png" alt="" width="397" height="464" decoding="async"><img src="assets/brasilidades/pamonha.png" alt="" width="475" height="380" decoding="async"><img src="assets/brasilidades/sol.png" alt="" width="435" height="428" decoding="async"><img class="frase" src="assets/brasilidades/meu-sangue-latino.png" alt="" width="2464" height="221" decoding="async"><img src="assets/brasilidades/pandeiro.png" alt="" width="353" height="355" decoding="async"><img src="assets/brasilidades/cordel.png" alt="" width="485" height="458" decoding="async"><img src="assets/brasilidades/brasil.png" alt="" width="382" height="382" decoding="async"><img src="assets/brasilidades/vitoria-regia.png" alt="" width="481" height="347" decoding="async"><img src="assets/brasilidades/garrafa.png" alt="" width="149" height="577" decoding="async"><img class="frase" src="assets/brasilidades/meu-sangue-latino.png" alt="" width="2464" height="221" decoding="async"><img src="assets/brasilidades/fitinha-bonfim.png" alt="" width="306" height="483" decoding="async"><img src="assets/brasilidades/sanfona.png" alt="" width="443" height="378" decoding="async"><img src="assets/brasilidades/caju-fruta.png" alt="" width="330" height="440" decoding="async"><img src="assets/brasilidades/folha.png" alt="" width="333" height="388" decoding="async"><img src="assets/brasilidades/filtro-barro.png" alt="" width="379" height="479" decoding="async">
+    </div>
+</div>
 
-            url.search = finalParams.toString();
-            link.setAttribute('href', url.toString());
-        });
-    }
+<!-- Vídeo. TROCAR: a capa ainda mostra "Disco fever" -->
+<section id="edicao-25" class="mundo-festa bg-areia grade pt-24 pb-16 md:pb-24 relative overflow-hidden" data-tom="claro">
+    <div class="max-w-5xl mx-auto px-5 md:px-8 text-center">
+        <h2 class="plaquinha fios titulo-festa text-3xl md:text-5xl -rotate-1 mb-6">Um gostinho do que vem aí</h2>
+        <p class="text-lg leading-relaxed mb-10 surge">Antes de decidir, vale ver com os próprios olhos como foi uma das nossas edições.</p>
+        <div class="relative surge">
+            <div class="aspect-video w-full rounded-3xl overflow-hidden relative bg-black border-[3px] border-cacau" style="box-shadow:8px 9px 0 var(--cacau)">
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/vkjfSa8HwGg" title="AUVP Private Day" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <img src="assets/brasilidades/sanfona.png" alt="" aria-hidden="true" class="adesivo balanca hidden md:block absolute -left-16 -bottom-10 h-36 -rotate-6" width="443" height="378" loading="lazy" decoding="async">
+            <img src="assets/brasilidades/carranca.png" alt="" aria-hidden="true" class="adesivo balanca hidden md:block absolute -right-12 -top-14 h-44 rotate-6" style="--atraso:-1.6s" width="248" height="480" loading="lazy" decoding="async">
+        </div>
+    </div>
+</section>
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', applyUtmToPaymentLinks);
-    } else {
-        applyUtmToPaymentLinks();
-    }
-</script>
+<div class="xadrez" style="--a:var(--areia);--b:var(--mato)" aria-hidden="true"></div>
 
-<script>
-    /* -------------------------------------------------------------------------- */
-    /* CLARITY - TAGS DE CONTEXTO E EVENTOS PERSONALIZADOS                        */
-    /* -------------------------------------------------------------------------- */
-    (function () {
-        // O snippet do Clarity cria a fila window.clarity de forma síncrona, então as
-        // chamadas abaixo são enfileiradas mesmo antes de o script terminar de carregar.
-        function ready() {
-            return typeof window.clarity === 'function';
-        }
+<!-- Depoimentos -->
+<section class="mundo-festa bg-mato py-16 md:py-24" data-tom="claro" data-pertence="edicao-25">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <h2 class="titulo-festa text-4xl md:text-6xl max-w-4xl mb-16 surge">Quem foi, não guardou segredo</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-14">
+            <figure class="card-depo surge" style="rotate:-1.5deg">
+                <img src="assets/brasilidades/fitinha-bonfim.png" alt="" aria-hidden="true" class="adesivo " style="height:100px;top:-52px" width="306" height="483" loading="lazy" decoding="async">
+                <blockquote class="leading-relaxed flex-grow">“De repente, passou a valer tudo, tanto que já comprei na mesma semana o ingresso do ano seguinte, na confiança.”</blockquote>
+                <figcaption class="titulo-festa text-2xl mt-5">Pietro</figcaption>
+            </figure>
+            <figure class="card-depo surge lg:mt-8" style="rotate:1.5deg;--d:.08s">
+                <img src="assets/brasilidades/chimarrao.png" alt="" aria-hidden="true" class="adesivo " width="326" height="475" loading="lazy" decoding="async">
+                <blockquote class="leading-relaxed flex-grow">“Na primeira vez, estava apreensivo também, mas o pessoal é todo muito receptivo. No segundo ano, já era sucesso demais.”</blockquote>
+                <figcaption class="titulo-festa text-2xl mt-5">Henrique</figcaption>
+            </figure>
+            <figure class="card-depo surge" style="rotate:-1deg;--d:.16s">
+                <img src="assets/brasilidades/pamonha.png" alt="" aria-hidden="true" class="adesivo " width="475" height="380" loading="lazy" decoding="async">
+                <blockquote class="leading-relaxed flex-grow">“Quem ainda está na dúvida: só vai. É memória, amizade e história pra vida.”</blockquote>
+                <figcaption class="titulo-festa text-2xl mt-5">Thiago</figcaption>
+            </figure>
+            <figure class="card-depo surge lg:mt-8" style="rotate:2deg;--d:.24s">
+                <img src="assets/brasilidades/sombrinha.png" alt="" aria-hidden="true" class="adesivo " width="397" height="464" loading="lazy" decoding="async">
+                <div class="flex-grow">
+                    <blockquote class="leading-relaxed">“O que acontece em Vegas, fica em Vegas.”</blockquote>
+                    <p class="text-sm opacity-70 italic mt-2">Sobre a festa, ela não quis contar mais.</p>
+                </div>
+                <figcaption class="titulo-festa text-2xl mt-5">Vanessa</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
 
-        function tag(key, value) {
-            if (ready() && value) window.clarity('set', key, String(value).slice(0, 255));
-        }
+<div class="xadrez" style="--a:var(--mato);--b:#000" aria-hidden="true"></div>
 
-        function event(name) {
-            if (ready()) window.clarity('event', name);
-        }
+<!-- Patrocínio -->
+<section class="bg-black py-12 md:py-16" data-tom="escuro" data-pertence="faq">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <h3 class="titulo-palestra text-2xl md:text-4xl text-white max-w-3xl">Leve sua marca para o maior evento da comunidade AUVP.</h3>
+        <a href="https://form.auvp.com.br/to/LxmkLllT?typeform-source=privateday.auvp.com.br" target="_blank" rel="noopener" class="btn-sobrio px-8 py-3.5 text-sm shrink-0">Quero patrocinar</a>
+    </div>
+</section>
 
-        function upgrade(reason) {
-            if (ready()) window.clarity('upgrade', reason);
-        }
+<!-- FAQ -->
+<section id="faq" class="bg-black text-white pb-20 md:pb-28" data-tom="escuro">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="border-t border-white/20 pt-10 md:pt-14 grid lg:grid-cols-3 gap-8 lg:gap-12">
+        <h2 class="titulo-palestra text-3xl md:text-5xl text-white">Dúvidas frequentes</h2>
+        <div class="space-y-6 lg:col-span-2">
+            <details class="group border-b border-white/20 pb-4" open>
+                    <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center">
+                        <span>O que é o AUVP Private Day?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-white">
+                            <svg class="icone text-2xl" aria-hidden="true"><use href="#i-seta-faq"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
+                        Para quem não faz a menor ideia do que seja, todos os anos reunimos os membros da AUVP para tomar drinks, dar risadas e viver a experiência da comunidade presencialmente. Este ano, serão dois dias de palestras com grandes nomes do mercado financeiro. E, um dia com nossa tradicional festa.
+                    </p>
+                </details>
 
-        function initClarityTracking() {
-            if (!ready()) return;
+                <details class="group border-b border-white/20 pb-4">
+                    <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center">
+                        <span>Quando e que horas será o evento?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-white">
+                            <svg class="icone text-2xl" aria-hidden="true"><use href="#i-seta-faq"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
+                        As datas e os horários da edição de 2027 serão divulgados em breve.
+                    </p>
+                </details>
 
-            /* Tags de contexto: servem para segmentar gravações, heatmaps e funis */
-            tag('pagina', 'private-day-2027');
-            tag('dispositivo', window.matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop');
+                <details class="group border-b border-white/20 pb-4">
+                    <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center">
+                        <span>Qual o local do evento?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-white">
+                            <svg class="icone text-2xl" aria-hidden="true"><use href="#i-seta-faq"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
+                        O local da edição de 2027 será divulgado em breve. Ao comprar os ingressos você receberá o endereço completo com as informações específicas.
+                    </p>
+                </details>
 
-            var params = new URLSearchParams(window.location.search);
-            ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
-                tag(key, params.get(key));
-            });
+                <details class="group border-b border-white/20 pb-4">
+                    <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center">
+                        <span>Que roupa devo usar?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-white">
+                            <svg class="icone text-2xl" aria-hidden="true"><use href="#i-seta-faq"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
+                        Assim como nos anos anteriores, teremos um dress code. Este ano, para a festa, o tema oficial é Brasilidades, enviaremos documentos com inspirações e referências para que todos consigam se adaptar de acordo com sua realidade.
+                    </p>
+                </details>
 
-            try {
-                tag('origem', document.referrer ? new URL(document.referrer).hostname : 'direto');
-            } catch (e) {
-                tag('origem', 'direto');
-            }
+                <details class="group border-b border-white/20 pb-4">
+                    <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center">
+                        <span>O evento será open bar?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-white">
+                            <svg class="icone text-2xl" aria-hidden="true"><use href="#i-seta-faq"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
+                        Durante os dois dias de palestras será servido coffee break para os participantes. Já a festa do Private Day contará com open bar e open food, proporcionando uma experiência completa para todos.
+                    </p>
+                </details>
 
-            /* Cliques nos botões de compra (checkout Guru) */
-            document.querySelectorAll('a[href*="auvpag.com.br/pay/"]').forEach(function (link) {
-                link.addEventListener('click', function () {
-                    event('checkout_ingresso_unico');
-                    /* Prioriza a gravação: sessão com intenção de compra é a mais relevante */
-                    upgrade('intencao_de_compra');
-                });
-            });
+                <details class="group border-b border-white/20 pb-4">
+                    <summary class="font-medium text-white text-lg md:text-xl cursor-pointer list-none flex justify-between items-center">
+                        <span>Posso levar acompanhantes?</span>
+                        <span class="transition-transform duration-300 group-open:rotate-180 text-white">
+                            <svg class="icone text-2xl" aria-hidden="true"><use href="#i-seta-faq"/></svg>
+                        </span>
+                    </summary>
+                    <p class="text-white/70 font-light mt-4 leading-relaxed text-sm md:text-base">
+                        Sim! Você pode levar quantos acompanhantes quiser. Apenas certifique-se de preencher os <strong class="font-medium text-white">dados dos convidados</strong> no momento da compra, pois os ingressos são nominais e individuais.
+                    </p>
+                </details>
+        </div>
+        </div>
+    </div>
+</section>
 
-            /* Demais CTAs */
-            document.querySelectorAll('a[href="#ingressos"]').forEach(function (link) {
-                link.addEventListener('click', function () { event('cta_ver_ingressos'); });
-            });
+</main>
 
-            document.querySelectorAll('a[href*="form.auvp.com.br"]').forEach(function (link) {
-                link.addEventListener('click', function () { event('cta_patrocinio'); });
-            });
+<!-- Footer -->
+<footer data-tom="escuro" class="bg-black pt-16 pb-8 md:pt-20 md:pb-10 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12">
 
-            document.querySelectorAll('a[href*="api.whatsapp.com"]').forEach(function (link) {
-                link.addEventListener('click', function () {
-                    event('cta_whatsapp');
-                    upgrade('contato_whatsapp');
-                });
-            });
+            <div class="col-span-1 lg:col-span-2">
+                <div class="mb-4">
+                    <img src="assets/auvp%20capital%20claro.webp" alt="AUVP Capital" class="logo-rodape" width="375" height="133" loading="lazy" decoding="async">
+                </div>
+                <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                    Orgulhosamente feito sob o sol escaldante de Goiás &nbsp; ☀️
+                </p>
+                <p class="text-xs md:text-sm text-gray-400 leading-relaxed">
+                    AUVP CONSULTORIA FINANCEIRA DE INVESTIMENTOS LTDA<br/>
+                    CNPJ: 49.479.036/0001-99
+                </p>
+            </div>
 
-            /* Escolha de um palestrante nos slides */
-            /* Segredo do topo */
-            ['segredo-sol', 'segredo-frase'].forEach(function (id) {
-                var el = document.getElementById(id);
-                if (el) el.addEventListener('click', function () { event('segredo_aberto'); });
-            });
+            <div class="col-span-1">
+                <h4 class="text-white font-bold mb-6 text-base tracking-wide">Nossos Canais</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="https://comunidade.auvp.com.br/" target="_blank" rel="noopener" class="inline-block py-1.5 hover:text-white transition-colors">Comunidade</a></li>
+                    <li><a href="https://www.youtube.com/@investidorsardinha" target="_blank" rel="noopener" class="inline-block py-1.5 hover:text-white transition-colors">YouTube</a></li>
+                    <li><a href="https://www.instagram.com/oraulsena/?hl=pt" target="_blank" rel="noopener" class="inline-block py-1.5 hover:text-white transition-colors">Instagram</a></li>
+                </ul>
+            </div>
 
-            /* Interação do isopor */
-            var isopor = document.getElementById('isopor-botao');
-            if (isopor) isopor.addEventListener('click', function () { event('isopor_aberto'); });
+            <div class="col-span-1">
+                <h4 class="text-white font-bold mb-6 text-base tracking-wide">Outros Produtos</h4>
+                <div class="flex gap-[44px] text-sm text-gray-400">
+                    <!-- Coluna Esquerda -->
+                    <ul class="space-y-4">
+                        <li><a href="https://auvpcapital.com.br/" target="_blank" rel="noopener" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP Capital</a></li>
+                        <li><a href="https://www.auvp.com.br/" target="_blank" rel="noopener" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP Escola</a></li>
+                        <li><a href="https://analitica.auvp.com.br/" target="_blank" rel="noopener" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP Analítica</a></li>
+                    </ul>
+                    <!-- Coluna Direita -->
+                    <ul class="space-y-4">
+                        <li><a href="https://auvpcapital.com.br/wealth" target="_blank" rel="noopener" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP Wealth</a></li>
+                        <li><a href="https://auvpnews.com.br/" target="_blank" rel="noopener" class="inline-block py-1.5 hover:text-white transition-colors whitespace-nowrap">AUVP News</a></li>
+                    </ul>
+                </div>
+            </div>
 
-            /* Perguntas do FAQ */
-            document.querySelectorAll('#faq details').forEach(function (item) {
-                item.addEventListener('toggle', function () {
-                    if (!item.open) return;
-                    var pergunta = item.querySelector('summary span');
-                    tag('faq_pergunta', pergunta ? pergunta.textContent.trim() : '');
-                    event('faq_aberto');
-                });
-            });
+        </div>
 
-            /* Profundidade de rolagem (cada marco dispara uma única vez) */
-            var marcos = [25, 50, 75, 90];
-            var atingidos = {};
-            window.addEventListener('scroll', function () {
-                var altura = document.documentElement.scrollHeight - window.innerHeight;
-                if (altura <= 0) return;
-                var percentual = (window.scrollY / altura) * 100;
-                marcos.forEach(function (marco) {
-                    if (percentual >= marco && !atingidos[marco]) {
-                        atingidos[marco] = true;
-                        event('scroll_' + marco);
-                    }
-                });
-            }, { passive: true });
+        <div class="pt-8 border-t border-gray-800 flex justify-center items-center">
+            <div class="text-xs md:text-sm text-gray-500 text-center">
+                © 2026 Todos os direitos reservados.
+            </div>
+        </div>
+    </div>
+</footer>
 
-            /* Seções-chave realmente vistas pelo visitante */
-            if ('IntersectionObserver' in window) {
-                [['ingressos', 'secao_ingressos_vista'], ['palestrantes', 'secao_palestrantes_vista']].forEach(function (par) {
-                    var secao = document.getElementById(par[0]);
-                    if (!secao) return;
-                    var observador = new IntersectionObserver(function (entradas) {
-                        entradas.forEach(function (entrada) {
-                            if (!entrada.isIntersecting) return;
-                            event(par[1]);
-                            observador.disconnect();
-                        });
-                    }, { threshold: 0.4 });
-                    observador.observe(secao);
-                });
-            }
-        }
+<!-- WIDGET WHATSAPP -->
+<div class="wa-wrapper show-balloon">
+    <div id="wa-tooltip" class="wa-balloon" role="tooltip">
+        <strong>Fale conosco</strong> pelo WhatsApp e tire suas dúvidas
+    </div>
+    <a class="wa-float" href="https://api.whatsapp.com/send/?phone=%2B55556234139882&text=Ol%C3%A1%21+Vim+atrav%C3%A9s+do+site+do+Private+Day+e+tenho+interesse+em+receber+mais+informa%C3%A7%C3%B5es+sobre+o+evento.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" aria-label="Fale conosco no WhatsApp" aria-describedby="wa-tooltip">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path fill="#ffffff" d="M16.003 5.333c-5.89 0-10.667 4.777-10.667 10.667 0 1.88.493 3.715 1.427 5.333L5.333 26.667l5.493-1.413a10.62 10.62 0 0 0 5.177 1.32h.004c5.89 0 10.667-4.777 10.667-10.667S21.893 5.333 16.003 5.333zm0 19.467h-.004a8.79 8.79 0 0 1-4.48-1.227l-.32-.187-3.253.84.867-3.173-.213-.333a8.8 8.8 0 0 1-1.347-4.72c0-4.867 3.96-8.827 8.827-8.827 2.36 0 4.573.92 6.24 2.587a8.78 8.78 0 0 1 2.587 6.24c0 4.867-3.96 8.8-8.904 8.8zm4.843-6.587c-.267-.133-1.573-.773-1.813-.867-.24-.093-.413-.133-.587.133-.173.267-.667.867-.813 1.04-.147.173-.293.187-.56.067-.267-.133-1.12-.413-2.133-1.32-.787-.707-1.32-1.573-1.467-1.84-.147-.267-.013-.413.117-.547.12-.12.267-.307.4-.467.133-.16.173-.267.267-.44.093-.187.04-.347-.027-.48-.067-.133-.587-1.413-.8-1.933-.213-.507-.427-.44-.587-.453-.147-.013-.32-.013-.493-.013-.173 0-.453.067-.693.32-.24.267-.907.893-.907 2.173 0 1.28.933 2.52 1.067 2.693.133.173 1.84 2.813 4.467 3.947.627.267 1.107.427 1.493.547.627.2 1.2.173 1.653.107.507-.08 1.573-.64 1.787-1.267.213-.627.213-1.16.147-1.267-.067-.107-.24-.173-.507-.307z"/>
+        </svg>
+    </a>
+</div>
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initClarityTracking);
-        } else {
-            initClarityTracking();
-        }
-    })();
-</script>
+</body>
+</html>
