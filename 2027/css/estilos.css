@@ -258,6 +258,13 @@ img.adesivo { filter: drop-shadow(3px 0 0 var(--areia)) drop-shadow(-3px 0 0 var
 }
 .pilula-breve { display: inline-flex; align-items: center; gap: .6em; font-family: var(--fonte-festa-corpo); font-weight: 600; font-size: 18px; background: var(--areia); color: var(--cacau); border: 3px solid var(--cacau); border-radius: 999px; box-shadow: var(--sombra-dura); padding: 13px 30px; white-space: nowrap; }
 .pilula-breve small { font-size: 13px; font-weight: 500; opacity: .7; }
+/* Ingresso e pílula levam ao checkout */
+a.ingresso-recorte { display: block; color: inherit; text-decoration: none; }
+a.ingresso-recorte:focus-visible { outline: 3px solid var(--cacau); outline-offset: 8px; border-radius: 12px; }
+.pilula-compra { transition: transform .25s var(--curva), box-shadow .25s var(--curva); }
+.pilula-compra .icone { rotate: -90deg; }
+.pilula-compra:hover { transform: translate(2px, 3px); box-shadow: 2px 2px 0 var(--cacau); }
+.pilula-compra:focus-visible { outline: 3px solid var(--cacau); outline-offset: 4px; }
 
 /* Surgir ao rolar: só com JavaScript, para o conteúdo nunca ficar escondido */
 .tem-js .surge { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--curva), transform .8s var(--curva); transition-delay: var(--d, 0s); }
