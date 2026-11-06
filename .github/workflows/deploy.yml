@@ -1,0 +1,72 @@
+name: Deploy no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Permite republicar sem precisar de um commit novo.
+  workflow_dispatch:
+
+# Só uma publicação por vez. `cancel-in-progress: false` deixa a que já está
+# rodando terminar: cancelar no meio pode deixar o site parcialmente atualizado.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build estático
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # Descobre o endereço real das Pages deste repositório. É daqui que saem
+      # o subcaminho e a URL canônica. Assim, no dia em que um domínio próprio
+      # for configurado, o build se ajusta sozinho, sem editar nada.
+      - name: Descobrir configuração do Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Instalar dependências
+        run: npm ci
+
+      # Gera dist/ com a edição atual na raiz e cada edição na sua pasta. O
+      # .nojekyll também sai daqui. Ver scripts/build.mjs.
+      #
+      # SITE_INDEXAVEL: o Pages é o endereço público do Private Day, então as
+      # páginas mantêm o robots que têm no código (a de 2027 segue com noindex
+      # até o lançamento). Para transformar o Pages em homologação, apague a
+      # linha. Ver docs/DEPLOY.md.
+      - name: Build
+        env:
+          SITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+          SITE_INDEXAVEL: "true"
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Publicar
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

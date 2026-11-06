@@ -1,73 +1,99 @@
 # AUVP Private Day
 
-Landing pages do AUVP Private Day. Cada edição é um projeto separado, com as próprias páginas e os próprios arquivos.
+Landing pages do **AUVP Private Day**, uma pasta por edição, publicadas juntas
+num único site estático. Endereço: **<https://eriadesign.github.io/privateday/>**.
 
-| Pasta | O que é | Estado |
-|---|---|---|
-| [`2026/`](2026/) | Edição de 2026 | Backup: não alterar |
-| [`2027/`](2027/) | Edição de 2027 | Em desenvolvimento: é aqui que as alterações entram |
+| Endereço                                                                        | Pasta   | O que é                                           |
+| ------------------------------------------------------------------------------- | ------- | ------------------------------------------------- |
+| [/](https://eriadesign.github.io/privateday/)                                   | `2026/` | A edição atual, definida em `site.json`           |
+| [/2026/](https://eriadesign.github.io/privateday/2026/)                         | `2026/` | Edição de 2026. Backup: não alterar               |
+| [/2027/](https://eriadesign.github.io/privateday/2027/)                         | `2027/` | Edição de 2027, em desenvolvimento, com `noindex` |
+| [/2027/obrigado.htm](https://eriadesign.github.io/privateday/2027/obrigado.htm) | `2027/` | Página de obrigado, ainda no visual de 2026       |
 
-## Edição de 2026
+A raiz serve a edição atual: o build copia a pasta do ano escrito em
+`site.json` para a raiz do site, e cada edição continua também no seu próprio
+endereço. **Para lançar uma edição, troque o ano em `site.json`.** Ver
+[docs/DEPLOY.md](docs/DEPLOY.md).
 
-Publicada no WordPress: `2026/index.htm` é o código colado no bloco HTML. Tudo fica em um arquivo só, com as imagens em `2026/assets/`.
+Cada edição é HTML puro, sem framework: `index.html` (em 2026, `index.htm`),
+CSS, JS e as imagens em `assets/`. O build só copia as pastas, ajusta canonical
+e imagem de compartilhamento ao endereço público e confere se todo arquivo
+citado existe.
 
-## Edição de 2027
+## Começando
 
-Publicada pelo GitHub Pages, como um site comum:
-
-- `index.htm`: a página.
-- `css/estilos.css`: os estilos próprios. É aqui que o visual muda.
-- `css/tailwind.css`: as classes utilitárias, em arquivo gerado. Não edite à mão.
-- `js/main.js`: as interações e a medição do Clarity.
-- `assets/`: imagens, sempre citadas pelo caminho relativo, como `assets/brasilidades/sol.png`.
-- `obrigado.htm`: a página de obrigado, ainda no formato antigo.
-
-Ao usar uma classe do Tailwind que ainda não existe na página, gere `css/tailwind.css` de novo, a partir da raiz do repositório:
+Requer Node 22 (ver `.nvmrc`).
 
 ```bash
-npx tailwindcss@3 -c 2027/tailwind.config.js -o 2027/css/tailwind.css --minify
+npm install            # instala o Prettier e o Tailwind 3
+npm run build          # monta o site em dist/
+npm run preview        # serve dist/ em http://localhost:4173
 ```
+
+## Comandos
+
+| Comando           | O que faz                                                    |
+| ----------------- | ------------------------------------------------------------ |
+| `npm run build`   | Monta o site completo em `dist/`                             |
+| `npm run preview` | Serve `dist/` em http://localhost:4173                       |
+| `npm run css`     | Gera `2027/css/tailwind.css` com as classes usadas na página |
+| `npm test`        | Testes do build (`node --test`)                              |
+| `npm run format`  | Aplica o Prettier                                            |
+| `npm run check`   | Formatação, testes e build, o mesmo que a CI roda            |
+
+## Onde mexer
+
+**Trocar um texto, link ou pergunta do FAQ** → direto no `index.html` da
+edição. Ver **[docs/CONTENT.md](docs/CONTENT.md)**.
+
+**Mexer em cor, fonte ou elemento da festa** → `2027/css/estilos.css`, com o
+racional em **[docs/BRAND.md](docs/BRAND.md)**.
+
+**Usar uma classe do Tailwind que ainda não existe na página de 2027** → rode
+`npm run css` e faça commit do `2027/css/tailwind.css`. A CI confere.
 
 ## Não mova nem apague os arquivos soltos na raiz
 
-O site no ar (`privateday.auvp.com.br`) carrega imagens e fonte da raiz deste repositório, pelo endereço `raw.githubusercontent.com/eriadesign/privateday/main/<arquivo>`. Se esses arquivos saírem de lá, as imagens do site quebram na hora.
+O site no ar no WordPress (`privateday.auvp.com.br`) carrega imagens e fonte da
+raiz deste repositório, pelo endereço
+`raw.githubusercontent.com/eriadesign/privateday/main/<arquivo>`. Se esses
+arquivos saírem de lá, as imagens do site quebram na hora. Eles não entram no
+site montado em `dist/`.
 
-Eles só podem ser removidos depois que o código publicado no WordPress deixar de apontar para a raiz. Antes disso, confira também se algum e-mail usa esses endereços: arquivos como `email.png` e as assinaturas não aparecem em nenhuma página daqui.
+Eles só podem ser removidos depois que o código publicado no WordPress deixar
+de apontar para a raiz. Antes disso, confira também se algum e-mail usa esses
+endereços: arquivos como `email.png` e as assinaturas não aparecem em nenhuma
+página daqui.
 
-`2027/obrigado.htm` também carrega arquivos de `2027/assets/` por esse endereço, então eles só podem sair de lá depois que essa página for refeita.
+Pelo mesmo motivo, `2026/index.htm` é o código colado no bloco HTML do
+WordPress e carrega `2026/assets/` pelo endereço raw, e `2027/obrigado.htm` faz
+o mesmo com `2027/assets/`. Esses caminhos também não podem mudar.
 
-## Pré-visualização
+## Documentação
 
-O GitHub Pages publica a `main`, e todo o conteúdo é público, inclusive o de 2027 enquanto está em desenvolvimento:
+| Documento                                    | Assunto                                                |
+| -------------------------------------------- | ------------------------------------------------------ |
+| [docs/CONTENT.md](docs/CONTENT.md)           | Como editar o conteúdo e o que falta preencher em 2027 |
+| [docs/BRAND.md](docs/BRAND.md)               | Linguagem visual de 2027: os dois mundos               |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Estrutura, build e decisões técnicas                   |
+| [docs/DEPLOY.md](docs/DEPLOY.md)             | Publicação, lançamento de edição e checklist           |
+| [CONTRIBUTING.md](CONTRIBUTING.md)           | Fluxo de trabalho, branches e revisão                  |
+| [CHANGELOG.md](CHANGELOG.md)                 | Histórico de mudanças                                  |
 
-- 2027: <https://eriadesign.github.io/privateday/2027/>
-- 2026: <https://eriadesign.github.io/privateday/2026/>
-- O endereço raiz redireciona para a edição atual, 2027. A cada nova edição, troque o destino no `index.htm` da raiz.
+## Publicação
 
-## Rascunho de 2027
+O mesmo `dist/` serve três destinos:
 
-A landing de 2027 é dividida em dois mundos, seguindo o guia de identidade:
+- **GitHub Pages**, a cada push na `main`, pelo workflow
+  `.github/workflows/deploy.yml`.
+- **Vercel**, configurada por `vercel.json`: basta importar o repositório.
+- **AWS (S3 + CloudFront)**, pelo workflow `.github/workflows/deploy-aws.yml`,
+  que só roda depois que as variáveis da conta forem criadas no repositório.
 
-- **Palestras:** sóbrio e corporativo. Preto e branco, Anek Latin nos títulos, Roboto no corpo, linhas finas.
-- **Festa:** paleta do tema Brasilidades, Oferta do Dia nos títulos, Elms Sans no corpo e os elementos do guia em forma de adesivo.
-
-Para editar, as cores e as fontes estão em `:root`, no começo de `2027/css/estilos.css`. Se mudar uma cor, atualize também `2027/tailwind.config.js` e gere o CSS de novo. Pontos a preencher estão marcados no código com `TROCAR`.
-
-Os elementos, as fotos do guia e `titulo-brasilidades.png`, o título em imagem, estão em `2027/assets/brasilidades/`. Além dos elementos do guia, a pasta tem adesivos regionais criados para a página: `pamonha`, `copo-cerveja`, `peixe-tucunare`, `fitinha-bonfim`, `cordel`, `berimbau`, `sombrinha`, `chapeu-cangaceiro`, `chimarrao`, `caju-fruta`, `sanfona`, `vitoria-regia` e `filtro-barro`.
-
-Nos títulos da festa, evite as letras C e Ç: na Oferta do Dia, o C se lê como L.
-
-No topo, a festa abre pelo sol no rodapé ou pela frase em destaque "Festa para celebrar.", que mostram a versão colorida.
-
-Antes de publicar de verdade:
-
-- [ ] Remover a linha `noindex` do começo do arquivo e o aviso de rascunho.
-- [ ] Preencher datas, local e o link de checkout do ingresso único, que está como "em breve".
-- [ ] Incluir o lineup quando estiver fechado, no lugar da linha "Lineup em breve".
-- [ ] Trocar o vídeo, cuja capa ainda mostra "Disco fever", e incluir o link do dress code.
-- [ ] Confirmar a licença da fonte Oferta do Dia e das fotos do guia.
-- [ ] Refazer `2027/obrigado.htm`, que ainda está no visual de 2026.
+Ver [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## Versão exata de 2026
 
-A tag `lp-2026` guarda o repositório como estava antes desta organização. A tag `com-flora` guarda a versão com o Marcelo Flora anterior à remoção temporária.
+A tag `lp-2026` guarda o repositório como estava antes da primeira
+organização. A tag `com-flora` guarda a versão com o Marcelo Flora anterior à
+remoção temporária.

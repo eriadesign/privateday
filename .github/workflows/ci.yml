@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # Escotilha manual: quando a Actions para de agendar os runs automáticos, um
+  # PR fica sem verificação e sem jeito de pedir uma, porque `push` e
+  # `pull_request` não se disparam à mão.
+  workflow_dispatch:
+
+jobs:
+  verificacao:
+    name: Formatação, testes, CSS e build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Verificar formatação
+        run: npm run format:check
+
+      - name: Testes
+        run: npm test
+
+      # O 2027/css/tailwind.css é gerado e fica no git. Se alguém usou uma
+      # classe nova sem gerar o arquivo de novo, a página sai sem o estilo.
+      - name: Tailwind de 2027 atualizado
+        run: |
+          npm run css
+          git diff --exit-code -- 2027/css/tailwind.css || {
+            echo "::error::2027/css/tailwind.css está desatualizado. Rode npm run css e faça commit do resultado."
+            exit 1
+          }
+
+      # Também confere se todo arquivo citado nas páginas existe no site.
+      - name: Build
+        run: npm run build

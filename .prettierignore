@@ -1,0 +1,8 @@
+node_modules
+dist
+package-lock.json
+# As páginas das edições nunca passaram pelo Prettier. Formatar tudo de uma vez
+# geraria um diff gigante sem mudança real, e 2026/index.htm é o código colado
+# no WordPress, que não deve mudar.
+2026
+2027
