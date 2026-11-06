@@ -1,0 +1,4 @@
+{
+  "$comentario": "edicaoAtual é a pasta servida na raiz do site. Para lançar uma edição nova, troque o ano aqui. Ver docs/DEPLOY.md.",
+  "edicaoAtual": "2026"
+}

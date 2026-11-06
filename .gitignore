@@ -1,0 +1,24 @@
+# dependências
+node_modules/
+
+# build (scripts/build.mjs)
+/dist/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+
+# arquivos de ambiente
+.env*
+
+# vercel
+.vercel
+
+# ferramentas locais
+.vscode/
+.idea/
+*.local
+.claude/launch.json

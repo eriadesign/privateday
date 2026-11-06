@@ -1,6 +1,6 @@
 // Gera css/tailwind.css com as classes usadas na página. O comando está no README.
 module.exports = {
-    content: { relative: true, files: ['./index.htm', './js/*.js'] },
+    content: { relative: true, files: ['./index.html', './js/*.js'] },
     theme: {
         extend: {
             // Paleta da festa (guia de identidade). As mesmas cores estão em :root, no estilos.css.

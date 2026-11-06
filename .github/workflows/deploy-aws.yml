@@ -1,0 +1,71 @@
+name: Deploy na AWS
+
+# Merge na main publica sozinho. Para voltar a uma versão anterior, rode
+# manualmente informando o commit (precisa fazer parte da main).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit a publicar (vazio = ponta da main)
+        required: false
+
+permissions:
+  contents: read
+
+# Publica o mesmo build do Pages e da Vercel num bucket S3 com CloudFront na
+# frente. Tudo que identifica a conta vem das variáveis do repositório
+# (Settings → Secrets and variables → Actions → Variables), não do código:
+#
+#   SITE_DISTRIBUTION_ID  id da distribuição CloudFront (liga o workflow)
+#   AWS_ACCOUNT_ID        conta da AWS
+#   SITE_BUCKET           bucket S3 que recebe o site
+#   AWS_DEPLOY_ROLE       role assumida por OIDC (padrão: <SITE_BUCKET>-deploy)
+#   SITE_URL              endereço público, ex.: https://privateday.auvp.com.br
+#
+# Ver docs/DEPLOY.md.
+concurrency:
+  group: deploy-aws
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # Só publica depois que a variável SITE_DISTRIBUTION_ID existir.
+    if: vars.SITE_DISTRIBUTION_ID != ''
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      SITE_BUCKET: ${{ vars.SITE_BUCKET }}
+      SITE_URL: ${{ vars.SITE_URL }}
+      SITE_INDEXAVEL: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.commit || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: O commit precisa fazer parte da main
+        run: git merge-base --is-ancestor HEAD origin/main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/${{ vars.AWS_DEPLOY_ROLE || format('{0}-deploy', vars.SITE_BUCKET) }}
+          aws-region: us-east-1
+
+      - name: Publica o site
+        run: bash scripts/ci/deploy.sh
+        env:
+          SITE_DISTRIBUTION_ID: ${{ vars.SITE_DISTRIBUTION_ID }}
